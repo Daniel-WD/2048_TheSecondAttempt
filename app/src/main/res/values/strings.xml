@@ -4,6 +4,9 @@
     <string name="pause">Pause</string>
     <string name="game_over">Game Over</string>
     <string name="won">You won!</string>
+    <string name="score">Score</string>
+    <string name="highscore">Highcore</string>
+    <string name="difficulty">DIFFICULTY</string>
 
     <string name="app_name">2048 - Math Game</string>
 
@@ -38,7 +41,6 @@
     <string name="smart_desc">Be smart ;)</string>
 
 
-    <string name="score">SCORE</string>
 
     <string name="back">Back</string>
     <string name="restart">Restart</string>

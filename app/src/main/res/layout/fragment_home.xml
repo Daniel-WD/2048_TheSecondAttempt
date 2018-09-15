@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
         android:letterSpacing="0.2"
-        android:text="DIFFICULTY"
+        android:text="@string/difficulty"
         android:textColor="@color/lightSnow"
         android:textSize="14sp"
         android:textStyle="bold"

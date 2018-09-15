@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="2dp"
             android:includeFontPadding="false"
-            android:text="3"
+            tools:text="3"
             android:textColor="@color/snow"
             android:textSize="13sp"
             android:textStyle="bold"
