@@ -18,13 +18,11 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundColor" value="ffffff" />
-                                      <entry key="backgroundImage" value="C:\Users\Daniel Weidensdörfer\Desktop\Titaniel Productions\Produkte\2048 - The Clean One\design\icon\three\ic_launcher_background.png" />
-                                      <entry key="foregroundImage" value="C:\Users\Daniel Weidensdörfer\Desktop\Titaniel Productions\Produkte\2048 - The Clean One\design\icon\three\ic_launcher_foreground.png" />
+                                      <entry key="backgroundImage" value="C:\Users\Daniel Weidensdörfer\Desktop\Titaniel Productions\Produkte\2048 - Better\design\playstore\icon\ic_launcher_background.png" />
+                                      <entry key="foregroundImage" value="C:\Users\Daniel Weidensdörfer\Desktop\Titaniel Productions\Produkte\2048 - Better\design\playstore\icon\ic_launcher_foreground.png" />
                                       <entry key="generateLegacyIcon" value="false" />
                                       <entry key="generateRoundIcon" value="false" />
                                       <entry key="generateWebIcon" value="false" />
-                                      <entry key="previewDensity" value="XXHIGH" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -9,7 +9,7 @@
         <item name="colorControlActivated">@color/snow</item>
         <item name="colorControlHighlight">@color/snow</item>
 
-        <item name="android:colorPrimary">#000000</item>
+        <item name="android:colorPrimary">#00021B</item>
 
     </style>
 

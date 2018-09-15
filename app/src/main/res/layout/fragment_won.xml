@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    tools:visibility="visible">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/lyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="4dp"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/dialog_background"
+        android:paddingBottom="22dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="22dp"
+            android:letterSpacing="0.07"
+            android:text="@string/won"
+            android:textColor="@color/snow"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/lyScore"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="22dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/score_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="1dp"
+                android:layout_height="70dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/lightSnow"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="14dp"
+                android:layout_marginTop="3dp"
+                android:text="Score"
+                android:textColor="@color/snow"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginEnd="14dp"
+                android:text="Highscore"
+                android:textColor="@color/snow"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintEnd_toStartOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/tvScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_marginTop="3dp"
+                android:text="2684"
+                android:textColor="@color/snow"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/view"
+                app:layout_constraintTop_toTopOf="@+id/view" />
+
+            <TextView
+                android:id="@+id/tvHighscore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="14dp"
+                android:text="234234"
+                android:textColor="@color/snow"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/view"
+                app:layout_constraintStart_toEndOf="@+id/view" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/btnResume"
+            android:layout_width="0dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="22dp"
+            android:src="@drawable/btn_resume_lv1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lyScore" />
+
+        <LinearLayout
+            android:id="@+id/lyButtons"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnResume">
+
+            <ImageView
+                android:id="@+id/btnHome"
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/btn_home_lv3_small" />
+
+            <ImageView
+                android:id="@+id/btnRestart"
+                android:layout_width="0dp"
+                android:layout_height="63dp"
+                android:layout_weight="0.5"
+                android:src="@drawable/btn_restart_lv2_small" />
+
+        </LinearLayout>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>
