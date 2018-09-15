@@ -292,6 +292,7 @@ public class Game extends AnimatedFragment {
     }
 
     public void enableAll(long delay) {
+        mActivity.state = MainActivity.STATE_FM_GAME;
 
         updateBackText();
 
