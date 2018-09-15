@@ -91,8 +91,8 @@ public class Admob {
     }
 
     private static void loadRewardedVideoAd() {
-        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
-//        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/6813509264", new AdRequest.Builder().build());
+//        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/6813509264", new AdRequest.Builder().build());
 
         //REAL ::: ca-app-pub-5405975374278619/6813509264
         //TEST ::: ca-app-pub-3940256099942544/5224354917
