@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "602961554548",
-    "firebase_url": "https://the-clean-one.firebaseio.com",
-    "project_id": "the-clean-one",
-    "storage_bucket": "the-clean-one.appspot.com"
+    "project_number": "213093679583",
+    "firebase_url": "https://better-e8887.firebaseio.com",
+    "project_id": "better-e8887",
+    "storage_bucket": "better-e8887.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:602961554548:android:88b05ca132dba031",
+        "mobilesdk_app_id": "1:213093679583:android:4304fb7c7add5b0f",
         "android_client_info": {
-          "package_name": "com.titaniel.twothousandeightyfour"
+          "package_name": "com.titaniel.best_2048_math_puzzle"
         }
       },
       "oauth_client": [
         {
-          "client_id": "602961554548-8e2d65l7omcivs9khm6u0ajrfaergef3.apps.googleusercontent.com",
+          "client_id": "213093679583-1sij5n7pe13tjb5pl8ajeb9gjo8fuoce.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAGC0FDY1qSoDRIfnrSB4h_ApEwD-zGaX4"
+          "current_key": "AIzaSyCQo27ofFI4TLL6B26sLwnIMT2liFG5G8M"
         }
       ],
       "services": {

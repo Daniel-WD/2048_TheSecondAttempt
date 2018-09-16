@@ -1,7 +1,16 @@
 <resources>
-    <string name="app_name">2048 - The Clean One</string>
+    <string name="undo_last_move">Undo last move?</string>
+    <string name="get_backs">Get 3 backs</string>
+    <string name="pause">Pause</string>
+    <string name="game_over">Game Over</string>
+    <string name="won">You won!</string>
+    <string name="score">Score</string>
+    <string name="highscore">Highcore</string>
+    <string name="difficulty">DIFFICULTY</string>
 
-    <string name="temp_best">Record: %1$d</string>
+    <string name="app_name">2048</string>
+
+    <string name="temp_best">Highscore: %1$d</string>
 
     <string name="achievements">Achievements</string>
 
@@ -32,16 +41,12 @@
     <string name="smart_desc">Be smart ;)</string>
 
 
-    <string name="score">SCORE</string>
 
     <string name="back">Back</string>
     <string name="restart">Restart</string>
     <string name="home">Home</string>
     <string name="resume">Resume</string>
     <string name="undo">Undo</string>
-    <string name="get_backs">Get 3 Backs</string>
 
-    <string name="lost">You Lost!</string>
-    <string name="won">You Won!</string>
 
 </resources>
