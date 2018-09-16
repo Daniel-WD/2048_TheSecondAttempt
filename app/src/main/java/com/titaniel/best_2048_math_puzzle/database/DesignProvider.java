@@ -1,11 +1,11 @@
-package com.titaniel.math_puzzle.database;
+package com.titaniel.best_2048_math_puzzle.database;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.LightingColorFilter;
 import android.graphics.drawable.Drawable;
 
-import com.titaniel.math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.R;
 
 import java.util.ArrayList;
 

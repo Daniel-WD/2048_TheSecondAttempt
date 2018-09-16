@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.fragments;
+package com.titaniel.best_2048_math_puzzle.fragments;
 
 import android.os.Handler;
 import android.support.v4.app.Fragment;

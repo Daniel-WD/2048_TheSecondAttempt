@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle
+package com.titaniel.best_2048_math_puzzle
 
 import org.junit.Test
 

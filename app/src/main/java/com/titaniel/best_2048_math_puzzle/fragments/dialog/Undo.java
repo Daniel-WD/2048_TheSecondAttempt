@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.fragments.dialog;
+package com.titaniel.best_2048_math_puzzle.fragments.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,13 +14,13 @@ import android.widget.TextView;
 
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
-import com.titaniel.math_puzzle.MainActivity;
-import com.titaniel.math_puzzle.R;
-import com.titaniel.math_puzzle.admob.Admob;
-import com.titaniel.math_puzzle.database.Database;
-import com.titaniel.math_puzzle.fragments.AnimatedFragment;
-import com.titaniel.math_puzzle.utils.AnimUtils;
-import com.titaniel.math_puzzle.utils.Utils;
+import com.titaniel.best_2048_math_puzzle.MainActivity;
+import com.titaniel.best_2048_math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.admob.Admob;
+import com.titaniel.best_2048_math_puzzle.database.Database;
+import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 public class Undo extends AnimatedFragment {
 

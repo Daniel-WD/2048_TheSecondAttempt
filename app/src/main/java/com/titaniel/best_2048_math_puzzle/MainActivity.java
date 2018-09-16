@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle;
+package com.titaniel.best_2048_math_puzzle;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -7,16 +7,16 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.titaniel.math_puzzle.admob.Admob;
-import com.titaniel.math_puzzle.database.Database;
-import com.titaniel.math_puzzle.database.DesignProvider;
-import com.titaniel.math_puzzle.fragments.dialog.GameOver;
-import com.titaniel.math_puzzle.fragments.dialog.Undo;
-import com.titaniel.math_puzzle.fragments.dialog.Pause;
-import com.titaniel.math_puzzle.fragments.dialog.Won;
-import com.titaniel.math_puzzle.fragments.game.Game;
-import com.titaniel.math_puzzle.fragments.AnimatedFragment;
-import com.titaniel.math_puzzle.fragments.Home;
+import com.titaniel.best_2048_math_puzzle.admob.Admob;
+import com.titaniel.best_2048_math_puzzle.database.Database;
+import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
+import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
+import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.fragments.Home;
 
 public class MainActivity extends AppCompatActivity {
 

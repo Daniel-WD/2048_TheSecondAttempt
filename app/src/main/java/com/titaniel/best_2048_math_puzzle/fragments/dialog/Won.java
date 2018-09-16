@@ -1,30 +1,29 @@
-package com.titaniel.math_puzzle.fragments.dialog;
+package com.titaniel.best_2048_math_puzzle.fragments.dialog;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.animation.FastOutLinearInInterpolator;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AnticipateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.titaniel.math_puzzle.MainActivity;
-import com.titaniel.math_puzzle.R;
-import com.titaniel.math_puzzle.fragments.AnimatedFragment;
-import com.titaniel.math_puzzle.utils.AnimUtils;
+import com.titaniel.best_2048_math_puzzle.MainActivity;
+import com.titaniel.best_2048_math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.database.Database;
+import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 
-public class Pause extends AnimatedFragment {
+public class Won extends AnimatedFragment {
 
     private View mRoot;
-    private ImageView mBtnRestart, mBtnHome, mBtnClose;
+    private TextView mTvScore, mTvHighscore;
+    private ImageView mBtnHome, mBtnRestart, mBtnResume;
     private ConstraintLayout mContainer;
 
     private MainActivity mActivity;
@@ -32,7 +31,7 @@ public class Pause extends AnimatedFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_pause, container, false);
+        return inflater.inflate(R.layout.fragment_won, container, false);
     }
 
     @Override
@@ -43,36 +42,45 @@ public class Pause extends AnimatedFragment {
 
         //init
         mRoot = getView();
-        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
+        mTvScore = mRoot.findViewById(R.id.tvScore);
+        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
         mBtnHome = mRoot.findViewById(R.id.btnHome);
-        mBtnClose = mRoot.findViewById(R.id.btnClose);
+        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
+        mBtnResume = mRoot.findViewById(R.id.btnResume);
         mContainer = mRoot.findViewById(R.id.lyContainer);
 
         //btn restart
         mBtnRestart.setOnClickListener(v -> {
-            mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+            mActivity.hideState(MainActivity.STATE_FM_WON, 0);
             mActivity.game.restart();
         });
 
         //btn home
         mBtnHome.setOnClickListener(v -> {
-            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
             mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
         });
 
-        //btn close
-        mBtnClose.setOnClickListener(v -> {
-            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+        //btn resume
+        mBtnResume.setOnClickListener(v -> {
+            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
             mActivity.game.enableAll(delay);
         });
+    }
+
+    private void updateScores() {
+        mTvHighscore.setText(String.valueOf(Database.currentMode.record));
+        mTvScore.setText(String.valueOf(Database.currentMode.points));
     }
 
     @Override
     protected void animateShow(long delay) {
 
+        updateScores();
+
         mRoot.setVisibility(View.VISIBLE);
 
-        long duration = 250;
+        long duration = 300;
 
         mContainer.setAlpha(0);
         mContainer.setScaleX(0.6f);

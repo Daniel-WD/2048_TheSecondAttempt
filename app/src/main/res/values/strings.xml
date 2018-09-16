@@ -8,7 +8,7 @@
     <string name="highscore">Highcore</string>
     <string name="difficulty">DIFFICULTY</string>
 
-    <string name="app_name">2048 - Math Game</string>
+    <string name="app_name">2048</string>
 
     <string name="temp_best">Highscore: %1$d</string>
 

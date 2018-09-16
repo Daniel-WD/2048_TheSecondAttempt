@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.utils;
+package com.titaniel.best_2048_math_puzzle.utils;
 
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;

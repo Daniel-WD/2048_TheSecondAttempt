@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.fragments.game;
+package com.titaniel.best_2048_math_puzzle.fragments.game;
 
 import android.content.Context;
 import android.support.annotation.Nullable;

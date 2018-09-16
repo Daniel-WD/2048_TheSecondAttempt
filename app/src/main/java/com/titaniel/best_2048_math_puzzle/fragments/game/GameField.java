@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.fragments.game;
+package com.titaniel.best_2048_math_puzzle.fragments.game;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -22,9 +22,9 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.titaniel.math_puzzle.R;
-import com.titaniel.math_puzzle.database.DesignProvider;
-import com.titaniel.math_puzzle.utils.Utils;
+import com.titaniel.best_2048_math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;

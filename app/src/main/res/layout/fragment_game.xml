@@ -7,7 +7,7 @@
     android:visibility="invisible"
     tools:visibility="visible">
 
-    <com.titaniel.math_puzzle.fragments.game.TouchArea
+    <com.titaniel.best_2048_math_puzzle.fragments.game.TouchArea
         android:id="@+id/touchArea"
         android:layout_width="match_parent"
         android:layout_height="492dp"
@@ -72,7 +72,7 @@
 
     </LinearLayout>
 
-    <com.titaniel.math_puzzle.fragments.game.GameField
+    <com.titaniel.best_2048_math_puzzle.fragments.game.GameField
         android:id="@+id/gameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:tint="@color/snow"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.38"
+            app:layout_constraintHorizontal_bias="0.41"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.45" />

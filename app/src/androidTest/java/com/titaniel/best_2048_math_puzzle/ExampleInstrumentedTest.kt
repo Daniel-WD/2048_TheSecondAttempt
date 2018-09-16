@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle
+package com.titaniel.best_2048_math_puzzle
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

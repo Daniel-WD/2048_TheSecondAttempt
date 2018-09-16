@@ -1,4 +1,4 @@
-package com.titaniel.math_puzzle.admob;
+package com.titaniel.best_2048_math_puzzle.admob;
 
 import android.content.Context;
 import android.os.Handler;

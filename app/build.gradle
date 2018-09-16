@@ -9,7 +9,7 @@ apply plugin: 'io.fabric'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.titaniel.twothousandeightyfour"
+        applicationId "com.titaniel.best_2048_math_puzzle"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1

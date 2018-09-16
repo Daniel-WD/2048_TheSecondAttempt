@@ -8,42 +8,42 @@
 
     <fragment
         android:id="@+id/fragmentHome"
-        android:name="com.titaniel.math_puzzle.fragments.Home"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.Home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
     <fragment
         android:id="@+id/fragmentGame"
-        android:name="com.titaniel.math_puzzle.fragments.game.Game"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.game.Game"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
     <fragment
         android:id="@+id/fragmentBacks"
-        android:name="com.titaniel.math_puzzle.fragments.dialog.Undo"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
     <fragment
         android:id="@+id/fragmentGameOver"
-        android:name="com.titaniel.math_puzzle.fragments.dialog.GameOver"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
     <fragment
         android:id="@+id/fragmentPause"
-        android:name="com.titaniel.math_puzzle.fragments.dialog.Pause"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
     <fragment
         android:id="@+id/fragmentWon"
-        android:name="com.titaniel.math_puzzle.fragments.dialog.Won"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Won"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />

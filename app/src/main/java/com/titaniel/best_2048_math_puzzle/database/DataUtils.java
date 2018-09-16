@@ -1,6 +1,6 @@
-package com.titaniel.math_puzzle.database;
+package com.titaniel.best_2048_math_puzzle.database;
 
-import com.titaniel.math_puzzle.fragments.game.GameField;
+import com.titaniel.best_2048_math_puzzle.fragments.game.GameField;
 
 import java.util.ArrayList;
 
