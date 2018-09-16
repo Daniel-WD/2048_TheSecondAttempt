@@ -16,9 +16,9 @@ public class Admob {
 
     public static void init(Context context, Handler handler) {
 
-        MobileAds.initialize(context, "ca-app-pub-5405975374278619~4079534716");
+        MobileAds.initialize(context, "ca-app-pub-5405975374278619~2814672046");
 
-        handler.post(() -> {
+//        handler.post(() -> {
             rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(context);
             rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
                 @Override
@@ -85,16 +85,16 @@ public class Admob {
                 }
             });
             loadRewardedVideoAd();
-        });
+//        });
 
 
     }
 
     private static void loadRewardedVideoAd() {
 //        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
-        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/6813509264", new AdRequest.Builder().build());
+        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/7756949480", new AdRequest.Builder().build());
 
-        //REAL ::: ca-app-pub-5405975374278619/6813509264
+        //REAL ::: ca-app-pub-5405975374278619/7756949480
         //TEST ::: ca-app-pub-3940256099942544/5224354917
     }
 

@@ -52,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         HandlerThread thread = new HandlerThread("admob");
         thread.start();
         mAdmobHandler = new Handler(thread.getLooper());
-        mAdmobHandler.post(() -> {
+//        mAdmobHandler.post(() -> {
             //admob
             Admob.init(this, mHandler);
-        });
+//        });
 
         //Database
         Database.init(this);
