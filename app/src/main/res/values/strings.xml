@@ -11,4 +11,20 @@
     <string name="difficulty">DIFFICULTY</string>
     <string name="temp_best">Highscore: %1$d</string>
 
+    <!-- image descriptions  -->
+
+    <string name="descrResume">Resume</string>
+    <string name="descrHome">Home</string>
+    <string name="descrRestart">Restart</string>
+    <string name="descrUndo">Undo</string>
+    <string name="descrGetBacks">Get Backs</string>
+    <string name="descrGiveUp">Give Up</string>
+    <string name="descrClose">Close</string>
+    <string name="descrTitle">Title</string>
+    <string name="descrMode">Mode</string>
+    <string name="descrModeNext">Next Mode</string>
+    <string name="descrModePrevious">Previous Mode</string>
+    <string name="descrPlay">Play</string>
+    <string name="descrRate">Rate</string>
+
 </resources>

@@ -90,11 +90,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginTop="3dp"
-                tools:text="2684"
                 android:textColor="@color/snow"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
+                app:layout_constraintTop_toTopOf="@+id/view"
+                tools:text="2684" />
 
             <TextView
                 android:id="@+id/tvHighscore"
@@ -102,11 +102,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginStart="14dp"
-                tools:text="234234"
                 android:textColor="@color/snow"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintStart_toEndOf="@+id/view" />
+                app:layout_constraintStart_toEndOf="@+id/view"
+                tools:text="234234" />
 
         </android.support.constraint.ConstraintLayout>
 
@@ -115,6 +115,7 @@
             android:layout_width="0dp"
             android:layout_height="63dp"
             android:layout_marginTop="22dp"
+            android:contentDescription="@string/descrResume"
             android:src="@drawable/btn_resume_lv1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -139,6 +140,7 @@
                 android:layout_width="0dp"
                 android:layout_height="63dp"
                 android:layout_weight="0.5"
+                android:contentDescription="@string/descrHome"
                 android:src="@drawable/btn_home_lv3_small" />
 
             <ImageView
@@ -146,6 +148,7 @@
                 android:layout_width="0dp"
                 android:layout_height="63dp"
                 android:layout_weight="0.5"
+                android:contentDescription="@string/descrRestart"
                 android:src="@drawable/btn_restart_lv2_small" />
 
         </LinearLayout>

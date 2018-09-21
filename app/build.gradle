@@ -50,6 +50,13 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-ads:15.0.1'
 
+//    implementation 'com.google.android.gms:play-services-plus:15.0.1'
+//    implementation 'com.google.android.gms:play-services-auth:16.0.0'
+//    implementation 'com.google.android.gms:play-services-base:15.0.1'
+//    implementation 'com.google.android.gms:play-services-identity:15.0.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.0'
+
+
 //    implementation 'com.google.firebase:firebase-messaging:17.3.0'
 }
 
