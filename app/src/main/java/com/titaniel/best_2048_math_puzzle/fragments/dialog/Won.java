@@ -57,6 +57,7 @@ public class Won extends AnimatedFragment {
 
         //btn home
         mBtnHome.setOnClickListener(v -> {
+            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
             long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
             mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
         });

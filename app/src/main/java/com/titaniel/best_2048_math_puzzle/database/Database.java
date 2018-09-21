@@ -71,8 +71,6 @@ public class Database {
     private final static ArrayList<MoneyListener> mMoneyListeners = new ArrayList<>();
     private static int money = 20000;
 
-    public static Achievement[] achievements;
-
     public static final Mode[] modes = {
             new Mode(R.drawable.mode_2, 2, -2),
             new Mode(R.drawable.mode_3, 3, -1),
@@ -89,23 +87,6 @@ public class Database {
 
     public static void init(Context c) {
         sPrefs = ((AppCompatActivity) c).getPreferences(Context.MODE_PRIVATE);
-
-        //init achievemnts
-        achievements = new Achievement[] {
-                new Achievement(c.getString(R.string.beginner), c.getString(R.string.beginner_desc), "30"),
-                new Achievement(c.getString(R.string.master), c.getString(R.string.master_desc), "10"),
-                new Achievement(c.getString(R.string.hero), c.getString(R.string.hero_desc), "50"),
-                new Achievement(c.getString(R.string.champion), c.getString(R.string.champion_desc), "50"),
-                new Achievement(c.getString(R.string.combiner), c.getString(R.string.combiner_desc), "10"),
-                new Achievement(c.getString(R.string.smart), c.getString(R.string.smart_desc), "20"),
-        };
-
-        achievements[0].state = Achievement.STATE_GETABLE;
-        achievements[1].state = Achievement.STATE_GOTTEN;
-        achievements[2].state = Achievement.STATE_LOCKED;
-        achievements[3].state = Achievement.STATE_GETABLE;
-        achievements[4].state = Achievement.STATE_GOTTEN;
-        achievements[5].state = Achievement.STATE_GETABLE;
     }
 
     public static void load() {

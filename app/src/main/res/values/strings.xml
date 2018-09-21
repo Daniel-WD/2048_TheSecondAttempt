@@ -1,52 +1,31 @@
 <resources>
+    <string name="app_name">2048</string>
+
     <string name="undo_last_move">Undo last move?</string>
     <string name="get_backs">Get 3 backs</string>
     <string name="pause">Pause</string>
     <string name="game_over">Game Over</string>
     <string name="won">You won!</string>
     <string name="score">Score</string>
-    <string name="highscore">Highcore</string>
+    <string name="highscore">Highscore</string>
     <string name="difficulty">DIFFICULTY</string>
-
-    <string name="app_name">2048</string>
-
     <string name="temp_best">Highscore: %1$d</string>
+    <string name="get2048">Get the 2048 tile!</string>
 
-    <string name="achievements">Achievements</string>
+    <!-- image descriptions  -->
 
-    <!-- Instructions -->
-    <string name="instr_delete">Tap to delete a Number</string>
-
-    <string name="instr_exchange">Tap two Numbers to swap</string>
-
-    <string name="instr_double">Tap the Number to double</string>
-
-    <!-- Achievements -->
-    <string name="beginner">Beginner</string>
-    <string name="beginner_desc">Combine 4 Tiles at one Time</string>
-
-    <string name="master">Master</string>
-    <string name="master_desc">Get the 2048 Tile</string>
-
-    <string name="hero">Hero</string>
-    <string name="hero_desc">Get the 1024 Tile</string>
-
-    <string name="champion">Champion</string>
-    <string name="champion_desc">Get the 512 Tile</string>
-
-    <string name="combiner">Combiner</string>
-    <string name="combiner_desc">Combine 2 and 4 Tiles at ones</string>
-
-    <string name="smart">Smart</string>
-    <string name="smart_desc">Be smart ;)</string>
-
-
-
-    <string name="back">Back</string>
-    <string name="restart">Restart</string>
-    <string name="home">Home</string>
-    <string name="resume">Resume</string>
-    <string name="undo">Undo</string>
-
+    <string name="descrResume">Resume</string>
+    <string name="descrHome">Home</string>
+    <string name="descrRestart">Restart</string>
+    <string name="descrUndo">Undo</string>
+    <string name="descrGetBacks">Get Backs</string>
+    <string name="descrGiveUp">Give Up</string>
+    <string name="descrClose">Close</string>
+    <string name="descrTitle">Title</string>
+    <string name="descrMode">Mode</string>
+    <string name="descrModeNext">Next Mode</string>
+    <string name="descrModePrevious">Previous Mode</string>
+    <string name="descrPlay">Play</string>
+    <string name="descrRate">Rate</string>
 
 </resources>
