@@ -10,6 +10,7 @@
     <string name="highscore">Highscore</string>
     <string name="difficulty">DIFFICULTY</string>
     <string name="temp_best">Highscore: %1$d</string>
+    <string name="get2048">Get the 2048 tile!</string>
 
     <!-- image descriptions  -->
 

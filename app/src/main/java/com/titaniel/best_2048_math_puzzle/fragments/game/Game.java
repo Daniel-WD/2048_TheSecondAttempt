@@ -40,15 +40,13 @@ public class Game extends AnimatedFragment {
 
     private View mRoot;
     private ImageView mBtnPause;
-    private TextView mTvScore;
     private TextView mTvPoints;
-    private LinearLayout mLyPoints;
-    private TextView mTvInstruction;
     private TouchArea mTouchArea;
     private View mVDivOne, mVDivTwo;
     private TextView mTvBackCount;
     private ConstraintLayout mLyBack;
     private TextView mTvRecord;
+    private TextView mTvInstruction;
 
     public GameField gameField;
 
@@ -87,6 +85,7 @@ public class Game extends AnimatedFragment {
         mTvBackCount = mRoot.findViewById(R.id.tvBackCount);
         mLyBack = mRoot.findViewById(R.id.lyBack);
         mTvRecord = mRoot.findViewById(R.id.tvRecord);
+        mTvInstruction = mRoot.findViewById(R.id.tvInstruction);
 
         //back
         mLyBack.setOnClickListener(v -> {
@@ -312,7 +311,6 @@ public class Game extends AnimatedFragment {
         AnimUtils.animateAlpha(mVDivOne, interpolator, alpha, duration, delay);
         AnimUtils.animateAlpha(mVDivTwo, interpolator, alpha, duration, delay);
         if(mBackShown) AnimUtils.animateAlpha(mLyBack, interpolator, alpha, duration, delay);
-
     }
 
 
@@ -352,6 +350,24 @@ public class Game extends AnimatedFragment {
         mTvBackCount.setText(String.valueOf(Database.currentMode.backs));
     }
 
+    public void showInstruction(long delay) {
+
+        long duration = 250;
+
+        mTvInstruction.setAlpha(0);
+        mTvInstruction.setTranslationX(mTvInstruction.getWidth()/2);
+        AnimUtils.animateTranslationX(mTvInstruction, new DecelerateInterpolator(2), 0, duration, delay);
+        AnimUtils.animateAlpha(mTvInstruction, new AccelerateDecelerateInterpolator(), 1, duration, delay);
+
+        delay += duration + 1300;
+
+        handler.postDelayed(() -> {
+            AnimUtils.animateTranslationX(mTvInstruction, new AccelerateInterpolator(2), -mTvInstruction.getWidth()/2, duration, 0);
+            AnimUtils.animateAlpha(mTvInstruction, new AccelerateDecelerateInterpolator(), 0, duration, 0);
+        }, delay);
+
+    }
+
     @Override
     protected void animateShow(long delay) {
 
@@ -366,7 +382,12 @@ public class Game extends AnimatedFragment {
 
         delay += 300;
 
+        mTvInstruction.setAlpha(0);
+
         if(!loadGame) {
+            showInstruction(delay);
+            delay += 1900;
+
             updateBackText();
             handler.postDelayed(() -> gameField.showStartTiles(), delay);
         } else {
