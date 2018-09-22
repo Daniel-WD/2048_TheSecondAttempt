@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="get_backs">Получите 3 спины</string>
+    <string name="won">Ты победил!</string>
+    <string name="score">Гол</string>
+    <string name="highscore">Рекорд</string>
+    <string name="difficulty">ТРУДНОСТИ</string>
+    <string name="pause">Пауза</string>
+    <string name="game_over">Игра закончена</string>
+    <string name="temp_best">Рекорд: %1$d</string>
+    <string name="get2048">Получите плиту 2048!</string>
+    <string name="descrResume">Продолжить</string>
+    <string name="descrHome">Главная</string>
+    <string name="descrRestart">Перезапуск</string>
+    <string name="descrUndo">расстегивать</string>
+    <string name="descrGetBacks">Получить спину</string>
+    <string name="descrGiveUp">Сдаваться</string>
+    <string name="descrClose">Закрыть</string>
+    <string name="descrTitle">заглавие</string>
+    <string name="descrMode">Режим</string>
+    <string name="descrModeNext">Следующий режим</string>
+    <string name="descrModePrevious">Предыдущий режим</string>
+    <string name="descrPlay">Играть</string>
+    <string name="descrRate">Ставка</string>
+    <string name="undo_last_move">Отменить последний ход?</string>
+</resources>

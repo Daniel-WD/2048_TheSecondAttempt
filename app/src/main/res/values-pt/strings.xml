@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="get_backs">Obtenha 3 costas</string>
+    <string name="pause">Pausa</string>
+    <string name="game_over">Fim de jogo</string>
+    <string name="won">Você ganhou!</string>
+    <string name="score">Ponto</string>
+    <string name="highscore">Pontuação máxima</string>
+    <string name="difficulty">DIFICULDADE</string>
+    <string name="temp_best">Pontuação: %1$d</string>
+    <string name="get2048">Pegue o bloco 2048!</string>
+    <string name="descrResume">Currículo</string>
+    <string name="descrHome">Casa</string>
+    <string name="descrRestart">Reiniciar</string>
+    <string name="descrUndo">Desfazer</string>
+    <string name="descrGetBacks">Receba as costas</string>
+    <string name="descrGiveUp">Desistir</string>
+    <string name="descrClose">Fechar</string>
+    <string name="descrTitle">Título</string>
+    <string name="descrMode">Modo</string>
+    <string name="descrModeNext">Próximo modo</string>
+    <string name="descrModePrevious">Modo Anterior</string>
+    <string name="descrPlay">Toque</string>
+    <string name="descrRate">Taxa</string>
+    <string name="undo_last_move">Desfazer o último movimento?</string>
+</resources>
