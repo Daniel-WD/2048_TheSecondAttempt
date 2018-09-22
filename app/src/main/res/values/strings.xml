@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">2048</string>
+    <string name="app_name" translatable="false">2048</string>
 
-    <string name="undo_last_move">Undo last move?</string>
     <string name="get_backs">Get 3 backs</string>
     <string name="pause">Pause</string>
     <string name="game_over">Game Over</string>
@@ -27,5 +26,6 @@
     <string name="descrModePrevious">Previous Mode</string>
     <string name="descrPlay">Play</string>
     <string name="descrRate">Rate</string>
+    <string name="undo_last_move">Undo last move?</string>
 
 </resources>
