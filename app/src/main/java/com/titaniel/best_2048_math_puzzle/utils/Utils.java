@@ -3,6 +3,7 @@ package com.titaniel.best_2048_math_puzzle.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
 public class Utils {
 
@@ -45,6 +46,10 @@ public class Utils {
             case 23: return (int) Math.pow(2, 24);
         }
         return 0;
+    }
+
+    public static void toast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 
 }
