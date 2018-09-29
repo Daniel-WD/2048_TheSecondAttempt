@@ -1,8 +1,7 @@
 package com.titaniel.best_2048_math_puzzle.fragments;
 
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.view.View;
+import androidx.fragment.app.Fragment;
 
 public abstract class AnimatedFragment extends Fragment {
 

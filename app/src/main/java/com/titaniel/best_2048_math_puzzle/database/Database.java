@@ -2,7 +2,7 @@ package com.titaniel.best_2048_math_puzzle.database;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 
 import com.titaniel.best_2048_math_puzzle.R;

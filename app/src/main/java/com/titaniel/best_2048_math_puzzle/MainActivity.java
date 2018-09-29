@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,6 +22,9 @@ import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler mAdmobHandler;
 
-    private GoogleSignInAccount mGoogleSignAccount;
+    private GoogleSignInAccount mGoogleSignInAccount;
     private GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -89,16 +89,19 @@ public class MainActivity extends AppCompatActivity {
         won = (Won) getSupportFragmentManager().findFragmentById(R.id.fragmentWon);
 
         mHandler.postDelayed(() -> showState(STATE_FM_HOME, 0, null), 500);
-//        mHandler.postDelayed(this::signInSilently, 500);
+        mHandler.postDelayed(this::signInSilently, 500);
+//        mHandler.postDelayed(this::startSignInIntent, 500);
     }
 
     private void signInSilently() {
         mGoogleSignInClient.silentSignIn().addOnCompleteListener(this,
                 task -> {
                     if(task.isSuccessful()) {
-                        mGoogleSignAccount = task.getResult();
+                        mGoogleSignInAccount = task.getResult();
+//                        Utils.toast(this, "silentsignin::successful");
                     } else {
                         startSignInIntent();
+//                        Utils.toast(this, "silentsignin::NOT-successful --> startSingInIntent");
                     }
                 });
     }
@@ -114,10 +117,15 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                mGoogleSignAccount = task.getResult(ApiException.class);
+
+                mGoogleSignInAccount = task.getResult(ApiException.class);
+//                Utils.toast(this, "activityresult.getResult::SUCCESS");
+
             } catch (ApiException apiException) {
 
-                String message = apiException.getMessage();
+//                Utils.toast(this, "activityresult.getResult::API-EXCEPTION");
+
+                /*String message = apiException.getMessage();
                 if(message == null || message.isEmpty()) {
                     message = "määääääaännnn";
                 }
@@ -125,7 +133,8 @@ public class MainActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setMessage(message)
                         .setNeutralButton(android.R.string.ok, null)
-                        .show();
+                        .show();*/
+
             }
         }
     }

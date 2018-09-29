@@ -6,11 +6,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.graphics.drawable.PathInterpolatorCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.animation.FastOutSlowInInterpolator;
+
+import androidx.annotation.Nullable;
+import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
+import androidx.core.content.ContextCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -18,8 +18,6 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.titaniel.best_2048_math_puzzle.R;
@@ -28,7 +26,6 @@ import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Random;
 
 public class GameField extends View {
