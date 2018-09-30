@@ -19,6 +19,7 @@ import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
 import com.titaniel.best_2048_math_puzzle.fragments.Home;
+import com.titaniel.best_2048_math_puzzle.fragments.Logo;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 12;
     private static final int RC_ACHIEVEMENT_UI = 23;
+    private static final int RC_LEADERBOARD_UI = 34;
 
     //states
     public static final int
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
             STATE_FM_GAME_OVER = 2,
             STATE_FM_UNDO = 3,
             STATE_FM_WON = 4,
-            STATE_FM_PAUSE = 5;
+            STATE_FM_PAUSE = 5,
+            STATE_FM_LOGO = 6;
 
     public int state = STATE_FM_HOME;
 
@@ -53,10 +56,9 @@ public class MainActivity extends AppCompatActivity {
     public Undo undo;
     public Won won;
     public Pause pause;
+    public Logo logo;
 
     private Handler mHandler = new Handler();
-
-    private Handler mAdmobHandler;
 
     private GoogleSignInAccount mGoogleSignInAccount;
     private GoogleSignInClient mGoogleSignInClient;
@@ -66,16 +68,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HandlerThread thread = new HandlerThread("admob");
-        thread.start();
-        mAdmobHandler = new Handler(thread.getLooper());
-//        mAdmobHandler.post(() -> {
-        //admob
-        Admob.init(this, mHandler);
-//        });
-
         //Database
         Database.init(this);
+
+        //init logo fragment
+        logo = (Logo) getSupportFragmentManager().findFragmentById(R.id.fragmentLogo);
+
+        mHandler.postDelayed(() -> showState(STATE_FM_LOGO, 0, null), 100);
+    }
+
+    public void initAll() {
+        //admob
+        Admob.init(this, mHandler);
 
         //Design Provider
         DesignProvider.init(this);
@@ -88,18 +92,22 @@ public class MainActivity extends AppCompatActivity {
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         //init Fragments
-        home = (Home) getSupportFragmentManager().findFragmentById(R.id.fragmentHome);
-        game = (Game) getSupportFragmentManager().findFragmentById(R.id.fragmentGame);
-        undo = (Undo) getSupportFragmentManager().findFragmentById(R.id.fragmentBacks);
-        gameOver = (GameOver) getSupportFragmentManager().findFragmentById(R.id.fragmentGameOver);
-        pause = (Pause) getSupportFragmentManager().findFragmentById(R.id.fragmentPause);
-        won = (Won) getSupportFragmentManager().findFragmentById(R.id.fragmentWon);
+        home = new Home();
+        game = new Game();
+        undo = new Undo();
+        gameOver = new GameOver();
+        pause = new Pause();
+        won = new Won();
 
-        mHandler.postDelayed(() -> showState(STATE_FM_HOME, 0, null), 500);
-        mHandler.postDelayed(this::signInSilently, 500);
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
     }
 
-    private void showAchievements() {
+    public void showAchievements() {
         if(mGoogleSignInAccount == null) return;
 
         Games.getAchievementsClient(this, mGoogleSignInAccount)
@@ -108,7 +116,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void signInSilently() {
+    public void showLeaderboard() {
+        if(mGoogleSignInAccount == null) return;
+
+        Games.getLeaderboardsClient(this, mGoogleSignInAccount)
+                .getAllLeaderboardsIntent()
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
+
+    }
+
+    public void signInSilently() {
         mGoogleSignInClient.silentSignIn().addOnCompleteListener(this,
                 task -> {
                     if(task.isSuccessful()) {
@@ -164,6 +181,8 @@ public class MainActivity extends AppCompatActivity {
                 return pause;
             case STATE_FM_WON:
                 return won;
+            case STATE_FM_LOGO:
+                return logo;
         }
         return null;
     }
@@ -187,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        game.submitScores();
+        if(game != null) game.submitScores();
 
         if(state == STATE_FM_GAME) {
             Database.currentMode.saved = game.gameField.getSaveImage();
@@ -229,6 +248,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case STATE_FM_WON:
                 won.onBackPressed();
+                break;
+            case STATE_FM_LOGO:
+                super.onBackPressed();
                 break;
         }
     }

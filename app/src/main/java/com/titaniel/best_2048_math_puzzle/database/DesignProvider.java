@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class DesignProvider {
 
-    public static int[] colors;
-
     public static class TileDesign {
 
         TileDesign(Drawable[] ts, int[] colors, Drawable incrEff) {
@@ -30,30 +28,6 @@ public class DesignProvider {
     public static ArrayList<TileDesign> tileDesigns = new ArrayList<>();
 
     public static void init(Context context) {
-
-        colors = new int[24];
-
-        //colors
-        float[] firstColor = {282, 0.64f, 0.93f};
-
-        for(int i = 0; i < 6; i++) {
-            colors[i] = Color.HSVToColor(firstColor);
-            firstColor[2] -= 0.1f;
-        }
-
-        float[] secondColor = {214, 0.70f, 0.84f};
-
-        for(int i = 6; i < 10; i++) {
-            colors[i] = Color.HSVToColor(secondColor);
-            secondColor[2] -= 0.1f;
-        }
-
-        float[] thirdColor = {170, 0.99f, 0.79f};
-
-        for(int i = 10; i < colors.length; i++) {
-            colors[i] = Color.HSVToColor(thirdColor);
-            thirdColor[2] -= 0.1f;
-        }
 
         Drawable[] tiles = {
                 context.getDrawable(R.drawable.tile_0),

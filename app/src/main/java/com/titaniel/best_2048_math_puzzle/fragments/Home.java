@@ -174,13 +174,17 @@ public class Home extends AnimatedFragment {
     @Override
     protected void animateShow(long delay) {
 
-        block(150);
+        mActivity.state = MainActivity.STATE_FM_HOME;
+
+        long duration = 150;
+
+        block(duration);
 
         setMode(Database.currentMode);
         mRoot.setVisibility(View.VISIBLE);
 
         mRoot.setAlpha(0);
-        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, 150, delay);
+        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, duration, delay);
 
         delay += 150;
 

@@ -6,7 +6,7 @@
     android:background="#00042d"
     tools:context=".MainActivity">
 
-    <fragment
+    <!--<fragment
         android:id="@+id/fragmentHome"
         android:name="com.titaniel.best_2048_math_puzzle.fragments.Home"
         android:layout_width="match_parent"
@@ -44,6 +44,18 @@
     <fragment
         android:id="@+id/fragmentWon"
         android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Won"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:visibility="invisible" />-->
+
+    <FrameLayout
+        android:id="@+id/lyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <fragment
+        android:id="@+id/fragmentLogo"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.Logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
