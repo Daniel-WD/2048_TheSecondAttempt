@@ -97,4 +97,8 @@ public class GameOver extends AnimatedFragment {
 
         return duration+50;
     }
+
+    public void onBackPressed() {
+        mBtnHome.callOnClick();
+    }
 }

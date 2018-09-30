@@ -95,4 +95,8 @@ public class Pause extends AnimatedFragment {
 
         return duration+50;
     }
+
+    public void onBackPressed() {
+        mBtnClose.callOnClick();
+    }
 }

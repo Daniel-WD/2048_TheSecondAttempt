@@ -218,6 +218,18 @@ public class MainActivity extends AppCompatActivity {
             case STATE_FM_GAME:
                 game.onBackPressed();
                 break;
+            case STATE_FM_GAME_OVER:
+                gameOver.onBackPressed();
+                break;
+            case STATE_FM_PAUSE:
+                pause.onBackPressed();
+                break;
+            case STATE_FM_UNDO:
+                undo.onBackPressed();
+                break;
+            case STATE_FM_WON:
+                won.onBackPressed();
+                break;
         }
     }
 }

@@ -105,4 +105,8 @@ public class Won extends AnimatedFragment {
 
         return duration+50;
     }
+
+    public void onBackPressed() {
+        mBtnResume.callOnClick();
+    }
 }

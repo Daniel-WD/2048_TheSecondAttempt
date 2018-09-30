@@ -169,4 +169,8 @@ public class Undo extends AnimatedFragment {
 
         return duration + 50;
     }
+
+    public void onBackPressed() {
+        mBtnGiveUp.callOnClick();
+    }
 }
