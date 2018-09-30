@@ -19,7 +19,7 @@ public class Database {
 
         final public int representative;
         final public int fieldSize;
-        public int record = 0;
+        public int record = -1;
         final int id;
         public ArrayList<GameField.FieldImage> saved;
         public int points = 0, backs = 0;
@@ -57,7 +57,6 @@ public class Database {
     private static int money = 20000;
 
     public static final Mode[] modes = {
-            new Mode(R.drawable.mode_2, 2, -2),
             new Mode(R.drawable.mode_3, 3, -1),
             new Mode(R.drawable.mode_4, 4, 0),
             new Mode(R.drawable.mode_5, 5, 1),
@@ -66,7 +65,7 @@ public class Database {
             new Mode(R.drawable.mode_8, 8, 4),
             new Mode(R.drawable.mode_9, 9, 5)
     };
-    public static Mode currentMode = modes[2];
+    public static Mode currentMode = modes[1];
 
     private static SharedPreferences sPrefs;
 
@@ -79,7 +78,7 @@ public class Database {
         long time = System.nanoTime();
 
         for(Mode mode : modes) {
-            mode.record = sPrefs.getInt("record-" + mode.id, 0);
+            mode.record = sPrefs.getInt("record-" + mode.id, -1);
             mode.points = sPrefs.getInt("points-" + mode.id, 0);
             mode.backs = sPrefs.getInt("undo-" + mode.id, 0);
 

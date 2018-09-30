@@ -7,6 +7,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.AchievementsClient;
 import com.google.android.gms.games.Games;
+import com.titaniel.best_2048_math_puzzle.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,44 +25,79 @@ public class GameServices {
 
     }
 
-    public static Achievement[] tileAchievements = {
-            new Achievement("CgkI34P-6pkGEAIQBg", 2),
-            new Achievement("CgkI34P-6pkGEAIQBw", 4),
-            new Achievement("CgkI34P-6pkGEAIQCA", 8),
-            new Achievement("CgkI34P-6pkGEAIQCQ", 16),
-            new Achievement("CgkI34P-6pkGEAIQCg", 32),
-            new Achievement("CgkI34P-6pkGEAIQCw", 64),
-            new Achievement("CgkI34P-6pkGEAIQDA", 128),
-            new Achievement("CgkI34P-6pkGEAIQDQ", 256),
-            new Achievement("CgkI34P-6pkGEAIQDg", 512),
-            new Achievement("CgkI34P-6pkGEAIQDw", 1024),
-            new Achievement("CgkI34P-6pkGEAIQEA", 2048),
-            new Achievement("CgkI34P-6pkGEAIQEQ", 4096),
-            new Achievement("CgkI34P-6pkGEAIQEg", 8192),
-            new Achievement("CgkI34P-6pkGEAIQEw", 16384),
-            new Achievement("CgkI34P-6pkGEAIQFA", 32768)
-    };
+    public static class Leaderboard {
 
-    public static Achievement[] pointAchievements = {
-            new Achievement("CgkI34P-6pkGEAIQFQ", 500),
-            new Achievement("CgkI34P-6pkGEAIQFg", 1000),
-            new Achievement("CgkI34P-6pkGEAIQFw", 5000),
-            new Achievement("CgkI34P-6pkGEAIQGA", 10000),
-            new Achievement("CgkI34P-6pkGEAIQGQ", 15000),
-            new Achievement("CgkI34P-6pkGEAIQGg", 20000),
-            new Achievement("CgkI34P-6pkGEAIQGw", 25000),
-            new Achievement("CgkI34P-6pkGEAIQHA", 30000),
-            new Achievement("CgkI34P-6pkGEAIQHQ", 50000),
-            new Achievement("CgkI34P-6pkGEAIQHg", 100000),
-            new Achievement("CgkI34P-6pkGEAIQHw", 200000),
-            new Achievement("CgkI34P-6pkGEAIQIA", 500000),
-            new Achievement("CgkI34P-6pkGEAIQIQ", 1000000)
-    };
+        public Leaderboard(String id, int fieldSize) {
+            this.id = id;
+            this.fieldSize = fieldSize;
+        }
 
-    public static void init(Context context) {
+        final String id;
+        final int fieldSize;
     }
 
-    public static void showAchievement(AppCompatActivity activity, Achievement achievement) {
+    private static Achievement[] tileAchievements;
+    private static Achievement[] pointAchievements;
+    private static Leaderboard[] pointLeaderboard;
+    private static Leaderboard[] tileLeaderboard;
+
+
+    public static void init(Context c) {
+
+        tileAchievements = new Achievement[] {
+                new Achievement(c.getString(R.string.achievement_sperm), 2),
+                new Achievement(c.getString(R.string.achievement_baby), 4),
+                new Achievement(c.getString(R.string.achievement_kid), 8),
+                new Achievement(c.getString(R.string.achievement_adolescent_child), 16),
+                new Achievement(c.getString(R.string.achievement_teenager), 32),
+                new Achievement(c.getString(R.string.achievement_gangster), 64),
+                new Achievement(c.getString(R.string.achievement_loo_cleaner), 128),
+                new Achievement(c.getString(R.string.achievement_farmer), 256),
+                new Achievement(c.getString(R.string.achievement_body_builder), 512),
+                new Achievement(c.getString(R.string.achievement_businessman), 1024),
+                new Achievement(c.getString(R.string.achievement_millionaire), 2048),
+                new Achievement(c.getString(R.string.achievement_richy_rich), 4096),
+                new Achievement(c.getString(R.string.achievement_mark_zuckerberg), 8192),
+                new Achievement(c.getString(R.string.achievement_bill_gates), 16384),
+                new Achievement(c.getString(R.string.achievement_flying_to_the_moon), 32768)
+        };
+        pointAchievements = new Achievement[] {
+                new Achievement(c.getString(R.string.achievement_500_points), 500),
+                new Achievement(c.getString(R.string.achievement_1000_points), 1000),
+                new Achievement(c.getString(R.string.achievement_5000_points), 5000),
+                new Achievement(c.getString(R.string.achievement_10000_points), 10000),
+                new Achievement(c.getString(R.string.achievement_15000_points), 15000),
+                new Achievement(c.getString(R.string.achievement_20000_points), 20000),
+                new Achievement(c.getString(R.string.achievement_25000_points), 25000),
+                new Achievement(c.getString(R.string.achievement_30000_points), 30000),
+                new Achievement(c.getString(R.string.achievement_50000_points), 50000),
+                new Achievement(c.getString(R.string.achievement_100000_points), 100000),
+                new Achievement(c.getString(R.string.achievement_200000_points), 200000),
+                new Achievement(c.getString(R.string.achievement_500000_points), 500000),
+                new Achievement(c.getString(R.string.achievement_1000000_points), 1000000)
+        };
+        tileLeaderboard = new Leaderboard[] {
+                new Leaderboard(c.getString(R.string.leaderboard_3x3__tile_records), 3),
+                new Leaderboard(c.getString(R.string.leaderboard_4x4__tile_records), 4),
+                new Leaderboard(c.getString(R.string.leaderboard_5x5__tile_records), 5),
+                new Leaderboard(c.getString(R.string.leaderboard_6x6__tile_records), 6),
+                new Leaderboard(c.getString(R.string.leaderboard_7x7__tile_records), 7),
+                new Leaderboard(c.getString(R.string.leaderboard_8x8__tile_records), 8),
+                new Leaderboard(c.getString(R.string.leaderboard_9x9__tile_records), 9)
+        };
+        pointLeaderboard = new Leaderboard[] {
+                new Leaderboard(c.getString(R.string.leaderboard_3x3__highscores), 3),
+                new Leaderboard(c.getString(R.string.leaderboard_4x4__highscores), 4),
+                new Leaderboard(c.getString(R.string.leaderboard_5x5__highscores), 5),
+                new Leaderboard(c.getString(R.string.leaderboard_6x6__highscores), 6),
+                new Leaderboard(c.getString(R.string.leaderboard_7x7__highscores), 7),
+                new Leaderboard(c.getString(R.string.leaderboard_8x8__highscores), 8),
+                new Leaderboard(c.getString(R.string.leaderboard_9x9__highscores), 9)
+        };
+
+    }
+
+    private static void showAchievement(AppCompatActivity activity, Achievement achievement) {
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(activity);
         if(signInAccount == null) return;
@@ -87,6 +123,34 @@ public class GameServices {
             if(tileValue == achievement.triggerValue) {
                 Log.d("TileAchievement", "" + achievement.triggerValue);
                 showAchievement(activity, achievement);
+                break;
+            }
+        }
+    }
+
+    private static void submitLeaderboardValue(AppCompatActivity activity, String id, int value) {
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
+        if(account == null) return;
+        Games.getLeaderboardsClient(activity, account).submitScore(id, value);
+
+    }
+
+    public static void submitLeaderboardTileNumber(AppCompatActivity activity, int fieldSize, int tileNumber) {
+        for(Leaderboard board : tileLeaderboard) {
+            if(board.fieldSize == fieldSize) {
+                Log.d("TileLeaderboard", "size::" + fieldSize + " value:: " + tileNumber);
+                submitLeaderboardValue(activity, board.id, tileNumber);
+                break;
+            }
+        }
+    }
+
+    public static void submitLeaderboardPoints(AppCompatActivity activity, int fieldSize, int points) {
+        for(Leaderboard board : pointLeaderboard) {
+            if(board.fieldSize == fieldSize) {
+                Log.d("PointLeaderboard", "size::" + fieldSize + " value:: " + points);
+                submitLeaderboardValue(activity, board.id, points);
                 break;
             }
         }

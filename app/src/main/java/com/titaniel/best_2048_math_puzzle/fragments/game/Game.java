@@ -28,15 +28,6 @@ import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 public class Game extends AnimatedFragment {
 
-    private final static long CLOSE_POWER_UPS_DELAY = 300;
-
-    private final static int MONEY_BACK = 10;
-    private final static int MONEY_DELETE = 25;
-    private final static int MONEY_EXCHANGE = 50;
-    private final static int MONEY_DOUBLE = 70;
-
-    private int mPUDisabledColor = Color.parseColor("#CBCBCB");
-
     private View mRoot;
     private ImageView mBtnPause;
     private TextView mTvPoints;
@@ -61,7 +52,7 @@ public class Game extends AnimatedFragment {
 
     private ValueAnimator mCurrentBackHighlightAnim;
 
-    private int maxTile = 0;
+    private int maxTile = -1;
 
     @Nullable
     @Override
@@ -183,6 +174,11 @@ public class Game extends AnimatedFragment {
         updateRecordText();
     }
 
+    public void submitScores() {
+        GameServices.submitLeaderboardPoints(mActivity, Database.currentMode.fieldSize, Database.currentMode.record);
+        GameServices.submitLeaderboardTileNumber(mActivity, Database.currentMode.fieldSize, maxTile);
+    }
+
     private void startHighlightBack() {
         if(mCurrentBackHighlightAnim != null) return;
 
@@ -219,7 +215,6 @@ public class Game extends AnimatedFragment {
         } else {
             showBack();
         }
-
     }
 
     private void showBack() {
@@ -256,7 +251,9 @@ public class Game extends AnimatedFragment {
 
     }
 
-    public void disableAll() {
+    private void disableAll() {
+
+        submitScores();
 
         gameField.setEnabled(false);
         mBtnPause.setEnabled(false);
@@ -278,7 +275,9 @@ public class Game extends AnimatedFragment {
         AnimUtils.animateAlpha(mBtnPause, new AccelerateDecelerateInterpolator(), 0, duration, 0);
     }
 
-    public void disableAllSlow() {
+    private void disableAllSlow() {
+
+        submitScores();
 
         gameField.setEnabled(false);
         mBtnPause.setEnabled(false);
@@ -343,6 +342,7 @@ public class Game extends AnimatedFragment {
 
     private void reset() {
         won = false;
+        maxTile = 0;
         stopHighlightBack();
         gameField.clear();
         updatePointsText();

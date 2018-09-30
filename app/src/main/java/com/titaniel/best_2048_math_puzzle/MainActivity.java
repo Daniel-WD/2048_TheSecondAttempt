@@ -187,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        game.submitScores();
+
         if(state == STATE_FM_GAME) {
             Database.currentMode.saved = game.gameField.getSaveImage();
         }
