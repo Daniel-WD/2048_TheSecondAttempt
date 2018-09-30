@@ -11,6 +11,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
 import com.titaniel.best_2048_math_puzzle.database.Database;
@@ -22,6 +24,7 @@ import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
+import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +32,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 12;
+    private static final int RC_ACHIEVEMENT_UI = 23;
 
     //states
     public static final int
@@ -76,7 +80,10 @@ public class MainActivity extends AppCompatActivity {
         //Design Provider
         DesignProvider.init(this);
 
-        //signinclient
+        //Game Services
+        GameServices.init(this);
+
+        //gameservices sign in client
         mGoogleSignInClient = GoogleSignIn.getClient(this,
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
@@ -90,7 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
         mHandler.postDelayed(() -> showState(STATE_FM_HOME, 0, null), 500);
         mHandler.postDelayed(this::signInSilently, 500);
-//        mHandler.postDelayed(this::startSignInIntent, 500);
+    }
+
+    private void showAchievements() {
+        if(mGoogleSignInAccount == null) return;
+
+        Games.getAchievementsClient(this, mGoogleSignInAccount)
+                .getAchievementsIntent()
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_ACHIEVEMENT_UI));
+
     }
 
     private void signInSilently() {
@@ -98,10 +113,8 @@ public class MainActivity extends AppCompatActivity {
                 task -> {
                     if(task.isSuccessful()) {
                         mGoogleSignInAccount = task.getResult();
-//                        Utils.toast(this, "silentsignin::successful");
                     } else {
                         startSignInIntent();
-//                        Utils.toast(this, "silentsignin::NOT-successful --> startSingInIntent");
                     }
                 });
     }
@@ -117,25 +130,8 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-
                 mGoogleSignInAccount = task.getResult(ApiException.class);
-//                Utils.toast(this, "activityresult.getResult::SUCCESS");
-
-            } catch (ApiException apiException) {
-
-//                Utils.toast(this, "activityresult.getResult::API-EXCEPTION");
-
-                /*String message = apiException.getMessage();
-                if(message == null || message.isEmpty()) {
-                    message = "määääääaännnn";
-                }
-
-                new AlertDialog.Builder(this)
-                        .setMessage(message)
-                        .setNeutralButton(android.R.string.ok, null)
-                        .show();*/
-
-            }
+            } catch (ApiException ignored) {}
         }
     }
 

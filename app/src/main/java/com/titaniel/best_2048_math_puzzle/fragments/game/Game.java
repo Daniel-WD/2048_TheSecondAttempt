@@ -7,7 +7,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +22,7 @@ import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
 import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
@@ -60,6 +60,8 @@ public class Game extends AnimatedFragment {
     private MainActivity mActivity;
 
     private ValueAnimator mCurrentBackHighlightAnim;
+
+    private int maxTile = 0;
 
     @Nullable
     @Override
@@ -146,6 +148,13 @@ public class Game extends AnimatedFragment {
                 Database.currentMode.points += newPoints;
                 updatePointsText();
 
+                //achievements trigger
+                if(maxNumber > maxTile) {
+                    GameServices.checkForTileAchievement(mActivity, maxNumber);
+                    maxTile = maxNumber;
+                }
+                GameServices.checkForPointAchievement(mActivity, Database.currentMode.points);
+
                 if(maxNumber == 2048 && !won) {
                     won = true;
                     mActivity.showState(MainActivity.STATE_FM_WON, 100, null);
@@ -177,6 +186,8 @@ public class Game extends AnimatedFragment {
     private void startHighlightBack() {
         if(mCurrentBackHighlightAnim != null) return;
 
+        mLyBack.setBackground(getResources().getDrawable(R.drawable.bg_back_popping));
+
         ValueAnimator anim = ValueAnimator.ofFloat(1, 1.1f);
         anim.addUpdateListener(animation -> {
             float scale = (float) animation.getAnimatedValue();
@@ -190,10 +201,10 @@ public class Game extends AnimatedFragment {
         anim.start();
 
         mCurrentBackHighlightAnim = anim;
-
     }
 
     private void stopHighlightBack() {
+        mLyBack.setBackground(getResources().getDrawable(R.drawable.bg_back));
         if(mCurrentBackHighlightAnim != null && mCurrentBackHighlightAnim.isRunning()) {
             mCurrentBackHighlightAnim.cancel();
             mCurrentBackHighlightAnim = null;
@@ -291,6 +302,8 @@ public class Game extends AnimatedFragment {
 
     public void enableAll(long delay) {
         mActivity.state = MainActivity.STATE_FM_GAME;
+
+        won = false;
 
         updateBackText();
 

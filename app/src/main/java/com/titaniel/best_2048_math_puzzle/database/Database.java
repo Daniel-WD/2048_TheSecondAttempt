@@ -15,21 +15,6 @@ public class Database {
 
     public static final int START_BACK_VALUE = 3;
 
-    public static class Achievement {
-
-        public static final int STATE_LOCKED = 0, STATE_GETABLE = 1, STATE_GOTTEN = 2;
-
-        public final String title, description;
-        public final String money;
-        public int state = STATE_LOCKED;
-
-        public Achievement(String title, String description, String money) {
-            this.title = title;
-            this.description = description;
-            this.money = money;
-        }
-
-    }
     public static class Mode {
 
         final public int representative;
