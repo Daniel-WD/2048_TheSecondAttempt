@@ -172,6 +172,7 @@ public class Game extends AnimatedFragment {
         //points reset
         updatePointsText();
         updateRecordText();
+        updateBackText();
     }
 
     public void submitScores() {
@@ -221,7 +222,6 @@ public class Game extends AnimatedFragment {
         if(mBackShown) return;
         mBackShown = true;
 
-
         mLyBack.setVisibility(View.VISIBLE);
         mLyBack.setTranslationX(0);
         float dist = mRoot.getWidth()-mLyBack.getX();
@@ -262,17 +262,8 @@ public class Game extends AnimatedFragment {
         long duration = 100;
         float alpha = 0f;
 
-        AnimUtils.animateAlpha(gameField, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvPoints, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvRecord, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivOne, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivTwo, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
+        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
 
-        if(mLyBack.getVisibility() == View.VISIBLE) {
-            AnimUtils.animateAlpha(mLyBack, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        }
-
-        AnimUtils.animateAlpha(mBtnPause, new AccelerateDecelerateInterpolator(), 0, duration, 0);
     }
 
     private void disableAllSlow() {
@@ -286,17 +277,8 @@ public class Game extends AnimatedFragment {
         long duration = 1500;
         float alpha = 0.1f;
 
-        AnimUtils.animateAlpha(gameField, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvPoints, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvRecord, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivOne, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivTwo, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
+        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
 
-        if(mLyBack.getVisibility() == View.VISIBLE) {
-            AnimUtils.animateAlpha(mLyBack, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        }
-
-        AnimUtils.animateAlpha(mBtnPause, new AccelerateDecelerateInterpolator(), 0, duration, 0);
     }
 
     public void enableAll(long delay) {
@@ -315,13 +297,7 @@ public class Game extends AnimatedFragment {
 
         TimeInterpolator interpolator = new LinearOutSlowInInterpolator();
 
-        AnimUtils.animateAlpha(gameField, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mBtnPause, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mTvPoints, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mTvRecord, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mVDivOne, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mVDivTwo, interpolator, alpha, duration, delay);
-        if(mBackShown) AnimUtils.animateAlpha(mLyBack, interpolator, alpha, duration, delay);
+        AnimUtils.animateAlpha(mRoot, interpolator, alpha, duration, delay);
     }
 
 
@@ -407,7 +383,10 @@ public class Game extends AnimatedFragment {
                 gameField.setSaveImageAndAnimate(Database.currentMode.saved);
             }, delay);
 
-            handler.postDelayed(this::refreshBackState, delay);
+            handler.postDelayed(() -> {
+                updateBackText();
+                refreshBackState();
+            }, delay);
         }
 
     }
