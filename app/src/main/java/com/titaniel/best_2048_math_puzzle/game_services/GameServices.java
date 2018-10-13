@@ -7,6 +7,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.games.AchievementsClient;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.leaderboard.LeaderboardVariant;
+import com.google.android.gms.games.leaderboard.ScoreSubmissionData;
 import com.titaniel.best_2048_math_puzzle.R;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -133,6 +135,20 @@ public class GameServices {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
         if(account == null) return;
         Games.getLeaderboardsClient(activity, account).submitScore(id, value);
+
+        //TESTING
+
+//        Games.getLeaderboardsClient(activity, account)
+//                .loadCurrentPlayerLeaderboardScore(id, LeaderboardVariant.TIME_SPAN_ALL_TIME, LeaderboardVariant.COLLECTION_PUBLIC)
+//                .addOnSuccessListener(annotatedData -> {
+//                    annotatedData.get().getRank();
+//                });
+//
+//
+//        Games.getLeaderboardsClient(activity, account).submitScoreImmediate(id, value).addOnSuccessListener(scoreSubmissionData -> {
+//            ScoreSubmissionData.Result result = scoreSubmissionData.getScoreResult(LeaderboardVariant.TIME_SPAN_ALL_TIME);
+//
+//        });
 
     }
 

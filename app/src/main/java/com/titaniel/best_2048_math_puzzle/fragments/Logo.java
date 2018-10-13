@@ -1,19 +1,14 @@
 package com.titaniel.best_2048_math_puzzle.fragments;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
-import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 
 import androidx.annotation.NonNull;
