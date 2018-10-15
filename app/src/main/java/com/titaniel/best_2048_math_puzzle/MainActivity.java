@@ -93,15 +93,15 @@ public class MainActivity extends AppCompatActivity {
                 new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         //init Fragments
-        home = new Home();
-//        game = new Game();TODO
+//        home = new Home();TODO
+        game = new Game();
 //        undo = new Undo();TODO
 //        gameOver = new GameOver();TODO
 //        pause = new Pause();TODO
 //        won = new Won();TODO
 
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
@@ -211,9 +211,10 @@ public class MainActivity extends AppCompatActivity {
 
         if(game != null) game.submitScores();
 
-        if(state == STATE_FM_GAME) {
-            Database.currentMode.saved = game.gameField.getSaveImage();
-        }
+        //TODO
+//        if(state == STATE_FM_GAME) {
+//            Database.currentMode.saved = game.gameField.getSaveImage();
+//        }
 
         Database.save();
 

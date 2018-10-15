@@ -68,19 +68,19 @@ public class Game extends AnimatedFragment {
 
         //init
         mRoot = getView();
-        mBtnPause = mRoot.findViewById(R.id.ivPause);
-        mTvPoints = mRoot.findViewById(R.id.tvPoints);
-        gameField = mRoot.findViewById(R.id.gameField);
-        mTouchArea = mRoot.findViewById(R.id.touchArea);
-        mVDivOne = mRoot.findViewById(R.id.vDivOne);
-        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
-        mTvBackCount = mRoot.findViewById(R.id.tvBackCount);
-        mLyBack = mRoot.findViewById(R.id.lyBack);
-        mTvRecord = mRoot.findViewById(R.id.tvRecord);
-        mTvInstruction = mRoot.findViewById(R.id.tvInstruction);
+//        mBtnPause = mRoot.findViewById(R.id.ivPause);
+//        mTvPoints = mRoot.findViewById(R.id.tvPoints);
+//        gameField = mRoot.findViewById(R.id.gameField);
+//        mTouchArea = mRoot.findViewById(R.id.touchArea);
+//        mVDivOne = mRoot.findViewById(R.id.vDivOne);
+//        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
+//        mTvBackCount = mRoot.findViewById(R.id.tvBackCount);
+//        mLyBack = mRoot.findViewById(R.id.lyBack);
+//        mTvRecord = mRoot.findViewById(R.id.tvRecord);
+//        mTvInstruction = mRoot.findViewById(R.id.tvInstruction);
 
         //back
-        mLyBack.setOnClickListener(v -> {
+/*        mLyBack.setOnClickListener(v -> {
             if(mBlocking) return;
             gameField.performBack();
             backClickAnim();
@@ -172,7 +172,7 @@ public class Game extends AnimatedFragment {
         //points reset
         updatePointsText();
         updateRecordText();
-        updateBackText();
+        updateBackText();*/
     }
 
     public void submitScores() {
@@ -358,8 +358,9 @@ public class Game extends AnimatedFragment {
 
     @Override
     protected void animateShow(long delay) {
+        mRoot.setVisibility(View.VISIBLE);
 
-        reset();
+/*        reset();
 
         mLyBack.setVisibility(View.INVISIBLE);
         mBackShown = false;
@@ -387,7 +388,7 @@ public class Game extends AnimatedFragment {
                 updateBackText();
                 refreshBackState();
             }, delay);
-        }
+        }*/
 
     }
 
@@ -401,7 +402,7 @@ public class Game extends AnimatedFragment {
     }
 
     public boolean onBackPressed() {
-        mBtnPause.callOnClick();
+//        mBtnPause.callOnClick(); todo
         return true;
     }
 

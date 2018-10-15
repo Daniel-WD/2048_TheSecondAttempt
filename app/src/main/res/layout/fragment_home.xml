@@ -41,6 +41,17 @@
         app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg" />
 
     <ImageView
+        android:id="@+id/ivTrophiesOverlay"
+        android:layout_width="66.5dp"
+        android:layout_height="70.7dp"
+        android:layout_marginTop="77dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_btn_trophies_overlay"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg" />
+
+    <ImageView
         android:id="@+id/ivLeaderboardBg"
         android:layout_width="match_parent"
         android:layout_height="77.7dp"
@@ -656,13 +667,13 @@
 
     <ImageView
         android:id="@+id/ivNoInternet"
-        android:visibility="invisible"
         android:layout_width="39.2dp"
         android:layout_height="39.2dp"
         android:contentDescription="@string/descrIcon"
         android:src="@drawable/no_internet"
         android:tint="#33ffffff"
         android:tintMode="src_in"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -672,7 +683,6 @@
     <!-- no gameservices -->
 
     <ImageView
-        android:visibility="gone"
         android:id="@+id/ivNoGameServices"
         android:layout_width="40.1dp"
         android:layout_height="40.1dp"
@@ -680,6 +690,7 @@
         android:src="@drawable/no_game_services"
         android:tint="#33ffffff"
         android:tintMode="src_in"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

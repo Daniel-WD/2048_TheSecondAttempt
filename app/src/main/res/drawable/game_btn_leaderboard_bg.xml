@@ -4,7 +4,8 @@
     android:width="188dp"
     android:height="218dp"
     android:viewportWidth="188"
-    android:viewportHeight="218">
+    android:viewportHeight="218"
+    android:alpha="0.2">
     <group android:name="group">
         <path
             android:name="path"

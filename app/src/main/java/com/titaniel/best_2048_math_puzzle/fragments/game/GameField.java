@@ -349,17 +349,17 @@ public class GameField extends View {
     private int mBorderColor;
     private int mDividerColor;
 
-    private final float mBorderWidth = 1f; //1f
-    private final float mDividerWidth = 1f; //0.8f
-    //    private final float mTileBorderWidth = 2f;
+    private final float mBorderWidth = 1f;
+    private final float mDividerWidth = 1f;
     private final float mMinSwipeDistance = 20;
-    private float mBorderWidthPx, mDividerWidthPx, mMinSwipeDistancePx;
+    private final float mBorderRadius = 3.7f;
+
+    private float mBorderWidthPx, mDividerWidthPx, mBorderRadiusPx, mMinSwipeDistancePx;
 
     private float mDividerScale = 0.27f;
     private float mBorderScale = 0.86f;
     private final float mTileScale = 0.91f;
     private final float mTileRadiusRatio = 0.042f;
-    private final float mBorderRadiusRatio = 0.018f;
     private final float mBorderPaddingRatio = 0.02f;
     private final float mFieldScale = 1f; //0.98
 
@@ -394,6 +394,7 @@ public class GameField extends View {
         mBorderWidthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderWidth, getResources().getDisplayMetrics());
         mDividerWidthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mDividerWidth, getResources().getDisplayMetrics());
         mMinSwipeDistancePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMinSwipeDistance, getResources().getDisplayMetrics());
+        mBorderRadiusPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderRadius, getResources().getDisplayMetrics());
 
         mBorderPaint.setStyle(Paint.Style.STROKE);
         mBorderPaint.setColor(mBorderColor);
@@ -868,7 +869,6 @@ public class GameField extends View {
         float halfNegativeTile = mFullBlockSize*(1 - mTileScale)/2;
         float borderMargin = mBorderPaint.getStrokeWidth()/2;
         float tileRadius = (mFullBlockSize - halfNegativeBorder*2)*mTileRadiusRatio;
-        float borderRadius = mWidth*mBorderRadiusRatio;
 
         //BORDER
 //        canvas.drawLine(0, borderMargin, 0, mHeight - borderMargin, mBorderPaint);
@@ -878,7 +878,7 @@ public class GameField extends View {
 
         canvas.drawRoundRect(borderMargin, borderMargin,
                 mWidth - borderMargin, mHeight - borderMargin,
-                borderRadius, borderRadius, mBorderPaint);
+                mBorderRadiusPx, mBorderRadiusPx, mBorderPaint);
 
         canvas.save();
         canvas.translate(mBorderPadding, mBorderPadding);
