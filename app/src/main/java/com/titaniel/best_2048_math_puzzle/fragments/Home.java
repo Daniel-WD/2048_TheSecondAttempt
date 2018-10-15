@@ -47,73 +47,63 @@ public class Home extends AnimatedFragment {
 
         mActivity = (MainActivity) getActivity();
 
-        //moneylistener
-        //Database.addMoneyListener((oldValue, newValue) -> mTvMoney.setText(String.valueOf(newValue)));
-
         //init
         mRoot = getView();
-        mBtnPlay = mRoot.findViewById(R.id.btnPlay);
-        mBtnResume = mRoot.findViewById(R.id.btnResume);
-        mBtnPlus = mRoot.findViewById(R.id.btnModeNext);
-        mBtnMinus = mRoot.findViewById(R.id.btnModePrevious);
-        mBtnRate = mRoot.findViewById(R.id.btnRate);
-        mBtnRate = mRoot.findViewById(R.id.btnRate);
-        mLyButtons = mRoot.findViewById(R.id.lyButtons);
-        mVDivOne = mRoot.findViewById(R.id.vDivOne);
-        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
-        mIvMode = mRoot.findViewById(R.id.ivMode);
-
-        //achi
-//        mBtnAchievements.setOnClickListener(v -> {
-//            mActivity.showAchievements(0, this);
+//        mBtnPlay = mRoot.findViewById(R.id.btnPlay);
+//        mBtnResume = mRoot.findViewById(R.id.btnResume);
+//        mBtnPlus = mRoot.findViewById(R.id.btnModeNext);
+//        mBtnMinus = mRoot.findViewById(R.id.btnModePrevious);
+//        mBtnRate = mRoot.findViewById(R.id.btnRate);
+//        mBtnRate = mRoot.findViewById(R.id.btnRate);
+//        mLyButtons = mRoot.findViewById(R.id.lyButtons);
+//        mVDivOne = mRoot.findViewById(R.id.vDivOne);
+//        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
+//        mIvMode = mRoot.findViewById(R.id.ivMode);
+//
+//        //rate
+//        mBtnRate.setOnClickListener(v -> {
+//            if(mBlocking) return;
+//            Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
+//            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+//            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+//                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+//                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+//            try {
+//                startActivity(goToMarket);
+//            } catch (ActivityNotFoundException e) {
+//                startActivity(new Intent(Intent.ACTION_VIEW,
+//                        Uri.parse("http://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
+//            }
 //        });
-
-        //rate
-        mBtnRate.setOnClickListener(v -> {
-            if(mBlocking) return;
-            Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
-            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-            try {
-                startActivity(goToMarket);
-            } catch (ActivityNotFoundException e) {
-                startActivity(new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
-            }
-        });
-
-        //resume
-        mBtnResume.setOnClickListener(v -> {
-            if(mBlocking) return;
-            mActivity.game.loadGame = true;
-            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
-        });
-
-        //play
-        mBtnPlay.setOnClickListener(v -> {
-            if(mBlocking) return;
-            Database.currentMode.points = 0;
-            Database.currentMode.backs = Database.START_BACK_VALUE;
-            mActivity.game.loadGame = false;
-            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
-        });
-
-        //money
-//        mTvMoney.setText(String.valueOf(Database.getMoney()));
-
-        //Button changeMode
-        mBtnPlus.setOnClickListener(view -> {
-            if(mBlocking) return;
-            changeMode(false);
-        });
-
-        //Button previousMode
-        mBtnMinus.setOnClickListener(view -> {
-            if(mBlocking) return;
-            changeMode(true);
-        });
+//
+//        //resume
+//        mBtnResume.setOnClickListener(v -> {
+//            if(mBlocking) return;
+//            mActivity.game.loadGame = true;
+//            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
+//        });
+//
+//        //play
+//        mBtnPlay.setOnClickListener(v -> {
+//            if(mBlocking) return;
+//            Database.currentMode.points = 0;
+//            Database.currentMode.backs = Database.START_BACK_VALUE;
+//            mActivity.game.loadGame = false;
+//            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
+//        });
+//
+//
+//        //Button changeMode
+//        mBtnPlus.setOnClickListener(view -> {
+//            if(mBlocking) return;
+//            changeMode(false);
+//        });
+//
+//        //Button previousMode
+//        mBtnMinus.setOnClickListener(view -> {
+//            if(mBlocking) return;
+//            changeMode(true);
+//        });
 
     }
 
@@ -170,25 +160,25 @@ public class Home extends AnimatedFragment {
         handler.postDelayed(mDeblocker, duration);
     }
 
-
     @Override
     protected void animateShow(long delay) {
+        mRoot.setVisibility(View.VISIBLE);
 
         mActivity.state = MainActivity.STATE_FM_HOME;
 
-        long duration = 150;
-
-        block(duration);
-
-        setMode(Database.currentMode);
-        mRoot.setVisibility(View.VISIBLE);
-
-        mRoot.setAlpha(0);
-        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, duration, delay);
-
-        delay += 150;
-
-        handler.postDelayed(this::checkPeriph, delay);
+//        long duration = 150;
+//
+//        block(duration);
+//
+//        setMode(Database.currentMode);
+//
+//        mRoot.setVisibility(View.VISIBLE);
+//        mRoot.setAlpha(0);
+//        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, duration, delay);
+//
+//        delay += 150;
+//
+//        handler.postDelayed(this::checkPeriph, delay);
     }
 
     @Override

@@ -4,7 +4,8 @@
     android:width="1080dp"
     android:height="233dp"
     android:viewportWidth="1080"
-    android:viewportHeight="233">
+    android:viewportHeight="233"
+    android:alpha="0.2">
     <group android:name="wrapper">
         <clip-path
             android:name="clip_home_game_leaderboard_bg"

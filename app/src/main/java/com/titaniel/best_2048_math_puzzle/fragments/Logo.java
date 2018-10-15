@@ -43,7 +43,7 @@ public class Logo extends AnimatedFragment {
     private void presentLogo(long delay) {
 
         long fadeDuration = 400;
-        long stayDuration = 3000;
+        long stayDuration = 1000;
 
         mIvLogo.setAlpha(0f);
         //show logo
@@ -65,7 +65,7 @@ public class Logo extends AnimatedFragment {
 
         //show home
         handler.postDelayed(() -> {
-            mActivity.showState(MainActivity.STATE_FM_HOME, 0, mActivity.logo);
+            mActivity.showState(MainActivity.STATE_FM_GAME, 0, mActivity.logo);
 //            mActivity.signInSilently();
         }, delay);
 

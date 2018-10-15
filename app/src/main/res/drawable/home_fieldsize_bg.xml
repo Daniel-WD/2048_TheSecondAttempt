@@ -4,7 +4,8 @@
     android:width="544dp"
     android:height="290dp"
     android:viewportWidth="544"
-    android:viewportHeight="290">
+    android:viewportHeight="290"
+    android:alpha="0.2">
     <group android:name="wrapper">
         <clip-path
             android:name="clip_home_fieldsize_bg"

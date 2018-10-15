@@ -10,15 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
+
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-5405975374278619~2814672046"/>
+
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="${crashlyticsEnabled}" />
+
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="${analyticsEnabled}" />
+
         <activity android:name=".MainActivity" android:screenOrientation="portrait">
-
-            <meta-data
-                android:name="firebase_crashlytics_collection_enabled"
-                android:value="${crashlyticsEnabled}" />
-
-            <meta-data
-                android:name="firebase_analytics_collection_enabled"
-                android:value="${analyticsEnabled}" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

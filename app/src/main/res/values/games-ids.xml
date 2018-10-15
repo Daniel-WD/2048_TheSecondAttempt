@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
 <resources>
     <!-- app_id -->
     <string name="app_id" translatable="false">213093679583</string>
@@ -10,14 +14,14 @@
     <string name="achievement_baby" translatable="false">CgkI34P-6pkGEAIQBw</string>
     <!-- achievement Kid -->
     <string name="achievement_kid" translatable="false">CgkI34P-6pkGEAIQCA</string>
-    <!-- achievement Adolescent Child -->
-    <string name="achievement_adolescent_child" translatable="false">CgkI34P-6pkGEAIQCQ</string>
+    <!-- achievement Student -->
+    <string name="achievement_student" translatable="false">CgkI34P-6pkGEAIQCQ</string>
     <!-- achievement Teenager -->
     <string name="achievement_teenager" translatable="false">CgkI34P-6pkGEAIQCg</string>
-    <!-- achievement Gangster -->
-    <string name="achievement_gangster" translatable="false">CgkI34P-6pkGEAIQCw</string>
     <!-- achievement Loo Cleaner -->
-    <string name="achievement_loo_cleaner" translatable="false">CgkI34P-6pkGEAIQDA</string>
+    <string name="achievement_loo_cleaner" translatable="false">CgkI34P-6pkGEAIQCw</string>
+    <!-- achievement Gangster -->
+    <string name="achievement_gangster" translatable="false">CgkI34P-6pkGEAIQDA</string>
     <!-- achievement Farmer -->
     <string name="achievement_farmer" translatable="false">CgkI34P-6pkGEAIQDQ</string>
     <!-- achievement Body Builder -->
@@ -61,31 +65,31 @@
     <!-- achievement 1000000 Points -->
     <string name="achievement_1000000_points" translatable="false">CgkI34P-6pkGEAIQIQ</string>
     <!-- leaderboard 3x3 - Tile Records -->
-    <string name="leaderboard_3x3__tile_records" translatable="false">CgkI34P-6pkGEAIQIg</string>
+    <string name="leaderboard_3x3_tile_records" translatable="false">CgkI34P-6pkGEAIQIg</string>
     <!-- leaderboard 3x3 - Highscores -->
-    <string name="leaderboard_3x3__highscores" translatable="false">CgkI34P-6pkGEAIQKQ</string>
+    <string name="leaderboard_3x3_highscores" translatable="false">CgkI34P-6pkGEAIQKQ</string>
     <!-- leaderboard 4x4 - Tile Records -->
-    <string name="leaderboard_4x4__tile_records" translatable="false">CgkI34P-6pkGEAIQIw</string>
+    <string name="leaderboard_4x4_tile_records" translatable="false">CgkI34P-6pkGEAIQIw</string>
     <!-- leaderboard 4x4 - Highscores -->
-    <string name="leaderboard_4x4__highscores" translatable="false">CgkI34P-6pkGEAIQKg</string>
+    <string name="leaderboard_4x4_highscores" translatable="false">CgkI34P-6pkGEAIQKg</string>
     <!-- leaderboard 5x5  - Tile Records -->
-    <string name="leaderboard_5x5__tile_records" translatable="false">CgkI34P-6pkGEAIQJA</string>
+    <string name="leaderboard_5x5_tile_records" translatable="false">CgkI34P-6pkGEAIQJA</string>
     <!-- leaderboard 5x5 - Highscores -->
-    <string name="leaderboard_5x5__highscores" translatable="false">CgkI34P-6pkGEAIQKw</string>
+    <string name="leaderboard_5x5_highscores" translatable="false">CgkI34P-6pkGEAIQKw</string>
     <!-- leaderboard 6x6 - Tile Records -->
-    <string name="leaderboard_6x6__tile_records" translatable="false">CgkI34P-6pkGEAIQJQ</string>
+    <string name="leaderboard_6x6_tile_records" translatable="false">CgkI34P-6pkGEAIQJQ</string>
     <!-- leaderboard 6x6 - Highscores -->
-    <string name="leaderboard_6x6__highscores" translatable="false">CgkI34P-6pkGEAIQLA</string>
+    <string name="leaderboard_6x6_highscores" translatable="false">CgkI34P-6pkGEAIQLA</string>
     <!-- leaderboard 7x7 - Tile Records -->
-    <string name="leaderboard_7x7__tile_records" translatable="false">CgkI34P-6pkGEAIQJg</string>
+    <string name="leaderboard_7x7_tile_records" translatable="false">CgkI34P-6pkGEAIQJg</string>
     <!-- leaderboard 7x7 - Highscores -->
-    <string name="leaderboard_7x7__highscores" translatable="false">CgkI34P-6pkGEAIQLQ</string>
+    <string name="leaderboard_7x7_highscores" translatable="false">CgkI34P-6pkGEAIQLQ</string>
     <!-- leaderboard 8x8 - Tile Records -->
-    <string name="leaderboard_8x8__tile_records" translatable="false">CgkI34P-6pkGEAIQJw</string>
+    <string name="leaderboard_8x8_tile_records" translatable="false">CgkI34P-6pkGEAIQJw</string>
     <!-- leaderboard 8x8 - Highscores -->
-    <string name="leaderboard_8x8__highscores" translatable="false">CgkI34P-6pkGEAIQLg</string>
+    <string name="leaderboard_8x8_highscores" translatable="false">CgkI34P-6pkGEAIQLg</string>
     <!-- leaderboard 9x9 - Tile Records -->
-    <string name="leaderboard_9x9__tile_records" translatable="false">CgkI34P-6pkGEAIQKA</string>
+    <string name="leaderboard_9x9_tile_records" translatable="false">CgkI34P-6pkGEAIQKA</string>
     <!-- leaderboard 9x9 - Highscores -->
-    <string name="leaderboard_9x9__highscores" translatable="false">CgkI34P-6pkGEAIQLw</string>
+    <string name="leaderboard_9x9_highscores" translatable="false">CgkI34P-6pkGEAIQLw</string>
 </resources>

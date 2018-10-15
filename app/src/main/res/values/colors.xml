@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Leaderboard -->
+    <color name="rankUp">#09d18f</color>
+    <color name="rankDown">#d83434</color>
+
     <color name="lightSnow">#3cffffff</color>
 
     <color name="snow">#ffffff</color>

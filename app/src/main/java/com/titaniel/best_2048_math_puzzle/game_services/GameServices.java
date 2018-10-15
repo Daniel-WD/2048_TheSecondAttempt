@@ -50,10 +50,10 @@ public class GameServices {
                 new Achievement(c.getString(R.string.achievement_sperm), 2),
                 new Achievement(c.getString(R.string.achievement_baby), 4),
                 new Achievement(c.getString(R.string.achievement_kid), 8),
-                new Achievement(c.getString(R.string.achievement_adolescent_child), 16),
+                new Achievement(c.getString(R.string.achievement_student), 16),
                 new Achievement(c.getString(R.string.achievement_teenager), 32),
-                new Achievement(c.getString(R.string.achievement_gangster), 64),
-                new Achievement(c.getString(R.string.achievement_loo_cleaner), 128),
+                new Achievement(c.getString(R.string.achievement_loo_cleaner), 64),
+                new Achievement(c.getString(R.string.achievement_gangster), 128),
                 new Achievement(c.getString(R.string.achievement_farmer), 256),
                 new Achievement(c.getString(R.string.achievement_body_builder), 512),
                 new Achievement(c.getString(R.string.achievement_businessman), 1024),
@@ -79,22 +79,22 @@ public class GameServices {
                 new Achievement(c.getString(R.string.achievement_1000000_points), 1000000)
         };
         tileLeaderboard = new Leaderboard[] {
-                new Leaderboard(c.getString(R.string.leaderboard_3x3__tile_records), 3),
-                new Leaderboard(c.getString(R.string.leaderboard_4x4__tile_records), 4),
-                new Leaderboard(c.getString(R.string.leaderboard_5x5__tile_records), 5),
-                new Leaderboard(c.getString(R.string.leaderboard_6x6__tile_records), 6),
-                new Leaderboard(c.getString(R.string.leaderboard_7x7__tile_records), 7),
-                new Leaderboard(c.getString(R.string.leaderboard_8x8__tile_records), 8),
-                new Leaderboard(c.getString(R.string.leaderboard_9x9__tile_records), 9)
+                new Leaderboard(c.getString(R.string.leaderboard_3x3_tile_records), 3),
+                new Leaderboard(c.getString(R.string.leaderboard_4x4_tile_records), 4),
+                new Leaderboard(c.getString(R.string.leaderboard_5x5_tile_records), 5),
+                new Leaderboard(c.getString(R.string.leaderboard_6x6_tile_records), 6),
+                new Leaderboard(c.getString(R.string.leaderboard_7x7_tile_records), 7),
+                new Leaderboard(c.getString(R.string.leaderboard_8x8_tile_records), 8),
+                new Leaderboard(c.getString(R.string.leaderboard_9x9_tile_records), 9)
         };
         pointLeaderboard = new Leaderboard[] {
-                new Leaderboard(c.getString(R.string.leaderboard_3x3__highscores), 3),
-                new Leaderboard(c.getString(R.string.leaderboard_4x4__highscores), 4),
-                new Leaderboard(c.getString(R.string.leaderboard_5x5__highscores), 5),
-                new Leaderboard(c.getString(R.string.leaderboard_6x6__highscores), 6),
-                new Leaderboard(c.getString(R.string.leaderboard_7x7__highscores), 7),
-                new Leaderboard(c.getString(R.string.leaderboard_8x8__highscores), 8),
-                new Leaderboard(c.getString(R.string.leaderboard_9x9__highscores), 9)
+                new Leaderboard(c.getString(R.string.leaderboard_3x3_highscores), 3),
+                new Leaderboard(c.getString(R.string.leaderboard_4x4_highscores), 4),
+                new Leaderboard(c.getString(R.string.leaderboard_5x5_highscores), 5),
+                new Leaderboard(c.getString(R.string.leaderboard_6x6_highscores), 6),
+                new Leaderboard(c.getString(R.string.leaderboard_7x7_highscores), 7),
+                new Leaderboard(c.getString(R.string.leaderboard_8x8_highscores), 8),
+                new Leaderboard(c.getString(R.string.leaderboard_9x9_highscores), 9)
         };
 
     }

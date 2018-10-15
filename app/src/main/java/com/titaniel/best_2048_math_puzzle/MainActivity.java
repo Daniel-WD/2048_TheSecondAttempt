@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         Admob.init(this, mHandler);
 
         //Design Provider
-        DesignProvider.init(this);
+//        DesignProvider.init(this); TODO
 
         //Game Services
         GameServices.init(this);
@@ -93,18 +94,18 @@ public class MainActivity extends AppCompatActivity {
 
         //init Fragments
         home = new Home();
-        game = new Game();
-        undo = new Undo();
-        gameOver = new GameOver();
-        pause = new Pause();
-        won = new Won();
+//        game = new Game();TODO
+//        undo = new Undo();TODO
+//        gameOver = new GameOver();TODO
+//        pause = new Pause();TODO
+//        won = new Won();TODO
 
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
     }
 
     public void showAchievements() {
@@ -149,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 mGoogleSignInAccount = task.getResult(ApiException.class);
             } catch (ApiException ignored) {}
+
         }
     }
 
@@ -192,7 +194,8 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //hide statusbar
         View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOptions);
 
         Database.load();
