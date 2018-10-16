@@ -106,10 +106,10 @@ public class Game extends AnimatedFragment {
                         disableAllSlow();
                         handler.postDelayed(() -> {
                             if(Database.currentMode.backs > 0) {
-                                mActivity.showState(MainActivity.STATE_FM_UNDO, 0, null);
+                                mActivity.showState(MainActivity.STATE_FM_BACKS, 0, null);
                             } else {
                                 if(Utils.isOnline(getContext())) {
-                                    mActivity.showState(MainActivity.STATE_FM_UNDO, 0, null);
+                                    mActivity.showState(MainActivity.STATE_FM_BACKS, 0, null);
                                 } else {
                                     mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, null);
                                 }

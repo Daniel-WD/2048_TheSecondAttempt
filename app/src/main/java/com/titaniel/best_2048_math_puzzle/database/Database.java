@@ -80,7 +80,7 @@ public class Database {
         for(Mode mode : modes) {
             mode.record = sPrefs.getInt("record-" + mode.id, -1);
             mode.points = sPrefs.getInt("points-" + mode.id, 0);
-            mode.backs = sPrefs.getInt("undo-" + mode.id, 0);
+            mode.backs = sPrefs.getInt("backs-" + mode.id, 0);
 
             mode.saved = DataUtils.stringToImage(sPrefs.getString("image-" + mode.id, null));
         }
@@ -94,7 +94,7 @@ public class Database {
         for(Mode mode : modes) {
             editor.putInt("record-" + mode.id, mode.record);
             editor.putInt("points-" + mode.id, mode.points);
-            editor.putInt("undo-" + mode.id, mode.backs);
+            editor.putInt("backs-" + mode.id, mode.backs);
 
             String image = null;
             if(mode.saved != null && mode.saved.size() > 0) {

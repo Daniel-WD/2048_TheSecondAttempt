@@ -3,9 +3,7 @@ package com.titaniel.best_2048_math_puzzle;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -13,17 +11,15 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
 import com.titaniel.best_2048_math_puzzle.database.Database;
-import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
 import com.titaniel.best_2048_math_puzzle.fragments.Home;
 import com.titaniel.best_2048_math_puzzle.fragments.Logo;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Backs;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
-import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
 import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
             STATE_FM_HOME = 0,
             STATE_FM_GAME = 1,
             STATE_FM_GAME_OVER = 2,
-            STATE_FM_UNDO = 3,
+            STATE_FM_BACKS = 3,
             STATE_FM_WON = 4,
             STATE_FM_PAUSE = 5,
             STATE_FM_LOGO = 6;
@@ -54,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     public Home home;
     public Game game;
     public GameOver gameOver;
-    public Undo undo;
+    public Backs backs;
     public Won won;
     public Pause pause;
     public Logo logo;
@@ -95,16 +91,16 @@ public class MainActivity extends AppCompatActivity {
         //init Fragments
 //        home = new Home();TODO
 //        game = new Game();
-//        undo = new Undo();TODO
+        backs = new Backs();
 //        gameOver = new GameOver();TODO
-        pause = new Pause();
+//        pause = new Pause();
 //        won = new Won();TODO
 
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
     }
 
@@ -171,8 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AnimatedFragment findFragmentByState(int state) {
         switch(state) {
-            case STATE_FM_UNDO:
-                return undo;
+            case STATE_FM_BACKS:
+                return backs;
             case STATE_FM_HOME:
                 return home;
             case STATE_FM_GAME:
@@ -247,8 +243,8 @@ public class MainActivity extends AppCompatActivity {
             case STATE_FM_PAUSE:
                 pause.onBackPressed();
                 break;
-            case STATE_FM_UNDO:
-                undo.onBackPressed();
+            case STATE_FM_BACKS:
+                backs.onBackPressed();
                 break;
             case STATE_FM_WON:
                 won.onBackPressed();

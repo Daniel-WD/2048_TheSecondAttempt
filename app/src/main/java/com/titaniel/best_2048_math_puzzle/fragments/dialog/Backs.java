@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
-import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
 import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
-public class Undo extends AnimatedFragment {
+public class Backs extends AnimatedFragment {
 
     private RewardedVideoAdListener mAdListener = new RewardedVideoAdListener() {
 
@@ -85,7 +84,7 @@ public class Undo extends AnimatedFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_undo, container, false);
+        return inflater.inflate(R.layout.fragment_backs, container, false);
     }
 
     @Override
@@ -97,32 +96,32 @@ public class Undo extends AnimatedFragment {
 
         //init
         mRoot = getView();
-        mBtnUndoMove = mRoot.findViewById(R.id.btnUndo);
-        mBtnGiveUp = mRoot.findViewById(R.id.btnGiveUp);
-        mBtnGetBacks = mRoot.findViewById(R.id.btnGetBacks);
-        mTvTitle = mRoot.findViewById(R.id.tvTitle);
-        mContainer = mRoot.findViewById(R.id.lyContainer);
-
-        //btn undo move
-        mBtnUndoMove.setOnClickListener(v -> {
-            long delay = mActivity.hideState(MainActivity.STATE_FM_UNDO, 0);
-            mActivity.game.enableAll(delay);
-            handler.postDelayed(() -> {
-                mActivity.game.gameField.performBack();
-            }, delay + 400);
-        });
-
-        //btn get backs
-        mBtnGetBacks.setOnClickListener(v -> {
-            if(Admob.rewardedVideoAd.isLoaded()) {
-                Admob.rewardedVideoAd.show();
-            }
-        });
-
-        //btn give up
-        mBtnGiveUp.setOnClickListener(v -> {
-            mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, this);
-        });
+//        mBtnUndoMove = mRoot.findViewById(R.id.btnUndo);
+//        mBtnGiveUp = mRoot.findViewById(R.id.btnGiveUp);
+//        mBtnGetBacks = mRoot.findViewById(R.id.btnGetBacks);
+//        mTvTitle = mRoot.findViewById(R.id.tvTitle);
+//        mContainer = mRoot.findViewById(R.id.lyContainer);
+//
+//        //btn backs move
+//        mBtnUndoMove.setOnClickListener(v -> {
+//            long delay = mActivity.hideState(MainActivity.STATE_FM_BACKS, 0);
+//            mActivity.game.enableAll(delay);
+//            handler.postDelayed(() -> {
+//                mActivity.game.gameField.performBack();
+//            }, delay + 400);
+//        });
+//
+//        //btn get backs
+//        mBtnGetBacks.setOnClickListener(v -> {
+//            if(Admob.rewardedVideoAd.isLoaded()) {
+//                Admob.rewardedVideoAd.show();
+//            }
+//        });
+//
+//        //btn give up
+//        mBtnGiveUp.setOnClickListener(v -> {
+//            mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, this);
+//        });
 
     }
 
@@ -141,17 +140,17 @@ public class Undo extends AnimatedFragment {
     @Override
     protected void animateShow(long delay) {
 
-        updateState();
+//        updateState();
 
         mRoot.setVisibility(View.VISIBLE);
-
-        long duration = 250;
-
-        mContainer.setAlpha(0);
-        mContainer.setScaleX(0.6f);
-        mContainer.setScaleY(0.6f);
-        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
-        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//
+//        long duration = 250;
+//
+//        mContainer.setAlpha(0);
+//        mContainer.setScaleX(0.6f);
+//        mContainer.setScaleY(0.6f);
+//        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
     }
 
     @Override

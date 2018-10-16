@@ -22,7 +22,7 @@
 
     <fragment
         android:id="@+id/fragmentBacks"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.GetBacksacks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
