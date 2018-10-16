@@ -10,6 +10,10 @@
     <string name="temp_best">Highscore: %1$d</string>
     <string name="get2048">Get the 2048 tile!</string>
 
+    <!-- LOGIN -->
+    <string name="loginText">You need to log in into your Google Play
+        \nGames account to compete with others.</string>
+
     <!-- GOAL -->
     <string name="goalText">Combine the tiles by swiping over the\nscreen. Tiles with the same number will\nsum up to a new tile. Your goal is to get\nthe 2048 tile.
         \n\nMess your skills on the global\nleaderboard. You can see the highscore\nranking on the left side and the ranking\nfor the highest tile on the right side.

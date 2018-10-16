@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    tools:visibility="visible">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="303.4dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.2"
+            android:src="@drawable/dialog_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tvGoal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="Log In?"
+            android:textColor="#ffffff"
+            android:textSize="23.3sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivGoalTextBg"
+            android:layout_width="324.2dp"
+            android:layout_height="58.5dp"
+            android:layout_marginTop="17.6dp"
+            android:src="@drawable/login_text_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGoal" />
+
+        <TextView
+            android:id="@+id/tvGoalText"
+            android:layout_width="293.3dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22.1dp"
+            android:layout_marginTop="7.8dp"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingExtra="0.9sp"
+            android:text="@string/loginText"
+            android:textColor="#66ffffff"
+            android:textSize="16sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/ivGoalTextBg"
+            app:layout_constraintTop_toTopOf="@+id/ivGoalTextBg" />
+
+        <ImageView
+            android:id="@+id/ivRestart"
+            android:layout_width="308.2dp"
+            android:layout_height="73.7dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/dialog_btn_primary_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivGoalTextBg" />
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="308.2dp"
+            android:layout_height="73.7dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/dialog_btn_secondary_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
+
+        <TextView
+            android:id="@+id/tvRestartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4.7sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="Log In"
+            android:textColor="#ffffff"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
+            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
+            app:layout_constraintStart_toStartOf="@+id/ivRestart"
+            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintVertical_bias="0.44" />
+
+        <TextView
+            android:id="@+id/tvHomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="4.7sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:includeFontPadding="false"
+            android:text="No"
+            android:textColor="#4dffffff"
+            android:textSize="23sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
+            app:layout_constraintEnd_toEndOf="@+id/ivHome"
+            app:layout_constraintStart_toStartOf="@+id/ivHome"
+            app:layout_constraintTop_toTopOf="@+id/ivHome" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
