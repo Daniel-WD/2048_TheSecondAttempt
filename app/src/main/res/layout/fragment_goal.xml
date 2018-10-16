@@ -8,11 +8,10 @@
     tools:visibility="visible">
 
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lyContainer"
         android:layout_width="match_parent"
-        android:layout_height="227.1dp"
+        android:layout_height="457.1dp"
         android:layout_gravity="center_vertical"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp">
@@ -31,10 +30,10 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tvMoveOn"
+            android:id="@+id/tvGoal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="sans-serif"
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
@@ -43,7 +42,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Do you want to go on?"
+            android:text="Your Goal"
             android:textColor="#ffffff"
             android:textSize="23.3sp"
             android:textStyle="bold"
@@ -52,77 +51,58 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivRestart"
-            android:layout_width="308.2dp"
-            android:layout_height="73.7dp"
-            android:layout_marginTop="15dp"
-            android:src="@drawable/dialog_btn_primary_bg"
+            android:id="@+id/ivGoalTextBg"
+            android:layout_width="324.2dp"
+            android:layout_height="279.4dp"
+            android:layout_marginTop="17.6dp"
+            android:src="@drawable/goal_text_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMoveOn" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGoal" />
 
         <ImageView
-            android:id="@+id/ivHome"
+            android:id="@+id/ivGotIt"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/dialog_btn_secondary_bg"
+            android:src="@drawable/dialog_btn_primary_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
+            app:layout_constraintTop_toBottomOf="@+id/ivGoalTextBg" />
 
         <TextView
-            android:id="@+id/tvBacksText"
+            android:id="@+id/tvGotItText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="74dp"
             android:fontFamily="sans-serif"
             android:lineSpacingExtra="4.7sp"
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Get 3 Backs"
+            android:text="Got It"
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
-            app:layout_constraintStart_toStartOf="@+id/ivRestart"
-            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintBottom_toBottomOf="@+id/ivGotIt"
+            app:layout_constraintEnd_toEndOf="@+id/ivGotIt"
+            app:layout_constraintStart_toStartOf="@+id/ivGotIt"
+            app:layout_constraintTop_toTopOf="@+id/ivGotIt"
             app:layout_constraintVertical_bias="0.44" />
 
-
-        <ImageView
-            android:id="@+id/ivVideo"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="1dp"
-            android:src="@drawable/video"
-            android:tint="@color/snow"
-            app:layout_constraintBottom_toBottomOf="@+id/tvBacksText"
-            app:layout_constraintStart_toEndOf="@+id/tvBacksText"
-            app:layout_constraintTop_toTopOf="@+id/tvBacksText" />
-
         <TextView
-            android:id="@+id/tvGiveUpText"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvGoalText"
+            android:layout_width="293.3dp"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:lineSpacingExtra="4.7sp"
-            android:shadowColor="#3d000000"
-            android:shadowDy="3"
-            android:shadowRadius="25"
-            android:includeFontPadding="false"
-            android:text="Give Up"
-            android:textColor="#4dffffff"
-            android:textSize="23sp"
+            android:layout_marginStart="17.8dp"
+            android:layout_marginTop="11.3dp"
+            android:fontFamily="sans-serif-light"
+            android:lineSpacingExtra="0.9sp"
+            android:text="@string/goalText"
+            android:textColor="#80ffffff"
+            android:textSize="15.7sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
-            app:layout_constraintEnd_toEndOf="@+id/ivHome"
-            app:layout_constraintStart_toStartOf="@+id/ivHome"
-            app:layout_constraintTop_toTopOf="@+id/ivHome" />
+            app:layout_constraintStart_toStartOf="@+id/ivGoalTextBg"
+            app:layout_constraintTop_toTopOf="@+id/ivGoalTextBg" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,6 +19,7 @@ import com.titaniel.best_2048_math_puzzle.fragments.Home;
 import com.titaniel.best_2048_math_puzzle.fragments.Logo;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Backs;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Goal;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
@@ -42,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
             STATE_FM_BACKS = 3,
             STATE_FM_WON = 4,
             STATE_FM_PAUSE = 5,
-            STATE_FM_LOGO = 6;
+            STATE_FM_LOGO = 6,
+            STATE_FM_GOAL = 7;
 
     public int state = STATE_FM_HOME;
 
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     public Won won;
     public Pause pause;
     public Logo logo;
+    public Goal goal;
 
     private Handler mHandler = new Handler();
 
@@ -91,17 +94,20 @@ public class MainActivity extends AppCompatActivity {
         //init Fragments
 //        home = new Home();TODO
 //        game = new Game();
-        backs = new Backs();
+//        backs = new Backs();
 //        gameOver = new GameOver();TODO
 //        pause = new Pause();
 //        won = new Won();TODO
+        goal = new Goal();
 
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, goal).commit();
+
     }
 
     public void showAchievements() {
@@ -181,6 +187,8 @@ public class MainActivity extends AppCompatActivity {
                 return won;
             case STATE_FM_LOGO:
                 return logo;
+            case STATE_FM_GOAL:
+                return goal;
         }
         return null;
     }
@@ -251,6 +259,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case STATE_FM_LOGO:
                 super.onBackPressed();
+                break;
+            case STATE_FM_GOAL:
+                goal.onBackPressed();
                 break;
         }
     }
