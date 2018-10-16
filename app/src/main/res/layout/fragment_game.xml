@@ -773,10 +773,11 @@
 
     <ImageView
         android:id="@+id/ivPause"
-        android:layout_width="17.1dp"
-        android:layout_height="17.1dp"
-        android:layout_marginTop="16.6dp"
-        android:layout_marginEnd="16.4dp"
+        android:layout_width="37.1dp"
+        android:layout_height="37.1dp"
+        android:layout_marginTop="6.6dp"
+        android:layout_marginEnd="6.4dp"
+        android:padding="10dp"
         android:src="@drawable/pause"
         android:tint="#33ffffff"
         android:tintMode="src_in"

@@ -94,17 +94,17 @@ public class MainActivity extends AppCompatActivity {
 
         //init Fragments
 //        home = new Home();TODO
-        game = new Game();
+//        game = new Game();
 //        undo = new Undo();TODO
 //        gameOver = new GameOver();TODO
-//        pause = new Pause();TODO
+        pause = new Pause();
 //        won = new Won();TODO
 
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, undo).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
     }
 

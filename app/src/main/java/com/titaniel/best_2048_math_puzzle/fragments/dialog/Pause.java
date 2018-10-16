@@ -41,29 +41,29 @@ public class Pause extends AnimatedFragment {
 
         //init
         mRoot = getView();
-        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
-        mBtnHome = mRoot.findViewById(R.id.btnHome);
-        mBtnClose = mRoot.findViewById(R.id.btnClose);
-        mContainer = mRoot.findViewById(R.id.lyContainer);
-
-        //btn restart
-        mBtnRestart.setOnClickListener(v -> {
-            mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-            mActivity.game.restart();
-        });
-
-        //btn home
-        mBtnHome.setOnClickListener(v -> {
-            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
-            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
-        });
-
-        //btn close
-        mBtnClose.setOnClickListener(v -> {
-            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-            mActivity.game.enableAll(delay);
-        });
+//        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
+//        mBtnHome = mRoot.findViewById(R.id.btnHome);
+//        mBtnClose = mRoot.findViewById(R.id.btnClose);
+//        mContainer = mRoot.findViewById(R.id.lyContainer);
+//
+//        //btn restart
+//        mBtnRestart.setOnClickListener(v -> {
+//            mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+//            mActivity.game.restart();
+//        });
+//
+//        //btn home
+//        mBtnHome.setOnClickListener(v -> {
+//            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
+//            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+//            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
+//        });
+//
+//        //btn close
+//        mBtnClose.setOnClickListener(v -> {
+//            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+//            mActivity.game.enableAll(delay);
+//        });
     }
 
     @Override
@@ -71,13 +71,13 @@ public class Pause extends AnimatedFragment {
 
         mRoot.setVisibility(View.VISIBLE);
 
-        long duration = 250;
-
-        mContainer.setAlpha(0);
-        mContainer.setScaleX(0.6f);
-        mContainer.setScaleY(0.6f);
-        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
-        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//        long duration = 250;
+//
+//        mContainer.setAlpha(0);
+//        mContainer.setScaleX(0.6f);
+//        mContainer.setScaleY(0.6f);
+//        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
     }
 
     @Override
