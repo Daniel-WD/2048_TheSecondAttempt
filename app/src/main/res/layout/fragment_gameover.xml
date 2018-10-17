@@ -10,136 +10,831 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lyContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:background="@drawable/dialog_background"
-        android:paddingBottom="22dp">
+        android:layout_height="501.6dp"
+        android:layout_gravity="center_vertical">
+
+        <!-- background -->
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:alpha="0.2"
+            android:src="@drawable/dialog_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!-- title -->
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvGameOver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="22dp"
-            android:letterSpacing="0.07"
-            android:text="@string/game_over"
-            android:textColor="@color/snow"
-            android:textSize="23sp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:letterSpacing="0.05"
+            android:lineSpacingExtra="5sp"
+            android:rotation="3"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="Game Over"
+            android:textColor="#ffffff"
+            android:textSize="23.3sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/lyScore"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="22dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/score_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
+        <!-- ############## leaderboard ############## -->
 
-            <View
-                android:id="@+id/view"
-                android:layout_width="1dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightSnow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <!-- bg -->
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
-                android:layout_marginTop="3dp"
-                android:text="@string/score"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="14dp"
-                android:text="@string/highscore"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toStartOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/tvScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="3dp"
-                tools:text="2684"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/tvHighscore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginStart="14dp"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                tools:text="234234"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintStart_toEndOf="@+id/view" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/lyButtons"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="22dp"
-            android:orientation="horizontal"
+        <ImageView
+            android:id="@+id/ivLeaderboardBg"
+            android:layout_width="match_parent"
+            android:layout_height="77.7dp"
+            android:layout_marginTop="53dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/gameover_leaderboard_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lyScore">
+            app:layout_constraintTop_toBottomOf="@+id/tvGameOver" />
 
-            <ImageView
-                android:contentDescription="@string/descrHome"
-                android:id="@+id/btnHome"
-                android:layout_width="0dp"
-                android:layout_height="63dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/btn_home_lv2_small" />
+        <!-- lb-dividers -->
 
-            <ImageView
-                android:contentDescription="@string/descrRestart"
-                android:id="@+id/btnRestart"
-                android:layout_width="0dp"
-                android:layout_height="63dp"
-                android:layout_weight="0.5"
-                android:src="@drawable/btn_restart_lv1_small" />
+        <View
+            android:id="@+id/vDivLbLargeLeft"
+            android:layout_width="1dp"
+            android:layout_height="55.4dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.56" />
 
-        </LinearLayout>
+        <View
+            android:id="@+id/vDivLbLargeRight"
+            android:layout_width="1dp"
+            android:layout_height="55.4dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.67"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.56" />
 
+        <View
+            android:id="@+id/vDivLbSmallLeft"
+            android:layout_width="1dp"
+            android:layout_height="35.7dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeLeft"
+            app:layout_constraintStart_toStartOf="@+id/ivLeaderboardBg"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.63" />
+
+        <View
+            android:id="@+id/vDivLbSmallCenter"
+            android:layout_width="1dp"
+            android:layout_height="35.7dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeRight"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbLargeLeft"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.82" />
+
+        <View
+            android:id="@+id/vDivLbSmallRight"
+            android:layout_width="1dp"
+            android:layout_height="35.7dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbLargeRight"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.63" />
+
+        <!-- lb-headlines -->
+
+        <TextView
+            android:id="@+id/tvToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.5dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/today"
+            android:textColor="#4D4D5C"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintStart_toStartOf="@+id/vDivLbSmallLeft" />
+
+        <TextView
+            android:id="@+id/tvAllTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/allTime"
+            android:textColor="#4D4D5C"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintStart_toStartOf="@+id/vDivLbSmallCenter" />
+
+        <TextView
+            android:id="@+id/tv7Days"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1.5dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/sevenDays"
+            android:textColor="#4D4D5C"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallRight"
+            app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallRight"
+            app:layout_constraintStart_toStartOf="@+id/vDivLbSmallRight" />
+
+        <!-- rank-texts -->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRankTodayHs"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|end"
+            android:lineSpacingExtra="4.7sp"
+            android:maxWidth="30dp"
+            android:text=""
+            android:textColor="#ffffff"
+            android:textSize="22.7sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRankTodayTr"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|start"
+            android:lineSpacingExtra="4.7sp"
+            android:maxWidth="30dp"
+            android:textColor="#ffffff"
+            android:textSize="22.7sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+            tools:text="86" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRankAllTimeHs"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|end"
+            android:lineSpacingExtra="4.7sp"
+            android:maxWidth="30dp"
+            android:textColor="#ffffff"
+            android:textSize="22.7sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRankAllTimeTr"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|start"
+            android:lineSpacingExtra="4.7sp"
+            android:maxWidth="30dp"
+            android:textColor="#ffffff"
+            android:textSize="22.7sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRank7DaysHs"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|end"
+            android:lineSpacingExtra="4.7sp"
+            android:maxWidth="30dp"
+            android:textColor="@color/snow"
+            android:textSize="22.7sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+            tools:text="64"
+            tools:textColor="@color/rankDown" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRank7DaysTr"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginStart="6dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center_vertical|start"
+            android:lineSpacingExtra="4sp"
+            android:maxWidth="30dp"
+            android:textColor="@color/snow"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:autoSizeMaxTextSize="22.7sp"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+            tools:text="234"
+            tools:textColor="@color/rankUp" />
+
+        <!-- rank update indicators -->
+
+        <ImageView
+            android:id="@+id/ivRankUpdate7DaysTr"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginStart="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysTr"
+            app:layout_constraintStart_toEndOf="@+id/tvRank7DaysTr"
+            app:layout_constraintTop_toTopOf="@+id/tvRank7DaysTr"
+            tools:src="@drawable/rank_up"
+            tools:tint="@color/rankUp" />
+
+        <ImageView
+            android:id="@+id/ivRankUpdate7DaysHs"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginEnd="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysHs"
+            app:layout_constraintEnd_toStartOf="@+id/tvRank7DaysHs"
+            app:layout_constraintTop_toTopOf="@+id/tvRank7DaysHs"
+            tools:src="@drawable/rank_down"
+            tools:tint="@color/rankDown" />
+
+        <ImageView
+            android:id="@+id/ivRankUpdateAllTimeTr"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginStart="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeTr"
+            app:layout_constraintStart_toEndOf="@+id/tvRankAllTimeTr"
+            app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeTr" />
+
+        <ImageView
+            android:id="@+id/ivRankUpdateAllTimeHs"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginEnd="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeHs"
+            app:layout_constraintEnd_toStartOf="@+id/tvRankAllTimeHs"
+            app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeHs" />
+
+        <ImageView
+            android:id="@+id/ivRankUpdateTodayTr"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginStart="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayTr"
+            app:layout_constraintStart_toEndOf="@+id/tvRankTodayTr"
+            app:layout_constraintTop_toTopOf="@+id/tvRankTodayTr" />
+
+        <ImageView
+            android:id="@+id/ivRankUpdateTodayHs"
+            android:layout_width="10.7dp"
+            android:layout_height="10.7dp"
+            android:layout_marginEnd="3.3dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayHs"
+            app:layout_constraintEnd_toStartOf="@+id/tvRankTodayHs"
+            app:layout_constraintTop_toTopOf="@+id/tvRankTodayHs" />
+
+        <!-- trophies...first, second, third -->
+
+        <ImageView
+            android:id="@+id/ivTrophyTodayHs"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintVertical_bias="0.62"
+            tools:src="@drawable/trophy_first"
+            tools:tint="#b1a323" />
+
+        <ImageView
+            android:id="@+id/ivTrophyTodayTr"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/ivTrophyAllTimeHs"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/ivTrophyAllTimeTr"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/ivTrophy7DaysHs"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <ImageView
+            android:id="@+id/ivTrophy7DaysTr"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_marginStart="3.5dp"
+            android:contentDescription="@string/descrIcon"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <!-- infinities... no data -->
+
+        <ImageView
+            android:id="@+id/ivNoRankAllTimeTr"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginStart="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/ivNoRankAllTimeHs"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginEnd="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/ivNoRankTodayTr"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginStart="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+        <ImageView
+            android:id="@+id/ivNoRankTodayHs"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginEnd="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+        <ImageView
+            android:id="@+id/ivNoRank7DaysTr"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginStart="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+        <ImageView
+            android:id="@+id/ivNoRank7DaysHs"
+            android:layout_width="24.4dp"
+            android:layout_height="24.4dp"
+            android:layout_marginEnd="8.4dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_rank"
+            android:tint="#4D4D5C"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+        <!-- no internet -->
+
+        <ImageView
+            android:id="@+id/ivNoInternet"
+            android:layout_width="39.2dp"
+            android:layout_height="39.2dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_internet"
+            android:tint="#33ffffff"
+            android:tintMode="src_in"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.61" />
+
+        <!-- no gameservices -->
+
+        <ImageView
+            android:id="@+id/ivNoGameServices"
+            android:layout_width="40.1dp"
+            android:layout_height="40.1dp"
+            android:contentDescription="@string/descrIcon"
+            android:src="@drawable/no_game_services"
+            android:tint="#33ffffff"
+            android:tintMode="src_in"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintVertical_bias="0.64" />
+
+        <!-- atop of leaderboard section -->
+
+        <View
+            android:id="@+id/vDivTop"
+            android:layout_width="1dp"
+            android:layout_height="26.7dp"
+            android:layout_marginBottom="75dp"
+            android:background="#33ffffff"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHighscoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6.5dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/highscore"
+            android:textColor="#33ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintEnd_toStartOf="@+id/vDivTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+        <TextView
+            android:id="@+id/tvTileRecordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6.5dp"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="3sp"
+            android:text="@string/tileRecord"
+            android:textColor="#33ffffff"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+            app:layout_constraintStart_toEndOf="@+id/vDivTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+        <TextView
+            android:id="@+id/tvRankingOf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2.8dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="2sp"
+            android:text="@string/rankingOf"
+            android:textColor="#33ffffff"
+            android:textSize="10.7sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toTopOf="@+id/vDivTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <!-- result background -->
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="291.6dp"
+            android:layout_height="131dp"
+            android:layout_marginTop="14dp"
+            android:src="@drawable/gameover_won_result_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivLeaderboardBg" />
+
+        <!-- result divider -->
+
+        <View
+            android:id="@+id/vDivResHor"
+            android:layout_width="244.5dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="67.4dp"
+            android:background="#262639"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+        <View
+            android:id="@+id/vDivResVertTop"
+            android:layout_width="1dp"
+            android:layout_height="51.1dp"
+            android:layout_marginBottom="4.5dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toTopOf="@+id/vDivResHor"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView" />
+
+        <View
+            android:id="@+id/vDivResVertBottom"
+            android:layout_width="1dp"
+            android:layout_height="51.1dp"
+            android:layout_marginTop="4.5dp"
+            android:background="#262639"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/vDivResHor" />
+
+        <!-- result content -->
+
+        <TextView
+            android:id="@+id/tvResScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="SCORE"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/vDivResVertTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertTop" />
+
+        <TextView
+            android:id="@+id/tvResHighscoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="HIGHSCORE"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/vDivResVertTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertTop" />
+
+        <TextView
+            android:id="@+id/tvResHighestTileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="HIGHEST TILE"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/vDivResVertBottom"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
+
+        <TextView
+            android:id="@+id/tvResTileRecordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="TILE REOCRD"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/vDivResVertBottom"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
+
+        <TextView
+            android:id="@+id/tvHighscoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tvResHighscoreText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighscoreText"
+            android:text="4732" />
+
+        <TextView
+            android:id="@+id/tvTileRecordValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tvResTileRecordText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResTileRecordText"
+            android:text="512" />
+
+        <TextView
+            android:id="@+id/tvHighestTileValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tvResHighestTileText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighestTileText"
+            android:text="234234" />
+
+        <TextView
+            android:id="@+id/tvScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tvResScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResScoreText"
+            android:text="4096" />
+
+        <ImageView
+            android:id="@+id/ivRestart"
+            android:layout_width="308.2dp"
+            android:layout_height="73.7dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/dialog_btn_primary_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="308.2dp"
+            android:layout_height="73.7dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/dialog_btn_secondary_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
+
+        <TextView
+            android:id="@+id/tvRestartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:lineSpacingExtra="4.7sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="Restart"
+            android:textColor="#ffffff"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
+            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
+            app:layout_constraintStart_toStartOf="@+id/ivRestart"
+            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintVertical_bias="0.44" />
+
+        <TextView
+            android:id="@+id/tvHomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="4.7sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:includeFontPadding="false"
+            android:text="Home"
+            android:textColor="#4dffffff"
+            android:textSize="23sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
+            app:layout_constraintEnd_toEndOf="@+id/ivHome"
+            app:layout_constraintStart_toStartOf="@+id/ivHome"
+            app:layout_constraintTop_toTopOf="@+id/ivHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

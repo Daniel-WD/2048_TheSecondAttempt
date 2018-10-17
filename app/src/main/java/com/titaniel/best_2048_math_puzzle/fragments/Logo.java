@@ -43,7 +43,7 @@ public class Logo extends AnimatedFragment {
     private void presentLogo(long delay) {
 
         long fadeDuration = 400;
-        long stayDuration = 1000;
+        long stayDuration = 1500;
 
         mIvLogo.setAlpha(0f);
         //show logo

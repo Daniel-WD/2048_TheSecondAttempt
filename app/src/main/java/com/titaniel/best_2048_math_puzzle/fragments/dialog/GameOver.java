@@ -40,7 +40,7 @@ public class GameOver extends AnimatedFragment {
         mActivity = (MainActivity) getActivity();
 
         //init
-//        mRoot = getView();
+        mRoot = getView();
 //        mTvScore = mRoot.findViewById(R.id.tvScore);
 //        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
 //        mBtnHome = mRoot.findViewById(R.id.btnHome);
