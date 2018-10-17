@@ -30,7 +30,7 @@
             app:layout_constraintVertical_bias="1.0" />
 
         <TextView
-            android:id="@+id/tvGoal"
+            android:id="@+id/tvLogIn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -51,17 +51,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivGoalTextBg"
+            android:id="@+id/ivLoginTextBg"
             android:layout_width="324.2dp"
             android:layout_height="58.5dp"
             android:layout_marginTop="17.6dp"
             android:src="@drawable/login_text_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGoal" />
+            app:layout_constraintTop_toBottomOf="@+id/tvLogIn" />
 
         <TextView
-            android:id="@+id/tvGoalText"
+            android:id="@+id/tvLoginText"
             android:layout_width="293.3dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="22.1dp"
@@ -69,24 +69,24 @@
             android:fontFamily="sans-serif-light"
             android:lineSpacingExtra="0.9sp"
             android:text="@string/loginText"
-            android:textColor="#66ffffff"
+            android:textColor="#80808B"
             android:textSize="16sp"
             android:textStyle="normal"
-            app:layout_constraintStart_toStartOf="@+id/ivGoalTextBg"
-            app:layout_constraintTop_toTopOf="@+id/ivGoalTextBg" />
+            app:layout_constraintStart_toStartOf="@+id/ivLoginTextBg"
+            app:layout_constraintTop_toTopOf="@+id/ivLoginTextBg" />
 
         <ImageView
-            android:id="@+id/ivRestart"
+            android:id="@+id/ivLogIn"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginTop="15dp"
             android:src="@drawable/dialog_btn_primary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivGoalTextBg" />
+            app:layout_constraintTop_toBottomOf="@+id/ivLoginTextBg" />
 
         <ImageView
-            android:id="@+id/ivHome"
+            android:id="@+id/ivNo"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginStart="8dp"
@@ -95,10 +95,10 @@
             android:src="@drawable/dialog_btn_secondary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
+            app:layout_constraintTop_toBottomOf="@+id/ivLogIn" />
 
         <TextView
-            android:id="@+id/tvRestartText"
+            android:id="@+id/tvLogInText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -110,14 +110,14 @@
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
-            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
-            app:layout_constraintStart_toStartOf="@+id/ivRestart"
-            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintBottom_toBottomOf="@+id/ivLogIn"
+            app:layout_constraintEnd_toEndOf="@+id/ivLogIn"
+            app:layout_constraintStart_toStartOf="@+id/ivLogIn"
+            app:layout_constraintTop_toTopOf="@+id/ivLogIn"
             app:layout_constraintVertical_bias="0.44" />
 
         <TextView
-            android:id="@+id/tvHomeText"
+            android:id="@+id/tvNoText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -130,10 +130,10 @@
             android:textColor="#4dffffff"
             android:textSize="23sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
-            app:layout_constraintEnd_toEndOf="@+id/ivHome"
-            app:layout_constraintStart_toStartOf="@+id/ivHome"
-            app:layout_constraintTop_toTopOf="@+id/ivHome" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivNo"
+            app:layout_constraintEnd_toEndOf="@+id/ivNo"
+            app:layout_constraintStart_toStartOf="@+id/ivNo"
+            app:layout_constraintTop_toTopOf="@+id/ivNo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

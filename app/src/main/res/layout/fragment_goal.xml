@@ -98,7 +98,7 @@
             android:fontFamily="sans-serif-light"
             android:lineSpacingExtra="0.9sp"
             android:text="@string/goalText"
-            android:textColor="#80ffffff"
+            android:textColor="#80808B"
             android:textSize="15.7sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/ivGoalTextBg"
