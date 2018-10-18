@@ -75,7 +75,7 @@
             android:id="@+id/vDivLbLargeLeft"
             android:layout_width="1dp"
             android:layout_height="55.4dp"
-            android:background="#262639"
+            android:background="#26ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.33"
@@ -87,7 +87,7 @@
             android:id="@+id/vDivLbLargeRight"
             android:layout_width="1dp"
             android:layout_height="55.4dp"
-            android:background="#262639"
+            android:background="#26ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.67"
@@ -99,7 +99,7 @@
             android:id="@+id/vDivLbSmallLeft"
             android:layout_width="1dp"
             android:layout_height="35.7dp"
-            android:background="#262639"
+            android:background="#26ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
             app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeLeft"
             app:layout_constraintStart_toStartOf="@+id/ivLeaderboardBg"
@@ -110,7 +110,7 @@
             android:id="@+id/vDivLbSmallCenter"
             android:layout_width="1dp"
             android:layout_height="35.7dp"
-            android:background="#262639"
+            android:background="#26ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
             app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeRight"
             app:layout_constraintStart_toEndOf="@+id/vDivLbLargeLeft"
@@ -121,7 +121,7 @@
             android:id="@+id/vDivLbSmallRight"
             android:layout_width="1dp"
             android:layout_height="35.7dp"
-            android:background="#262639"
+            android:background="#26ffffff"
             app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vDivLbLargeRight"
@@ -131,6 +131,7 @@
         <!-- lb-headlines -->
 
         <TextView
+            android:id="@+id/tvToday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1.5dp"
@@ -138,7 +139,7 @@
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
             android:text="@string/today"
-            android:textColor="#4D4D5C"
+            android:textColor="#4dffffff"
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallLeft"
@@ -146,6 +147,7 @@
             app:layout_constraintStart_toStartOf="@+id/vDivLbSmallLeft" />
 
         <TextView
+            android:id="@+id/tvAllTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="3dp"
@@ -153,7 +155,7 @@
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
             android:text="@string/allTime"
-            android:textColor="#4D4D5C"
+            android:textColor="#4dffffff"
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallCenter"
@@ -161,6 +163,7 @@
             app:layout_constraintStart_toStartOf="@+id/vDivLbSmallCenter" />
 
         <TextView
+            android:id="@+id/tv7Days"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="1.5dp"
@@ -168,7 +171,7 @@
             android:gravity="center_horizontal"
             android:lineSpacingExtra="3sp"
             android:text="@string/sevenDays"
-            android:textColor="#4D4D5C"
+            android:textColor="#4dffffff"
             android:textSize="14sp"
             android:textStyle="normal"
             app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallRight"
@@ -294,6 +297,7 @@
         <!-- rank update indicators -->
 
         <ImageView
+            android:id="@+id/ivIndicator7DaysTileRecord"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginStart="3.3dp"
@@ -305,6 +309,7 @@
             tools:tint="@color/rankUp" />
 
         <ImageView
+            android:id="@+id/ivIndicator7DaysHighscore"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginEnd="3.3dp"
@@ -316,6 +321,7 @@
             tools:tint="@color/rankDown" />
 
         <ImageView
+            android:id="@+id/ivIndicatorAllTimeTileRecord"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginStart="3.3dp"
@@ -325,6 +331,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeTr" />
 
         <ImageView
+            android:id="@+id/ivIndicatorAllTimeHighscore"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginEnd="3.3dp"
@@ -334,6 +341,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeHs" />
 
         <ImageView
+            android:id="@+id/ivIndicatorTodayTileRecord"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginStart="3.3dp"
@@ -343,6 +351,7 @@
             app:layout_constraintTop_toTopOf="@+id/tvRankTodayTr" />
 
         <ImageView
+            android:id="@+id/ivIndicatorTodayHighscore"
             android:layout_width="10.7dp"
             android:layout_height="10.7dp"
             android:layout_marginEnd="3.3dp"
@@ -354,6 +363,7 @@
         <!-- trophies...first, second, third -->
 
         <ImageView
+            android:id="@+id/ivTrophyTodayHs"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginEnd="3.5dp"
@@ -366,6 +376,7 @@
             tools:tint="#b1a323" />
 
         <ImageView
+            android:id="@+id/ivTrophyTodayTr"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="3.5dp"
@@ -376,6 +387,7 @@
             app:layout_constraintVertical_bias="0.62" />
 
         <ImageView
+            android:id="@+id/ivTrophyAllTimeHs"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginEnd="3.5dp"
@@ -386,6 +398,7 @@
             app:layout_constraintVertical_bias="0.62" />
 
         <ImageView
+            android:id="@+id/ivTrophyAllTimeTr"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="3.5dp"
@@ -396,6 +409,7 @@
             app:layout_constraintVertical_bias="0.62" />
 
         <ImageView
+            android:id="@+id/ivTrophy7DaysHs"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginEnd="3.5dp"
@@ -406,6 +420,7 @@
             app:layout_constraintVertical_bias="0.62" />
 
         <ImageView
+            android:id="@+id/ivTrophy7DaysTr"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_marginStart="3.5dp"
@@ -418,26 +433,27 @@
         <!-- infinities... no data -->
 
         <ImageView
+            android:id="@+id/ivInfinityAllTimeTr"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginStart="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
             app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
 
         <ImageView
+            android:id="@+id/ivInfinityAllTimeHs"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginEnd="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
@@ -446,12 +462,13 @@
             tools:visibility="visible" />
 
         <ImageView
+            android:id="@+id/ivInfinityTodayTr"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginStart="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
@@ -459,12 +476,13 @@
             app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
 
         <ImageView
+            android:id="@+id/ivInfinityTodayHs"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginEnd="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
@@ -472,12 +490,13 @@
             app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
 
         <ImageView
+            android:id="@+id/ivInfinity7DaysTr"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginStart="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
@@ -485,83 +504,23 @@
             app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
 
         <ImageView
+            android:id="@+id/ivInfinity7DaysHs"
             android:layout_width="24.4dp"
             android:layout_height="24.4dp"
             android:layout_marginEnd="8.4dp"
             android:contentDescription="@string/descrIcon"
             android:src="@drawable/no_rank"
-            android:tint="#4D4D5C"
+            android:tint="#4dffffff"
             android:tintMode="src_in"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
             app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
-
-        <!-- loading views -->
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
-            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
-            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
-            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
-            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginEnd="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
-            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
-            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
-
-        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginStart="10dp"
-            android:alpha="0.3"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
-            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
             app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
 
         <!-- no internet -->
 
         <ImageView
+            android:id="@+id/ivNoInternet"
             android:layout_width="39.2dp"
             android:layout_height="39.2dp"
             android:contentDescription="@string/descrIcon"
@@ -578,6 +537,7 @@
         <!-- no gameservices -->
 
         <ImageView
+            android:id="@+id/ivNoGameServices"
             android:layout_width="40.1dp"
             android:layout_height="40.1dp"
             android:contentDescription="@string/descrIcon"
@@ -590,6 +550,75 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
             app:layout_constraintVertical_bias="0.64" />
+
+        <!-- loading views -->
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loadingAllTimeHs"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loadingAllTimeTr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+            tools:visibility="visible" />
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loadingTodayHs"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loadingTodayTr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loading7DaysHs"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginEnd="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+        <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+            android:id="@+id/loading7DaysTr"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="10dp"
+            android:alpha="0.3"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+            app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+            app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
 
         <!-- atop of leaderboard section -->
 
@@ -604,6 +633,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/tvHighscore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="6.5dp"
@@ -619,6 +649,7 @@
             app:layout_constraintTop_toTopOf="@+id/vDivTop" />
 
         <TextView
+            android:id="@+id/tvTileRecord"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="6.5dp"
@@ -760,6 +791,7 @@
             app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
 
         <TextView
+            android:id="@+id/tvHighscoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -773,6 +805,7 @@
             tools:text="4732" />
 
         <TextView
+            android:id="@+id/tvTileRecordValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -786,6 +819,7 @@
             tools:text="512" />
 
         <TextView
+            android:id="@+id/tvHighestTileValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -799,6 +833,7 @@
             tools:text="234234" />
 
         <TextView
+            android:id="@+id/tvScoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -836,6 +871,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
 
         <TextView
+            android:id="@+id/tvRestartText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -854,6 +890,7 @@
             app:layout_constraintVertical_bias="0.44" />
 
         <TextView
+            android:id="@+id/tvHomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"

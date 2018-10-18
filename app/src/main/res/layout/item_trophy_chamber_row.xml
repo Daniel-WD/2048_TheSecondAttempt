@@ -42,6 +42,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+        android:id="@+id/ivTrophy7DaysTr"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
         android:contentDescription="@string/descrIcon"
@@ -52,6 +53,7 @@
         app:layout_constraintTop_toTopOf="@+id/vDivRight" />
 
     <ImageView
+        android:id="@+id/ivTrophyTodayHs"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
         android:contentDescription="@string/descrIcon"
@@ -62,6 +64,7 @@
         app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
 
     <ImageView
+        android:id="@+id/ivTrophy7DaysHs"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
         android:contentDescription="@string/descrIcon"
@@ -72,6 +75,7 @@
         app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
 
     <ImageView
+        android:id="@+id/ivTrophyOneDayTr"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
         android:contentDescription="@string/descrIcon"

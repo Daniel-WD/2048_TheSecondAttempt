@@ -74,6 +74,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivGoalTextBg" />
 
         <TextView
+            android:id="@+id/tvGotItText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -92,6 +93,7 @@
             app:layout_constraintVertical_bias="0.44" />
 
         <TextView
+            android:id="@+id/tvMessageText"
             android:layout_width="293.3dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="17.8dp"

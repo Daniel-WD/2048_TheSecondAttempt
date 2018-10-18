@@ -16,11 +16,11 @@
         android:layout_marginEnd="8dp">
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.2"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,24 +51,24 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivRestart"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginTop="15dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_primary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvMoveOn" />
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivHome"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_secondary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +96,12 @@
 
 
         <ImageView
-            android:contentDescription="@string/descrIcon"
+            android:id="@+id/ivVideo"
             android:layout_width="26dp"
             android:layout_height="26dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="1dp"
+            android:contentDescription="@string/descrIcon"
             android:src="@drawable/video"
             android:tint="@color/snow"
             app:layout_constraintBottom_toBottomOf="@+id/tvBacksText"
@@ -108,14 +109,15 @@
             app:layout_constraintTop_toTopOf="@+id/tvBacksText" />
 
         <TextView
+            android:id="@+id/tvGiveUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
             android:lineSpacingExtra="4.7sp"
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:includeFontPadding="false"
             android:text="@string/giveUp"
             android:textColor="#4dffffff"
             android:textSize="23sp"
