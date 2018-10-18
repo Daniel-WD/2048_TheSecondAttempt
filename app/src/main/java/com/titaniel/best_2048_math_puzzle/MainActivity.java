@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //        backs = new Backs();
         gameOver = new GameOver();
 //        pause = new Pause();
-//        won = new Won();TODO
+        won = new Won();
         goal = new Goal();
         logIn = new LogIn();
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
 //        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, goal).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, logIn).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, trophy).commit();

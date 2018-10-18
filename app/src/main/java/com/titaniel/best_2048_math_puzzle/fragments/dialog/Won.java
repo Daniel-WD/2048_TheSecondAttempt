@@ -42,31 +42,31 @@ public class Won extends AnimatedFragment {
 
         //init
         mRoot = getView();
-        mTvScore = mRoot.findViewById(R.id.tvScore);
-        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
-        mBtnHome = mRoot.findViewById(R.id.btnHome);
-        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
-        mBtnResume = mRoot.findViewById(R.id.btnResume);
-        mContainer = mRoot.findViewById(R.id.lyContainer);
-
-        //btn restart
-        mBtnRestart.setOnClickListener(v -> {
-            mActivity.hideState(MainActivity.STATE_FM_WON, 0);
-            mActivity.game.restart();
-        });
-
-        //btn home
-        mBtnHome.setOnClickListener(v -> {
-            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
-            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
-            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
-        });
-
-        //btn resume
-        mBtnResume.setOnClickListener(v -> {
-            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
-            mActivity.game.enableAll(delay);
-        });
+//        mTvScore = mRoot.findViewById(R.id.tvScore);
+//        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
+//        mBtnHome = mRoot.findViewById(R.id.btnHome);
+//        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
+//        mBtnResume = mRoot.findViewById(R.id.btnResume);
+//        mContainer = mRoot.findViewById(R.id.lyContainer);
+//
+//        //btn restart
+//        mBtnRestart.setOnClickListener(v -> {
+//            mActivity.hideState(MainActivity.STATE_FM_WON, 0);
+//            mActivity.game.restart();
+//        });
+//
+//        //btn home
+//        mBtnHome.setOnClickListener(v -> {
+//            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
+//            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
+//            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
+//        });
+//
+//        //btn resume
+//        mBtnResume.setOnClickListener(v -> {
+//            long delay = mActivity.hideState(MainActivity.STATE_FM_WON, 0);
+//            mActivity.game.enableAll(delay);
+//        });
     }
 
     private void updateScores() {
@@ -77,17 +77,17 @@ public class Won extends AnimatedFragment {
     @Override
     protected void animateShow(long delay) {
 
-        updateScores();
+//        updateScores();
 
         mRoot.setVisibility(View.VISIBLE);
 
-        long duration = 300;
-
-        mContainer.setAlpha(0);
-        mContainer.setScaleX(0.6f);
-        mContainer.setScaleY(0.6f);
-        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
-        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//        long duration = 300;
+//
+//        mContainer.setAlpha(0);
+//        mContainer.setScaleX(0.6f);
+//        mContainer.setScaleY(0.6f);
+//        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+//        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
     }
 
     @Override
