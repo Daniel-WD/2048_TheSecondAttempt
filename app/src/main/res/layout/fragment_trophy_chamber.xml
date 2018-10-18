@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:visibility="invisible"
+    tools:visibility="visible">
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="12dp"
+        android:src="@drawable/trophy_chamber_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:letterSpacing="0.02"
+        android:lineSpacingExtra="5sp"
+        android:shadowColor="#3d000000"
+        android:shadowDy="3"
+        android:shadowRadius="30"
+        android:text="Trophy Chamber"
+        android:textColor="#ffffff"
+        android:textSize="23.3sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/ivBackground"
+        app:layout_constraintStart_toStartOf="@+id/ivBackground"
+        app:layout_constraintTop_toTopOf="@+id/ivBackground" />
+
+    <ImageView
+        android:id="@+id/ivHeaderBg"
+        android:layout_width="0dp"
+        android:layout_height="56.3dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/trophy_chamber_item_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+    <View
+        android:id="@+id/vDivCenter"
+        android:layout_width="1dp"
+        android:layout_height="42.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHeaderBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivHeaderBg"
+        app:layout_constraintStart_toStartOf="@+id/ivHeaderBg"
+        app:layout_constraintTop_toTopOf="@+id/ivHeaderBg" />
+
+    <View
+        android:id="@+id/vDivLeft"
+        android:layout_width="1dp"
+        android:layout_height="20.7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHeaderBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivCenter"
+        app:layout_constraintStart_toStartOf="@+id/ivHeaderBg" />
+
+    <View
+        android:id="@+id/vDivRight"
+        android:layout_width="1dp"
+        android:layout_height="20.7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivHeaderBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivHeaderBg"
+        app:layout_constraintStart_toEndOf="@+id/vDivCenter" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="HIGHSCORE"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLeft"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLeft"
+        app:layout_constraintStart_toStartOf="@+id/vDivLeft" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="TILE RECORD"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivRight"
+        app:layout_constraintEnd_toEndOf="@+id/vDivRight"
+        app:layout_constraintStart_toStartOf="@+id/vDivRight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="7 DAYS"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="7 DAYS"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
+        app:layout_constraintEnd_toEndOf="@+id/ivHeaderBg"
+        app:layout_constraintStart_toEndOf="@+id/vDivRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivRight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="ONE DAY"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivRight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="ONE DAY"
+        android:textColor="#4D4D5C"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLeft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvTrophyList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivHeaderBg"
+        tools:listitem="@layout/item_trophy_chamber_row" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

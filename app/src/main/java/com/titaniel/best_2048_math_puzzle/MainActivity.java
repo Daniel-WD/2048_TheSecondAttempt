@@ -23,6 +23,7 @@ import com.titaniel.best_2048_math_puzzle.fragments.dialog.Goal;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.LogIn;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Trophy;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.TrophyChamber;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
 import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
@@ -48,7 +49,8 @@ public class MainActivity extends AppCompatActivity {
             STATE_FM_LOGO = 6,
             STATE_FM_GOAL = 7,
             STATE_FM_LOGIN = 8,
-            STATE_FM_TROPHY = 9;
+            STATE_FM_TROPHY = 9,
+            STATE_FM_TROPHY_CHAMBER = 10;
 
     public int state = STATE_FM_HOME;
 
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
     public Goal goal;
     public LogIn logIn;
     public Trophy trophy;
+    public TrophyChamber trophyChamber;
 
     private Handler mHandler = new Handler();
 
@@ -100,23 +103,25 @@ public class MainActivity extends AppCompatActivity {
         //init Fragments
         home = new Home();
         trophy = new Trophy();
-//        game = new Game();
-//        backs = new Backs();
+        game = new Game();
+        backs = new Backs();
         gameOver = new GameOver();
-//        pause = new Pause();
+        pause = new Pause();
         won = new Won();
         goal = new Goal();
         logIn = new LogIn();
+        trophyChamber = new TrophyChamber();
 
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
-//        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, goal).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, logIn).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, trophy).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, trophyChamber).commit();
 
     }
 
@@ -203,6 +208,8 @@ public class MainActivity extends AppCompatActivity {
                 return logIn;
             case STATE_FM_TROPHY:
                 return trophy;
+            case STATE_FM_TROPHY_CHAMBER:
+                return trophyChamber;
         }
         return null;
     }
@@ -282,6 +289,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case STATE_FM_TROPHY:
                 trophy.onBackPressed();
+                break;
+            case STATE_FM_TROPHY_CHAMBER:
+                trophyChamber.onBackPressed();
                 break;
         }
     }
