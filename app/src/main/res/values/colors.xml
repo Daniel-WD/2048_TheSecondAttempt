@@ -14,7 +14,8 @@
 
     <color name="homeIconTint">#41000000</color>
 
-    <color name="game_divider_color">#3cffffff</color>
-    <color name="game_border_color">#3cffffff</color>
+    <color name="game_divider_color">#333550</color>
+    <color name="game_border_color">#333550</color>
+    <color name="game_background_color">#00011C</color>
 
 </resources>

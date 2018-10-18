@@ -65,7 +65,7 @@ public class Logo extends AnimatedFragment {
 
         //show home
         handler.postDelayed(() -> {
-            mActivity.showState(MainActivity.STATE_FM_TROPHY_CHAMBER, 0, mActivity.logo);
+            mActivity.showState(MainActivity.STATE_FM_GAME, 0, mActivity.logo);
 //            mActivity.signInSilently();
         }, delay);
 
