@@ -194,7 +194,6 @@
             app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
 
         <TextView
-            android:id="@+id/tvHighscoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -208,7 +207,6 @@
             tools:text="4732" />
 
         <TextView
-            android:id="@+id/tvTileRecordValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -222,7 +220,6 @@
             tools:text="512" />
 
         <TextView
-            android:id="@+id/tvHighestTileValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -236,7 +233,6 @@
             tools:text="234234" />
 
         <TextView
-            android:id="@+id/tvScoreValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -263,7 +259,6 @@
             app:layout_constraintTop_toBottomOf="@+id/ivResultBg" />
 
         <TextView
-            android:id="@+id/tvContinueText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -302,7 +297,6 @@
             app:layout_constraintTop_toTopOf="@+id/ivContinue" />
 
         <TextView
-            android:id="@+id/tvHomeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -322,7 +316,6 @@
             app:layout_constraintTop_toTopOf="@+id/ivHome" />
 
         <TextView
-            android:id="@+id/tvRestartText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"

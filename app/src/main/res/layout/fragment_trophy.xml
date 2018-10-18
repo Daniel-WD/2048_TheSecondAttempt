@@ -76,7 +76,6 @@
             app:layout_constraintTop_toBottomOf="@+id/tvNewTrophy" />
 
         <ImageView
-            android:id="@+id/ivTrophy"
             android:layout_width="55dp"
             android:layout_height="62.8dp"
             android:contentDescription="@string/descrIcon"
@@ -121,7 +120,6 @@
             app:layout_constraintTop_toTopOf="@+id/ivDetailsBackground" />
 
         <TextView
-            android:id="@+id/tvType"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -137,7 +135,6 @@
             tools:text="Tile Record" />
 
         <TextView
-            android:id="@+id/tvTimeRange"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
@@ -152,7 +149,6 @@
             tools:text="7 Days" />
 
         <TextView
-            android:id="@+id/tvFieldSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -192,7 +188,6 @@
             app:layout_constraintTop_toTopOf="@+id/ivRestart" />
 
         <TextView
-            android:id="@+id/tvTrophyChamberText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -211,7 +206,6 @@
             app:layout_constraintVertical_bias="0.47000003" />
 
         <TextView
-            android:id="@+id/tvOkText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"

@@ -1,11 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">2048</string>
 
-    <string name="game_over">Game Over</string>
-    <string name="won">You won!</string>
-    <string name="difficulty">DIFFICULTY</string>
     <string name="temp_best">Highscore: %1$d</string>
-    <string name="get2048">Get the 2048 tile!</string>
 
     <!-- BACKS -->
     <string name="goOn">Do you want o go on?</string>
@@ -21,10 +17,6 @@
 
     <!-- TROPHY -->
     <string name="newTrophy">New Trophy</string>
-    <string name="trophyTileRecord">Tile Record</string>
-    <string name="trophyHighscore">Highscore</string>
-    <string name="trophyOneDay">One Day</string>
-    <string name="trophySevenDays">7 Days</string>
     <string name="ok">OK</string>
 
 
@@ -80,23 +72,8 @@
 
     <!-- image descriptions  -->
 
-    <string name="descrButton">Button</string>
     <string name="descrTitle">Title</string>
     <string name="descrBackground">Background</string>
     <string name="descrIcon">Icon</string>
-
-    <string name="descrResume">Resume</string>
-    <string name="descrHome">Home</string>
-    <string name="descrRestart">Restart</string>
-    <string name="descrUndo">Undo</string>
-    <string name="descrGetBacks">Get Backs</string>
-    <string name="descrGiveUp">Give Up</string>
-    <string name="descrClose">Close</string>
-    <string name="descrMode">Mode</string>
-    <string name="descrModeNext">Next Mode</string>
-    <string name="descrModePrevious">Previous Mode</string>
-    <string name="descrPlay">Play</string>
-    <string name="descrRate">Rate</string>
-    <string name="undo_last_move">Undo last move?</string>
 
 </resources>

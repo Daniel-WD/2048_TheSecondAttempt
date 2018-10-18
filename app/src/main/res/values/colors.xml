@@ -5,17 +5,13 @@
     <color name="rankUp">#09d18f</color>
     <color name="rankDown">#d83434</color>
 
-    <color name="lightSnow">#3cffffff</color>
-
     <color name="snow">#ffffff</color>
     <color name="black">#000000</color>
-
-    <color name="dividerColor">#d8d8d8</color>
-
-    <color name="homeIconTint">#41000000</color>
 
     <color name="game_divider_color">#333550</color>
     <color name="game_border_color">#333550</color>
     <color name="game_background_color">#00011C</color>
+
+    <color name="loading_view_color">#ffffff</color>
 
 </resources>

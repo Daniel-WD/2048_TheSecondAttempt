@@ -1,8 +1,10 @@
 package com.titaniel.best_2048_math_puzzle.utils;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.TypedValue;
 import android.widget.Toast;
 
 public class Utils {
@@ -50,6 +52,11 @@ public class Utils {
 
     public static void toast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
+
+    public static float dpToPx(Resources res, float dpValue) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, res.getDisplayMetrics());
+
     }
 
 }

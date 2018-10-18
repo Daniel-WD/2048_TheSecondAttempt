@@ -1,11 +1,6 @@
 package com.titaniel.best_2048_math_puzzle.fragments;
 
-import android.content.ActivityNotFoundException;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +12,9 @@ import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Home extends AnimatedFragment {
 

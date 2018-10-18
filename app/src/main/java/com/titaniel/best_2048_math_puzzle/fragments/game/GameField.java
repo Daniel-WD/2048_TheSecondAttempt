@@ -396,6 +396,11 @@ public class GameField extends View {
         mMinSwipeDistancePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMinSwipeDistance, getResources().getDisplayMetrics());
         mFieldRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderRadius, getResources().getDisplayMetrics());
 
+        mBorderWidthPx = Utils.dpToPx(getResources(), mBorderWidth);
+        mGhostWidthPx = Utils.dpToPx(getResources(), mGhostWidth);
+        mMinSwipeDistancePx = Utils.dpToPx(getResources(), mMinSwipeDistance);
+        mFieldRadius = Utils.dpToPx(getResources(), mBorderRadius);
+
         mBorderPaint.setStyle(Paint.Style.STROKE);
         mBorderPaint.setColor(mBorderColor);
         mBorderPaint.setStrokeWidth(mBorderWidthPx);
