@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.2"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +43,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="New Trophy"
+            android:text="@string/newTrophy"
             android:textColor="#ffffff"
             android:textSize="23.3sp"
             android:textStyle="bold"
@@ -54,6 +55,7 @@
             android:id="@+id/ivEffectSmall"
             android:layout_width="115dp"
             android:layout_height="115dp"
+            android:contentDescription="@string/descrIcon"
             android:src="@drawable/got_trophy_effect_back"
             app:layout_constraintBottom_toBottomOf="@+id/ivEffectBig"
             app:layout_constraintEnd_toEndOf="@+id/ivEffectBig"
@@ -67,6 +69,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/descrIcon"
             android:src="@drawable/got_trophy_effect_front"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,18 +79,20 @@
             android:id="@+id/ivTrophy"
             android:layout_width="55dp"
             android:layout_height="62.8dp"
-            android:src="@drawable/got_trophy_first"
+            android:contentDescription="@string/descrIcon"
             app:layout_constraintBottom_toBottomOf="@+id/ivEffectSmall"
             app:layout_constraintEnd_toEndOf="@+id/ivEffectSmall"
             app:layout_constraintStart_toStartOf="@+id/ivEffectSmall"
             app:layout_constraintTop_toTopOf="@+id/ivEffectSmall"
-            app:layout_constraintVertical_bias="0.55" />
+            app:layout_constraintVertical_bias="0.55"
+            tools:src="@drawable/got_trophy_first" />
 
         <ImageView
             android:id="@+id/ivDetailsBackground"
             android:layout_width="324.2dp"
             android:layout_height="38.6dp"
             android:layout_marginTop="21dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/got_trophy_details_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -129,7 +134,7 @@
             app:layout_constraintEnd_toStartOf="@+id/vDivLeft"
             app:layout_constraintStart_toStartOf="@+id/ivDetailsBackground"
             app:layout_constraintTop_toTopOf="@+id/ivDetailsBackground"
-            android:text="Tile Record" />
+            tools:text="Tile Record" />
 
         <TextView
             android:id="@+id/tvTimeRange"
@@ -144,7 +149,7 @@
             app:layout_constraintEnd_toStartOf="@+id/vDivRight"
             app:layout_constraintStart_toEndOf="@+id/vDivLeft"
             app:layout_constraintTop_toTopOf="@+id/ivDetailsBackground"
-            android:text="7 Days" />
+            tools:text="7 Days" />
 
         <TextView
             android:id="@+id/tvFieldSize"
@@ -160,13 +165,14 @@
             app:layout_constraintEnd_toEndOf="@+id/ivDetailsBackground"
             app:layout_constraintStart_toEndOf="@+id/vDivRight"
             app:layout_constraintTop_toTopOf="@+id/ivDetailsBackground"
-            android:text="5x5" />
+            tools:text="5x5" />
 
         <ImageView
             android:id="@+id/ivRestart"
             android:layout_width="305dp"
             android:layout_height="77dp"
             android:layout_marginTop="26dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/trophy_btn_trophy_chamber"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -179,6 +185,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="72dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/trophy_btn_ok"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -193,7 +200,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Trophy Chamber"
+            android:text="@string/trophyChamber"
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -213,7 +220,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="OK"
+            android:text="@string/ok"
             android:textColor="#4dffffff"
             android:textSize="23sp"
             android:textStyle="normal"

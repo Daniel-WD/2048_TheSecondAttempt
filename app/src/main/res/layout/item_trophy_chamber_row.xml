@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="98.3dp"
     android:layout_marginStart="4dp"
@@ -46,6 +45,7 @@
         android:id="@+id/ivTrophyOneDayTr"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/trophy_chamber_placeholder"
         app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
         app:layout_constraintEnd_toEndOf="parent"
@@ -56,6 +56,7 @@
         android:id="@+id/ivTrophy7DaysHs"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/trophy_chamber_placeholder"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
         app:layout_constraintEnd_toStartOf="@+id/vDivLeft"
@@ -66,6 +67,7 @@
         android:id="@+id/ivTrophyOneDayHs"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/trophy_chamber_placeholder"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
         app:layout_constraintEnd_toStartOf="@+id/vDivCenter"
@@ -76,6 +78,7 @@
         android:id="@+id/ivTrophy7DaysTr"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/trophy_chamber_placeholder"
         app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
         app:layout_constraintEnd_toStartOf="@+id/vDivRight"
@@ -83,14 +86,16 @@
         app:layout_constraintTop_toTopOf="@+id/vDivRight" />
 
     <ImageView
+        android:id="@+id/ivSize"
         android:layout_width="34.2dp"
         android:layout_height="14.2dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/size_3"
         android:tint="#4D4D5C"
         app:layout_constraintBottom_toTopOf="@+id/vDivCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.2"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +45,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="YOU got the 2048 TILE!!!"
+            android:text="@string/wonText"
             android:textColor="#ffffff"
             android:textSize="23.3sp"
             android:textStyle="bold"
@@ -59,6 +60,7 @@
             android:layout_width="329.5dp"
             android:layout_height="76.1dp"
             android:layout_marginTop="20dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/won_text_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -72,9 +74,7 @@
             android:gravity="center_horizontal"
             android:includeFontPadding="false"
             android:lineSpacingExtra="0.9sp"
-            android:text="Are YOU the best 2048 Player of the world?
-Get the highest highscore and the highest
-tile and be the worldwide NUMBER ONE."
+            android:text="@string/wonMessage"
             android:textColor="#80808B"
             android:textSize="15.7sp"
             android:textStyle="normal"
@@ -85,10 +85,11 @@ tile and be the worldwide NUMBER ONE."
         <!-- result background -->
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/ivResultBg"
             android:layout_width="291.6dp"
             android:layout_height="131dp"
             android:layout_marginTop="21dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/gameover_won_result_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,9 +103,9 @@ tile and be the worldwide NUMBER ONE."
             android:layout_height="1dp"
             android:layout_marginTop="67.4dp"
             android:background="#262639"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/imageView" />
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg"
+            app:layout_constraintTop_toTopOf="@+id/ivResultBg" />
 
         <View
             android:id="@+id/vDivResVertTop"
@@ -113,8 +114,8 @@ tile and be the worldwide NUMBER ONE."
             android:layout_marginBottom="4.5dp"
             android:background="#262639"
             app:layout_constraintBottom_toTopOf="@+id/vDivResHor"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView" />
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg" />
 
         <View
             android:id="@+id/vDivResVertBottom"
@@ -122,8 +123,8 @@ tile and be the worldwide NUMBER ONE."
             android:layout_height="51.1dp"
             android:layout_marginTop="4.5dp"
             android:background="#262639"
-            app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg"
             app:layout_constraintTop_toBottomOf="@+id/vDivResHor" />
 
         <!-- result content -->
@@ -137,7 +138,7 @@ tile and be the worldwide NUMBER ONE."
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="SCORE"
+            android:text="@string/score"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -153,7 +154,7 @@ tile and be the worldwide NUMBER ONE."
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="HIGHSCORE"
+            android:text="@string/highscore"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -169,7 +170,7 @@ tile and be the worldwide NUMBER ONE."
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="HIGHEST TILE"
+            android:text="@string/highestTile"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -185,7 +186,7 @@ tile and be the worldwide NUMBER ONE."
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="TILE REOCRD"
+            android:text="@string/tileRecord"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -199,12 +200,12 @@ tile and be the worldwide NUMBER ONE."
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-            android:text="4732"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/tvResHighscoreText"
-            app:layout_constraintTop_toBottomOf="@+id/tvResHighscoreText" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighscoreText"
+            tools:text="4732" />
 
         <TextView
             android:id="@+id/tvTileRecordValue"
@@ -213,12 +214,12 @@ tile and be the worldwide NUMBER ONE."
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-            android:text="512"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/tvResTileRecordText"
-            app:layout_constraintTop_toBottomOf="@+id/tvResTileRecordText" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResTileRecordText"
+            tools:text="512" />
 
         <TextView
             android:id="@+id/tvHighestTileValue"
@@ -227,12 +228,12 @@ tile and be the worldwide NUMBER ONE."
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-            android:text="234234"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/tvResHighestTileText"
-            app:layout_constraintTop_toBottomOf="@+id/tvResHighestTileText" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighestTileText"
+            tools:text="234234" />
 
         <TextView
             android:id="@+id/tvScoreValue"
@@ -241,12 +242,12 @@ tile and be the worldwide NUMBER ONE."
             android:layout_marginTop="4dp"
             android:fontFamily="sans-serif"
             android:includeFontPadding="false"
-            android:text="4096"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/tvResScoreText"
-            app:layout_constraintTop_toBottomOf="@+id/tvResScoreText" />
+            app:layout_constraintTop_toBottomOf="@+id/tvResScoreText"
+            tools:text="4096" />
 
 
         <ImageView
@@ -254,11 +255,12 @@ tile and be the worldwide NUMBER ONE."
             android:layout_width="305dp"
             android:layout_height="77dp"
             android:layout_marginTop="12dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/won_btn_resume_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.512"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/ivResultBg" />
 
         <TextView
             android:id="@+id/tvContinueText"
@@ -270,7 +272,7 @@ tile and be the worldwide NUMBER ONE."
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Continue"
+            android:text="@string/_continue"
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -284,6 +286,7 @@ tile and be the worldwide NUMBER ONE."
             android:layout_width="152dp"
             android:layout_height="77dp"
             android:layout_marginTop="70dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/won_btn_home_bg"
             app:layout_constraintStart_toStartOf="@+id/ivContinue"
             app:layout_constraintTop_toTopOf="@+id/ivContinue" />
@@ -293,6 +296,7 @@ tile and be the worldwide NUMBER ONE."
             android:layout_width="152dp"
             android:layout_height="77dp"
             android:layout_marginTop="70dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/won_btn_restart_bg"
             app:layout_constraintEnd_toEndOf="@+id/ivContinue"
             app:layout_constraintTop_toTopOf="@+id/ivContinue" />
@@ -308,7 +312,7 @@ tile and be the worldwide NUMBER ONE."
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Home"
+            android:text="@string/home"
             android:textColor="#4dffffff"
             android:textSize="20sp"
             android:textStyle="normal"
@@ -328,7 +332,7 @@ tile and be the worldwide NUMBER ONE."
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Restart"
+            android:text="@string/restart"
             android:textColor="#4dffffff"
             android:textSize="20sp"
             android:textStyle="normal"
@@ -338,6 +342,5 @@ tile and be the worldwide NUMBER ONE."
             app:layout_constraintTop_toTopOf="@+id/ivRestart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>

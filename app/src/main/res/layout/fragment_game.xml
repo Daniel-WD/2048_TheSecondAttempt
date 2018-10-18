@@ -12,12 +12,11 @@
     <com.titaniel.best_2048_math_puzzle.fragments.game.TouchArea
         android:id="@+id/touchArea"
         android:layout_width="match_parent"
-        android:layout_height="494dp"
-        android:visibility="gone"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/vDivPointsCenter" />
 
     <!-- plains -->
 
@@ -35,6 +34,7 @@
         android:layout_width="193.5dp"
         android:layout_height="74.8dp"
         android:layout_marginBottom="14.6dp"
+        android:contentDescription="@string/descrBackground"
         android:src="@drawable/game_points_bg"
         app:layout_constraintBottom_toTopOf="@+id/gameField"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +46,7 @@
         android:layout_height="72.8dp"
         android:layout_marginEnd="191.6dp"
         android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrBackground"
         android:src="@drawable/game_btn_leaderboard_bg"
         app:layout_constraintBottom_toTopOf="@+id/gameField"
         app:layout_constraintEnd_toEndOf="@+id/ivPointsBg" />
@@ -56,6 +57,7 @@
         android:layout_height="72.8dp"
         android:layout_marginStart="191.6dp"
         android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrBackground"
         android:src="@drawable/game_btn_backs_bg"
         app:layout_constraintBottom_toTopOf="@+id/gameField"
         app:layout_constraintStart_toStartOf="@+id/ivPointsBg" />
@@ -66,6 +68,7 @@
         android:layout_height="72.8dp"
         android:layout_marginStart="191.6dp"
         android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/game_btn_undo_overlay"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/gameField"
@@ -77,6 +80,7 @@
         android:id="@+id/ivLeaderboard"
         android:layout_width="20.3dp"
         android:layout_height="20.3dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/leaderboard"
         android:tint="@color/snow"
         app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardLink"
@@ -91,6 +95,7 @@
         android:id="@+id/ivNewUndos"
         android:layout_width="30.2dp"
         android:layout_height="30.2dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/new_undos"
         android:tint="@color/snow"
         android:visibility="gone"
@@ -105,6 +110,7 @@
         android:layout_height="18.7dp"
         android:layout_marginStart="19.1dp"
         android:layout_marginTop="24.9dp"
+        android:contentDescription="@string/descrIcon"
         android:src="@drawable/undo"
         android:tint="@color/snow"
         app:layout_constraintStart_toStartOf="@+id/ivBacksBg"
@@ -117,12 +123,12 @@
         android:layout_marginStart="1.6dp"
         android:layout_marginTop="7.7dp"
         android:fontFamily="sans-serif"
-        android:text="3"
         android:textColor="#ffffff"
         android:textSize="13.7sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/ivUndo"
-        app:layout_constraintTop_toTopOf="@+id/ivUndo" />
+        app:layout_constraintTop_toTopOf="@+id/ivUndo"
+        tools:text="3" />
 
     <!-- point plain content -->
 
@@ -134,13 +140,13 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
         android:includeFontPadding="false"
-        android:text="1224"
         android:textColor="#ffffff"
         android:textSize="23.7sp"
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="@+id/ivPointsBg"
         app:layout_constraintStart_toStartOf="@+id/ivPointsBg"
-        app:layout_constraintTop_toTopOf="@+id/ivPointsBg" />
+        app:layout_constraintTop_toTopOf="@+id/ivPointsBg"
+        tools:text="1224" />
 
     <View
         android:id="@+id/vDivBelowPoints"
@@ -170,7 +176,7 @@
         android:layout_marginBottom="1dp"
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
-        android:text="TR"
+        android:text="@string/tr"
         android:textColor="#4dffffff"
         android:textSize="12sp"
         android:textStyle="normal"
@@ -185,13 +191,13 @@
         android:layout_marginStart="6dp"
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
-        android:text="32468"
         android:textColor="#4dffffff"
         android:textSize="13.3sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/tvTr"
         app:layout_constraintStart_toEndOf="@+id/tvTr"
-        app:layout_constraintTop_toTopOf="@+id/tvTr" />
+        app:layout_constraintTop_toTopOf="@+id/tvTr"
+        tools:text="32468" />
 
     <TextView
         android:id="@+id/tvHs"
@@ -201,7 +207,7 @@
         android:layout_marginBottom="1dp"
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
-        android:text="HS"
+        android:text="@string/hs"
         android:textColor="#4dffffff"
         android:textSize="12sp"
         android:textStyle="normal"
@@ -217,13 +223,13 @@
         android:fontFamily="sans-serif"
         android:gravity="end"
         android:includeFontPadding="false"
-        android:text="52454"
         android:textColor="#4dffffff"
         android:textSize="13.3sp"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="@+id/tvHs"
         app:layout_constraintEnd_toStartOf="@+id/tvHs"
-        app:layout_constraintTop_toTopOf="@+id/tvHs" />
+        app:layout_constraintTop_toTopOf="@+id/tvHs"
+        tools:text="52454" />
 
     <!-- ############## leaderboard content ############## -->
 
@@ -777,6 +783,7 @@
         android:layout_height="37.1dp"
         android:layout_marginTop="6.6dp"
         android:layout_marginEnd="6.4dp"
+        android:contentDescription="@string/descrIcon"
         android:padding="10dp"
         android:src="@drawable/pause"
         android:tint="#33ffffff"

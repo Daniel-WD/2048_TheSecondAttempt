@@ -125,18 +125,6 @@ public class Backs extends AnimatedFragment {
 
     }
 
-    private void updateState() {
-        if(Database.currentMode.backs > 0 || !Utils.isOnline(getContext())) {
-            mBtnUndoMove.setVisibility(View.VISIBLE);
-            mBtnGetBacks.setVisibility(View.INVISIBLE);
-            mTvTitle.setText(R.string.undo_last_move);
-        } else {
-            mBtnGetBacks.setVisibility(View.VISIBLE);
-            mBtnUndoMove.setVisibility(View.INVISIBLE);
-            mTvTitle.setText(R.string.get_backs);
-        }
-    }
-
     @Override
     protected void animateShow(long delay) {
 

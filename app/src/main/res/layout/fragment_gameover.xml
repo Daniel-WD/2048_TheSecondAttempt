@@ -22,6 +22,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:alpha="0.2"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -617,6 +618,7 @@
             android:layout_width="291.6dp"
             android:layout_height="131dp"
             android:layout_marginTop="14dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/gameover_won_result_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -665,7 +667,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="SCORE"
+            android:text="@string/score"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -681,7 +683,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="HIGHSCORE"
+            android:text="@string/highscore"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -697,7 +699,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="HIGHEST TILE"
+            android:text="@string/highestTile"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -713,7 +715,7 @@
             android:fontFamily="sans-serif-medium"
             android:includeFontPadding="false"
             android:lineSpacingExtra="2.7sp"
-            android:text="TILE REOCRD"
+            android:text="@string/tileRecord"
             android:textColor="#333345"
             android:textSize="13.3sp"
             android:textStyle="normal"
@@ -732,7 +734,7 @@
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/tvResHighscoreText"
             app:layout_constraintTop_toBottomOf="@+id/tvResHighscoreText"
-            android:text="4732" />
+            tools:text="4732" />
 
         <TextView
             android:id="@+id/tvTileRecordValue"
@@ -746,7 +748,7 @@
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="@+id/tvResTileRecordText"
             app:layout_constraintTop_toBottomOf="@+id/tvResTileRecordText"
-            android:text="512" />
+            tools:text="512" />
 
         <TextView
             android:id="@+id/tvHighestTileValue"
@@ -760,7 +762,7 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/tvResHighestTileText"
             app:layout_constraintTop_toBottomOf="@+id/tvResHighestTileText"
-            android:text="234234" />
+            tools:text="234234" />
 
         <TextView
             android:id="@+id/tvScoreValue"
@@ -774,13 +776,14 @@
             android:textStyle="normal"
             app:layout_constraintEnd_toEndOf="@+id/tvResScoreText"
             app:layout_constraintTop_toBottomOf="@+id/tvResScoreText"
-            android:text="4096" />
+            tools:text="4096" />
 
         <ImageView
             android:id="@+id/ivRestart"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginTop="15dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_primary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -793,6 +796,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_secondary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -807,7 +811,7 @@
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:text="Restart"
+            android:text="@string/restart"
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
@@ -822,12 +826,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
             android:lineSpacingExtra="4.7sp"
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:includeFontPadding="false"
-            android:text="Home"
+            android:text="@string/home"
             android:textColor="#4dffffff"
             android:textSize="23sp"
             android:textStyle="normal"
