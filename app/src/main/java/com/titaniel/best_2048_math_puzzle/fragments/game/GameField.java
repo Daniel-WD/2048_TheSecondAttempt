@@ -355,7 +355,7 @@ public class GameField extends View {
 
     private float mBorderWidthPx, mGhostWidthPx, mFieldRadius, mMinSwipeDistancePx;
 
-    private float mGhostScale = 0.90f;
+    private float mGhostScale = 0.84f;
     private float mBorderScale = 0.86f;
     private final float mTileScale = 0.90f;
     private final float mTileRadiusRatio = 0.042f;

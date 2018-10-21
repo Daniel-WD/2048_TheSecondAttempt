@@ -2,4 +2,7 @@
 <resources>
     <declare-styleable name="GameField"/>
     <declare-styleable name="TouchArea"/>
+    <declare-styleable name="LoadingView">
+        <attr name="color" format="color"/>
+    </declare-styleable>
 </resources>

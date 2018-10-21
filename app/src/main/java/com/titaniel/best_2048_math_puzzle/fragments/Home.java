@@ -4,14 +4,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateDecelerateInterpolator;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
-import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
+import com.titaniel.best_2048_math_puzzle.loading_view.LoadingView;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,13 +21,36 @@ import androidx.annotation.Nullable;
 public class Home extends AnimatedFragment {
 
     private View mRoot;
-    private ImageView mBtnPlay, mBtnResume, mBtnRate;
-    private ImageView mIvTitle;
-    private ImageView mIvMode;
-    private ImageView mBtnPlus, mBtnMinus;
-    private LinearLayout mLyButtons;
+    private ImageView mIvFieldSizeBg;
 
-    private View mVDivOne, mVDivTwo;
+    private ImageView mIvBtnGameServices;
+    private ImageView mIvBtnTrophies;
+
+    private ImageView mIvTrophyOverlay;
+
+    private ImageView mIvLeaderboardBg;
+
+    private ImageView mIvGameServices;
+    private ImageView mIvTrophy;
+
+    private ImageView mIvSize;
+    private ImageView mIvBtnNextSize, mIvBtnPreviousSize;
+
+    private View mDivSizeHor, mDivScores;
+
+    private TextView mTvHs, mTvTr;
+    private TextView mTvHighscoreValue, mTvTileRecordValue;
+
+    private View mDivTop;
+    private TextView mTvHighscore, mTvTileRecord, mTvRankingOf;
+
+    private ImageView mIvTitle;
+
+    private FrameLayout mLyBtnPlay, mLyBtnLeaderboards, mLyBtnAchievements;
+
+    private LoadingView mLoadingView;
+
+    private LeaderboardManager.LeaderboardInstance lbInstance;
 
     private MainActivity mActivity;
 
@@ -47,67 +72,119 @@ public class Home extends AnimatedFragment {
 
         //init
         mRoot = getView();
-//        mBtnPlay = mRoot.findViewById(R.id.btnPlay);
-//        mBtnResume = mRoot.findViewById(R.id.btnResume);
-//        mBtnPlus = mRoot.findViewById(R.id.btnModeNext);
-//        mBtnMinus = mRoot.findViewById(R.id.btnModePrevious);
-//        mBtnRate = mRoot.findViewById(R.id.btnRate);
-//        mBtnRate = mRoot.findViewById(R.id.btnRate);
-//        mLyButtons = mRoot.findViewById(R.id.lyButtons);
-//        mVDivOne = mRoot.findViewById(R.id.vDivOne);
-//        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
-//        mIvMode = mRoot.findViewById(R.id.ivMode);
-//
-//        //rate
-//        mBtnRate.setOnClickListener(v -> {
-//            if(mBlocking) return;
-//            Uri uri = Uri.parse("market://details?id=" + getContext().getPackageName());
-//            Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-//            goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-//                    Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
-//                    Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-//            try {
-//                startActivity(goToMarket);
-//            } catch (ActivityNotFoundException e) {
-//                startActivity(new Intent(Intent.ACTION_VIEW,
-//                        Uri.parse("http://play.google.com/store/apps/details?id=" + getContext().getPackageName())));
-//            }
-//        });
-//
-//        //resume
-//        mBtnResume.setOnClickListener(v -> {
-//            if(mBlocking) return;
-//            mActivity.game.loadGame = true;
-//            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
-//        });
-//
-//        //play
-//        mBtnPlay.setOnClickListener(v -> {
-//            if(mBlocking) return;
-//            Database.currentMode.points = 0;
-//            Database.currentMode.backs = Database.START_BACK_VALUE;
-//            mActivity.game.loadGame = false;
-//            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
-//        });
-//
-//
-//        //Button changeMode
-//        mBtnPlus.setOnClickListener(view -> {
-//            if(mBlocking) return;
-//            changeMode(false);
-//        });
-//
-//        //Button previousMode
-//        mBtnMinus.setOnClickListener(view -> {
-//            if(mBlocking) return;
-//            changeMode(true);
-//        });
+        mIvFieldSizeBg = mRoot.findViewById(R.id.ivFieldSizeBg);
+        mIvBtnGameServices = mRoot.findViewById(R.id.ivGameServicesBg);
+        mIvBtnTrophies = mRoot.findViewById(R.id.ivTrophiesBg);
+        mIvTrophyOverlay = mRoot.findViewById(R.id.ivTrophyOverlay);
+        mIvLeaderboardBg = mRoot.findViewById(R.id.ivLeaderboardBg);
+        mIvGameServices = mRoot.findViewById(R.id.ivGameServices);
+        mIvTrophy = mRoot.findViewById(R.id.ivTrophy);
+        mIvSize = mRoot.findViewById(R.id.ivSize);
+        mIvBtnPreviousSize = mRoot.findViewById(R.id.ivPreviousSize);
+        mIvBtnNextSize = mRoot.findViewById(R.id.ivNextSize);
+        mDivSizeHor = mRoot.findViewById(R.id.vDivSizeHor);
+        mDivScores = mRoot.findViewById(R.id.vDivScores);
+        mTvHs = mRoot.findViewById(R.id.tvHs);
+        mTvTr = mRoot.findViewById(R.id.tvTr);
+        mTvHighscoreValue = mRoot.findViewById(R.id.tvHighscoreValue);
+        mTvTileRecordValue = mRoot.findViewById(R.id.tvTileRecordValue);
+        mDivTop = mRoot.findViewById(R.id.vDivTop);
+        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
+        mTvTileRecord = mRoot.findViewById(R.id.tvTileRecord);
+        mTvRankingOf = mRoot.findViewById(R.id.tvRankingOf);
+        mIvTitle = mRoot.findViewById(R.id.ivTitle);
+        mLyBtnPlay = mRoot.findViewById(R.id.lyPlay);
+        mLyBtnAchievements = mRoot.findViewById(R.id.lyAchievements);
+        mLyBtnLeaderboards = mRoot.findViewById(R.id.lyLeaderboards);
+        mLoadingView = mRoot.findViewById(R.id.loadingView);
 
+        lbInstance = LeaderboardManager.generateLeaderbaordInstance(mRoot);
+        mActivity.leaderbaordManager.instances.add(lbInstance);
+
+        //play
+        mLyBtnPlay.setOnClickListener(v -> {
+            if(mBlocking) return;
+            mActivity.showState(MainActivity.STATE_FM_GAME, 0, this);
+        });
+
+        //next size
+        mIvBtnNextSize.setOnClickListener(view -> {
+            if(mBlocking) return;
+            changeMode(false);
+        });
+
+        //previous size
+        mIvBtnPreviousSize.setOnClickListener(view -> {
+            if(mBlocking) return;
+            changeMode(true);
+        });
+
+        mLyBtnLeaderboards.setOnClickListener(view -> {
+            mActivity.showLeaderboard();
+        });
+
+        mLyBtnAchievements.setOnClickListener(view -> {
+            mActivity.showAchievements();
+        });
+
+        mIvBtnTrophies.setOnClickListener(view -> {
+            mActivity.showState(MainActivity.STATE_FM_TROPHY_CHAMBER, 0, this);
+        });
+
+        mIvBtnGameServices.setOnClickListener(view -> {
+            mActivity.startSignInIntent();
+        });
+
+    }
+
+    public void updateUiState() {
+        boolean online = Utils.isOnline(getContext());
+        boolean gameServicesAvailable = mActivity.googleSignInAccount != null;
+
+        if(!online) {
+
+            mLoadingView.setVisibility(View.GONE);
+
+            mIvGameServices.setAlpha(0.2f);
+            mIvBtnGameServices.setEnabled(false);
+
+            mLyBtnAchievements.setAlpha(0.5f);
+            mLyBtnLeaderboards.setAlpha(0.5f);
+            mLyBtnAchievements.setEnabled(false);
+            mLyBtnLeaderboards.setEnabled(false);
+
+        } else if(!gameServicesAvailable) {
+
+            mLoadingView.setVisibility(View.GONE);
+
+            mIvGameServices.setAlpha(1f);
+            mIvBtnGameServices.setEnabled(true);
+
+            mLyBtnAchievements.setAlpha(0.5f);
+            mLyBtnLeaderboards.setAlpha(0.5f);
+            mLyBtnAchievements.setEnabled(false);
+            mLyBtnLeaderboards.setEnabled(false);
+
+        } else {
+
+            mLoadingView.setVisibility(View.VISIBLE);
+
+            mIvGameServices.setAlpha(1f);
+            mIvBtnGameServices.setEnabled(true);
+
+            mLyBtnAchievements.setAlpha(1f);
+            mLyBtnLeaderboards.setAlpha(1f);
+            mLyBtnAchievements.setEnabled(true);
+            mLyBtnLeaderboards.setEnabled(true);
+
+        }
     }
 
     private void setMode(Database.Mode mode) {
         if(mode == null) return;
-        mIvMode.setImageResource(mode.representative);
+        mIvSize.setImageResource(mode.representative);
+        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.allTimeHighscore));
+        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.allTimeTileRecord));
     }
 
     private void changeMode(boolean previous) {
@@ -117,7 +194,6 @@ public class Home extends AnimatedFragment {
 
         Database.Mode mode = previous ? Database.previousMode() : Database.nextMode();
         Database.currentMode = mode;
-        checkPeriph();
 
         long delay = 0;
         float dist = -20;
@@ -141,18 +217,6 @@ public class Home extends AnimatedFragment {
 
     }
 
-    private void checkPeriph() {
-        if(Database.currentMode.saved != null) {
-            AnimUtils.animateAlpha(mBtnResume, new AccelerateDecelerateInterpolator(), 1, 120, 0);
-            mBtnResume.setEnabled(true);
-//            AnimUtils.animateAlpha(mIvResumeShadow, 1, 200, 0);
-        } else {
-            AnimUtils.animateAlpha(mBtnResume, new AccelerateDecelerateInterpolator(), 0.5f, 120, 0);
-            mBtnResume.setEnabled(false);
-//            AnimUtils.animateAlpha(mIvResumeShadow, 0, 200, 0);
-        }
-    }
-
     private void block(long duration) {
         mBlocking = true;
         handler.postDelayed(mDeblocker, duration);
@@ -162,13 +226,15 @@ public class Home extends AnimatedFragment {
     protected void animateShow(long delay) {
         mRoot.setVisibility(View.VISIBLE);
 
+        setMode(Database.currentMode);
+        updateUiState();
+
         mActivity.state = MainActivity.STATE_FM_HOME;
 
 //        long duration = 150;
 //
 //        block(duration);
 //
-//        setMode(Database.currentMode);
 //
 //        mRoot.setVisibility(View.VISIBLE);
 //        mRoot.setAlpha(0);
@@ -181,10 +247,6 @@ public class Home extends AnimatedFragment {
 
     @Override
     protected long animateHide(long delay) {
-
-        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 0, 150, delay);
-
-        delay += 150;
 
         handler.postDelayed(() -> mRoot.setVisibility(View.INVISIBLE), delay);
 

@@ -7,7 +7,6 @@
     android:visibility="invisible"
     tools:visibility="visible">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lyContainer"
         android:layout_width="match_parent"
@@ -168,7 +167,7 @@
             tools:text="5x5" />
 
         <ImageView
-            android:id="@+id/ivRestart"
+            android:id="@+id/ivTrophyChamber"
             android:layout_width="305dp"
             android:layout_height="77dp"
             android:layout_marginTop="26dp"
@@ -179,7 +178,7 @@
             app:layout_constraintTop_toBottomOf="@+id/ivDetailsBackground" />
 
         <ImageView
-            android:id="@+id/ivHome"
+            android:id="@+id/ivOk"
             android:layout_width="305dp"
             android:layout_height="77dp"
             android:layout_marginStart="8dp"
@@ -189,7 +188,7 @@
             android:src="@drawable/trophy_btn_ok"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/ivRestart" />
+            app:layout_constraintTop_toTopOf="@+id/ivTrophyChamber" />
 
         <TextView
             android:id="@+id/tvTrophyChamber"
@@ -204,10 +203,10 @@
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
-            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
-            app:layout_constraintStart_toStartOf="@+id/ivRestart"
-            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintBottom_toBottomOf="@+id/ivTrophyChamber"
+            app:layout_constraintEnd_toEndOf="@+id/ivTrophyChamber"
+            app:layout_constraintStart_toStartOf="@+id/ivTrophyChamber"
+            app:layout_constraintTop_toTopOf="@+id/ivTrophyChamber"
             app:layout_constraintVertical_bias="0.47000003" />
 
         <TextView
@@ -224,10 +223,10 @@
             android:textColor="#4dffffff"
             android:textSize="23sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
-            app:layout_constraintEnd_toEndOf="@+id/ivHome"
-            app:layout_constraintStart_toStartOf="@+id/ivHome"
-            app:layout_constraintTop_toTopOf="@+id/ivHome"
+            app:layout_constraintBottom_toBottomOf="@+id/ivOk"
+            app:layout_constraintEnd_toEndOf="@+id/ivOk"
+            app:layout_constraintStart_toStartOf="@+id/ivOk"
+            app:layout_constraintTop_toTopOf="@+id/ivOk"
             app:layout_constraintVertical_bias="0.58000004" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

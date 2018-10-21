@@ -1,7 +1,9 @@
 package com.titaniel.best_2048_math_puzzle.loading_view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -9,11 +11,9 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.titaniel.best_2048_math_puzzle.R;
-import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 import androidx.annotation.Keep;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 
 public class LoadingView extends View {
 
@@ -29,13 +29,23 @@ public class LoadingView extends View {
 
     private float mArcWidthPx;
 
+    private int mColor;
+
     public LoadingView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
 
-        mContentDrawable = getResources().getDrawable(R.drawable.loading_globus);
-        mContentDrawable.setColorFilter(ContextCompat.getColor(context, R.color.loading_view_color), PorterDuff.Mode.SRC_IN);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.LoadingView, 0, 0);
 
-        mArcPaint.setColor(ContextCompat.getColor(context, R.color.loading_view_color));
+        try {
+            mColor = a.getColor(R.styleable.LoadingView_color, Color.WHITE);
+        } finally {
+            a.recycle();
+        }
+
+        mContentDrawable = getResources().getDrawable(R.drawable.loading_globus);
+        mContentDrawable.setColorFilter(mColor, PorterDuff.Mode.SRC_IN);
+
+        mArcPaint.setColor(mColor);
         mArcPaint.setStyle(Paint.Style.STROKE);
 
     }
@@ -67,7 +77,7 @@ public class LoadingView extends View {
         mWidth = w;
         mHeight = h;
 
-        mArcWidthPx = mArcWidthRatio * (float)mWidth;
+        mArcWidthPx = mArcWidthRatio*(float) mWidth;
 
         mArcPaint.setStrokeWidth(mArcWidthPx);
     }

@@ -69,6 +69,7 @@
         android:layout_marginStart="191.6dp"
         android:layout_marginBottom="19.4dp"
         android:contentDescription="@string/descrIcon"
+        android:tint="@color/rankUp"
         android:src="@drawable/game_btn_undo_overlay"
         android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/gameField"
@@ -134,8 +135,8 @@
 
     <TextView
         android:id="@+id/tvPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="160dp"
+        android:layout_height="28dp"
         android:layout_marginTop="13.5dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
@@ -186,8 +187,8 @@
 
     <TextView
         android:id="@+id/tvTileRecordValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
         android:layout_marginStart="6dp"
         android:fontFamily="sans-serif"
         android:includeFontPadding="false"
@@ -217,8 +218,8 @@
 
     <TextView
         android:id="@+id/tvHighscoreValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
         android:layout_marginEnd="6dp"
         android:fontFamily="sans-serif"
         android:gravity="end"

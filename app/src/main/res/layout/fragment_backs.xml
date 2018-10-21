@@ -51,7 +51,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivRestart"
+            android:id="@+id/ivGetBacks"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginTop="15dp"
@@ -62,7 +62,7 @@
             app:layout_constraintTop_toBottomOf="@+id/tvMoveOn" />
 
         <ImageView
-            android:id="@+id/ivHome"
+            android:id="@+id/ivGiveUp"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginStart="8dp"
@@ -72,7 +72,7 @@
             android:src="@drawable/dialog_btn_secondary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivRestart" />
+            app:layout_constraintTop_toBottomOf="@+id/ivGetBacks" />
 
         <TextView
             android:id="@+id/tvBacksText"
@@ -87,11 +87,11 @@
             android:textColor="#ffffff"
             android:textSize="23sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
-            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
+            app:layout_constraintBottom_toBottomOf="@+id/ivGetBacks"
+            app:layout_constraintEnd_toEndOf="@+id/ivGetBacks"
             app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintStart_toStartOf="@+id/ivRestart"
-            app:layout_constraintTop_toTopOf="@+id/ivRestart"
+            app:layout_constraintStart_toStartOf="@+id/ivGetBacks"
+            app:layout_constraintTop_toTopOf="@+id/ivGetBacks"
             app:layout_constraintVertical_bias="0.44" />
 
 
@@ -122,10 +122,10 @@
             android:textColor="#4dffffff"
             android:textSize="23sp"
             android:textStyle="normal"
-            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
-            app:layout_constraintEnd_toEndOf="@+id/ivHome"
-            app:layout_constraintStart_toStartOf="@+id/ivHome"
-            app:layout_constraintTop_toTopOf="@+id/ivHome" />
+            app:layout_constraintBottom_toBottomOf="@+id/ivGiveUp"
+            app:layout_constraintEnd_toEndOf="@+id/ivGiveUp"
+            app:layout_constraintStart_toStartOf="@+id/ivGiveUp"
+            app:layout_constraintTop_toTopOf="@+id/ivGiveUp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

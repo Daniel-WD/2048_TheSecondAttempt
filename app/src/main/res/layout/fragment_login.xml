@@ -16,11 +16,11 @@
         android:layout_marginEnd="8dp">
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivBackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alpha="0.2"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_background"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,11 +51,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivLoginTextBg"
             android:layout_width="324.2dp"
             android:layout_height="58.5dp"
             android:layout_marginTop="17.6dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/login_text_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,24 +77,24 @@
             app:layout_constraintTop_toTopOf="@+id/ivLoginTextBg" />
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivLogIn"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginTop="15dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_primary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLoginTextBg" />
 
         <ImageView
-            android:contentDescription="@string/descrBackground"
             android:id="@+id/ivNo"
             android:layout_width="308.2dp"
             android:layout_height="73.7dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/descrBackground"
             android:src="@drawable/dialog_btn_secondary_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,11 +124,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
             android:lineSpacingExtra="4.7sp"
             android:shadowColor="#3d000000"
             android:shadowDy="3"
             android:shadowRadius="25"
-            android:includeFontPadding="false"
             android:text="@string/no"
             android:textColor="#4dffffff"
             android:textSize="23sp"

@@ -33,7 +33,7 @@
         android:lineSpacingExtra="5sp"
         android:shadowColor="#3d000000"
         android:shadowDy="3"
-        android:shadowRadius="30"
+        android:shadowRadius="25"
         android:text="@string/trophyChamber"
         android:textColor="#ffffff"
         android:textSize="23.3sp"
@@ -190,13 +190,16 @@
         app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        android:paddingTop="146.3dp"
         android:id="@+id/rvTrophyList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivHeaderBg"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/item_trophy_chamber_row" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
@@ -22,8 +23,14 @@ import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 public class Pause extends AnimatedFragment {
 
     private View mRoot;
-    private ImageView mBtnRestart, mBtnHome, mBtnClose;
-    private ConstraintLayout mContainer;
+
+    private ConstraintLayout mLyContainer;
+
+    private ImageView mIvBackground;
+
+    private TextView mTvPause;
+
+    private ImageView mIvBtnClose, mIvBtnRestart, mIvBtnHome;
 
     private MainActivity mActivity;
 
@@ -41,29 +48,31 @@ public class Pause extends AnimatedFragment {
 
         //init
         mRoot = getView();
-//        mBtnRestart = mRoot.findViewById(R.id.btnRestart);
-//        mBtnHome = mRoot.findViewById(R.id.btnHome);
-//        mBtnClose = mRoot.findViewById(R.id.btnClose);
-//        mContainer = mRoot.findViewById(R.id.lyContainer);
-//
-//        //btn restart
-//        mBtnRestart.setOnClickListener(v -> {
-//            mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-//            mActivity.game.restart();
-//        });
-//
-//        //btn home
-//        mBtnHome.setOnClickListener(v -> {
-//            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
-//            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-//            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
-//        });
-//
-//        //btn close
-//        mBtnClose.setOnClickListener(v -> {
-//            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
-//            mActivity.game.enableAll(delay);
-//        });
+        mLyContainer = mRoot.findViewById(R.id.lyContainer);
+        mIvBackground = mRoot.findViewById(R.id.ivBackground);
+        mTvPause = mRoot.findViewById(R.id.tvPause);
+        mIvBtnClose = mRoot.findViewById(R.id.ivClose);
+        mIvBtnRestart = mRoot.findViewById(R.id.ivRestart);
+        mIvBtnHome = mRoot.findViewById(R.id.ivHome);
+
+        //btn restart
+        mIvBtnRestart.setOnClickListener(v -> {
+            mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+            mActivity.game.restart();
+        });
+
+        //btn home
+        mIvBtnHome.setOnClickListener(v -> {
+            Database.currentMode.saved = mActivity.game.gameField.getSaveImage();
+            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+            mActivity.showState(MainActivity.STATE_FM_HOME, delay, mActivity.game);
+        });
+
+        //btn close
+        mIvBtnClose.setOnClickListener(v -> {
+            long delay = mActivity.hideState(MainActivity.STATE_FM_PAUSE, 0);
+            mActivity.game.enableAll(delay);
+        });
     }
 
     @Override
@@ -83,10 +92,7 @@ public class Pause extends AnimatedFragment {
     @Override
     protected long animateHide(long delay) {
 
-        long duration = 150;
-
-        AnimUtils.animateAlpha(mContainer, new AccelerateInterpolator(1f), 0, duration, delay);
-        AnimUtils.animateScale(mContainer, new AccelerateInterpolator(1f), 0.8f, duration, delay);
+        long duration = 0;
 
         handler.postDelayed(() -> {
             mRoot.setVisibility(View.INVISIBLE);
@@ -97,6 +103,6 @@ public class Pause extends AnimatedFragment {
     }
 
     public void onBackPressed() {
-        mBtnClose.callOnClick();
+        mIvBtnClose.callOnClick();
     }
 }

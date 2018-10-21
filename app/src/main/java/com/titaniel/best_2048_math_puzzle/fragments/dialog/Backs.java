@@ -1,54 +1,42 @@
 package com.titaniel.best_2048_math_puzzle.fragments.dialog;
 
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
-import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
-import com.titaniel.best_2048_math_puzzle.utils.Utils;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class Backs extends AnimatedFragment {
 
-    private RewardedVideoAdListener mAdListener = new RewardedVideoAdListener() {
+    private Admob.MyAdListener mAdListener = new Admob.MyAdListener() {
 
         boolean reward = false;
-
-        @Override
-        public void onRewardedVideoAdLoaded() {
-
-        }
-
-        @Override
-        public void onRewardedVideoAdOpened() {
-
-        }
-
-        @Override
-        public void onRewardedVideoStarted() {
-
-        }
 
         @Override
         public void onRewardedVideoAdClosed() {
             if(reward) {
                 handler.postDelayed(() -> {
                     Database.currentMode.backs += 4;
-                    mBtnUndoMove.callOnClick();
+
+                    mActivity.hideState(MainActivity.STATE_FM_BACKS, 0);
+                    mActivity.game.enableAll(0);
                 }, 300);
+
+                handler.postDelayed(() -> {
+                    mActivity.game.performBack();
+                }, 500);
+
                 reward = false;
             }
         }
@@ -58,26 +46,15 @@ public class Backs extends AnimatedFragment {
             reward = true;
         }
 
-        @Override
-        public void onRewardedVideoAdLeftApplication() {
-
-        }
-
-        @Override
-        public void onRewardedVideoAdFailedToLoad(int i) {
-
-        }
-
-        @Override
-        public void onRewardedVideoCompleted() {
-
-        }
     };
 
     private View mRoot;
-    private TextView mTvTitle;
-    private ImageView mBtnUndoMove, mBtnGetBacks, mBtnGiveUp;
-    private ConstraintLayout mContainer;
+
+    private ImageView mIvBackground;
+
+    private TextView mTvMoveOn;
+
+    private ImageView mIvBtnGetBacks, mIvBtnGiveUp;
 
     private MainActivity mActivity;
 
@@ -91,63 +68,44 @@ public class Backs extends AnimatedFragment {
     public void onStart() {
         super.onStart();
 
-        Admob.rewardedVideoAdListener = mAdListener;
         mActivity = (MainActivity) getActivity();
 
         //init
         mRoot = getView();
-//        mBtnUndoMove = mRoot.findViewById(R.id.btnUndo);
-//        mBtnGiveUp = mRoot.findViewById(R.id.btnGiveUp);
-//        mBtnGetBacks = mRoot.findViewById(R.id.btnGetBacks);
-//        mTvTitle = mRoot.findViewById(R.id.tvTitle);
-//        mContainer = mRoot.findViewById(R.id.lyContainer);
-//
-//        //btn backs move
-//        mBtnUndoMove.setOnClickListener(v -> {
-//            long delay = mActivity.hideState(MainActivity.STATE_FM_BACKS, 0);
-//            mActivity.game.enableAll(delay);
-//            handler.postDelayed(() -> {
-//                mActivity.game.gameField.performBack();
-//            }, delay + 400);
-//        });
-//
-//        //btn get backs
-//        mBtnGetBacks.setOnClickListener(v -> {
-//            if(Admob.rewardedVideoAd.isLoaded()) {
-//                Admob.rewardedVideoAd.show();
-//            }
-//        });
-//
-//        //btn give up
-//        mBtnGiveUp.setOnClickListener(v -> {
-//            mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, this);
-//        });
+        mIvBackground = mRoot.findViewById(R.id.ivBackground);
+        mTvMoveOn = mRoot.findViewById(R.id.tvMoveOn);
+        mIvBtnGetBacks = mRoot.findViewById(R.id.ivGetBacks);
+        mIvBtnGiveUp = mRoot.findViewById(R.id.ivGiveUp);
+
+        //btn get backs
+        mIvBtnGetBacks.setOnClickListener(v -> {
+            if(Admob.rewardedVideoAd.isLoaded()) {
+                Admob.rewardedVideoAd.show();
+            }
+        });
+
+        //btn give up
+        mIvBtnGiveUp.setOnClickListener(v -> {
+            mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, this);
+        });
 
     }
 
     @Override
     protected void animateShow(long delay) {
 
-//        updateState();
+        Admob.adListener = mAdListener;
 
         mRoot.setVisibility(View.VISIBLE);
-//
-//        long duration = 250;
-//
-//        mContainer.setAlpha(0);
-//        mContainer.setScaleX(0.6f);
-//        mContainer.setScaleY(0.6f);
-//        AnimUtils.animateAlpha(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
-//        AnimUtils.animateScale(mContainer, new OvershootInterpolator(1.7f), 1, duration, delay);
+
     }
 
     @Override
     protected long animateHide(long delay) {
 
-        long duration = 200;
+        Admob.adListener = null;
 
-        AnimUtils.animateAlpha(mContainer, new AccelerateInterpolator(1f), 0, duration, delay);
-        AnimUtils.animateScale(mContainer, new AccelerateInterpolator(1f), 0.8f, duration, delay);
+        long duration = 0;
 
         handler.postDelayed(() -> {
             mRoot.setVisibility(View.INVISIBLE);
@@ -158,6 +116,6 @@ public class Backs extends AnimatedFragment {
     }
 
     public void onBackPressed() {
-        mBtnGiveUp.callOnClick();
+        mIvBtnGiveUp.callOnClick();
     }
 }

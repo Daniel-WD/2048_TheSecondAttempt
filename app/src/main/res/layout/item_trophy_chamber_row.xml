@@ -5,7 +5,8 @@
     android:layout_height="98.3dp"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
     android:background="@drawable/trophy_chamber_item_background"
     android:orientation="vertical">
 
@@ -53,7 +54,7 @@
         app:layout_constraintTop_toTopOf="@+id/vDivRight" />
 
     <ImageView
-        android:id="@+id/ivTrophyTodayHs"
+        android:id="@+id/ivTrophyOneDayHs"
         android:layout_width="33.3dp"
         android:layout_height="38.1dp"
         android:contentDescription="@string/descrIcon"

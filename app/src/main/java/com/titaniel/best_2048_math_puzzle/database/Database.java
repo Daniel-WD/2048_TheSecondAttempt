@@ -3,7 +3,6 @@ package com.titaniel.best_2048_math_puzzle.database;
 import android.content.Context;
 import android.content.SharedPreferences;
 import androidx.appcompat.app.AppCompatActivity;
-import android.util.Log;
 
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.fragments.game.GameField;
@@ -17,12 +16,26 @@ public class Database {
 
     public static class Mode {
 
+        public static final int TROPHY_NONE = 0;
+        public static final int TROPHY_FIRST = 1;
+        public static final int TROPHY_SECOND = 2;
+        public static final int TROPHY_THIRD = 3;
+
+        //trophies
+        public int trophyOneDayHighscore = TROPHY_NONE;
+        public int trophyOneDayTileRecord = TROPHY_NONE;
+        public int trophy7DaysHighscore = TROPHY_NONE;
+        public int trophy7DaysTileRecord = TROPHY_NONE;
+
+        //stuff...
         final public int representative;
         final public int fieldSize;
-        public int record = -1;
         final int id;
         public ArrayList<GameField.FieldImage> saved;
-        public int points = 0, backs = 0;
+        public int allTimeHighscore = -1, allTimeTileRecord = -1;
+        public int oneDayHighscore = -1, oneDayTileRecord = -1;
+        public int sevenDaysHighscore = -1, sevenDaysTileRecord = -1;
+        public int score = 0, highestTile = 0, backs = 0;
 
         public Mode(int representative, int fieldSize, int id) {
             this.representative = representative;
@@ -33,37 +46,34 @@ public class Database {
         @Override
         public boolean equals(Object o) {
             if(this == o) return true;
-            if(o == null || getClass() != o.getClass()) return false;
+            if(!(o instanceof Mode)) return false;
             Mode mode = (Mode) o;
-            return fieldSize == mode.fieldSize &&
-                    record == mode.record &&
+            return representative == mode.representative &&
+                    fieldSize == mode.fieldSize &&
                     id == mode.id &&
-                    points == mode.points &&
-                    Objects.equals(representative, mode.representative) &&
+                    allTimeHighscore == mode.allTimeHighscore &&
+                    allTimeTileRecord == mode.allTimeTileRecord &&
+                    score == mode.score &&
+                    highestTile == mode.highestTile &&
+                    backs == mode.backs &&
                     Objects.equals(saved, mode.saved);
         }
 
         @Override
         public int hashCode() {
 
-            return Objects.hash(representative, fieldSize, record, id, saved, points);
+            return Objects.hash(representative, fieldSize, id, saved, allTimeHighscore, allTimeTileRecord, score, highestTile, backs);
         }
     }
 
-    public interface MoneyListener {
-        void onMoneyChanged(int oldValue, int newValue);
-    }
-    private final static ArrayList<MoneyListener> mMoneyListeners = new ArrayList<>();
-    private static int money = 20000;
-
     public static final Mode[] modes = {
-            new Mode(R.drawable.mode_3, 3, -1),
-            new Mode(R.drawable.mode_4, 4, 0),
-            new Mode(R.drawable.mode_5, 5, 1),
-            new Mode(R.drawable.mode_6, 6, 2),
-            new Mode(R.drawable.mode_7, 7, 3),
-            new Mode(R.drawable.mode_8, 8, 4),
-            new Mode(R.drawable.mode_9, 9, 5)
+            new Mode(R.drawable.size_3, 3, -1),
+            new Mode(R.drawable.size_4, 4, 0),
+            new Mode(R.drawable.size_5, 5, 1),
+            new Mode(R.drawable.size_6, 6, 2),
+            new Mode(R.drawable.size_7, 7, 3),
+            new Mode(R.drawable.size_8, 8, 4),
+            new Mode(R.drawable.size_9, 9, 5)
     };
     public static Mode currentMode = modes[1];
 
@@ -78,23 +88,36 @@ public class Database {
         long time = System.nanoTime();
 
         for(Mode mode : modes) {
-            mode.record = sPrefs.getInt("record-" + mode.id, -1);
-            mode.points = sPrefs.getInt("points-" + mode.id, 0);
+            mode.allTimeHighscore = sPrefs.getInt("allTimeHighscore-" + mode.id, 0);
+            mode.allTimeTileRecord = sPrefs.getInt("allTimeTileRecord-" + mode.id, 0);
+            mode.score = sPrefs.getInt("score-" + mode.id, 0);
+            mode.highestTile = sPrefs.getInt("highestTile-" + mode.id, 0);
             mode.backs = sPrefs.getInt("backs-" + mode.id, 0);
+
+            mode.trophy7DaysHighscore = sPrefs.getInt("trophy7DaysHighscore-" + mode.id, Mode.TROPHY_NONE);
+            mode.trophy7DaysTileRecord = sPrefs.getInt("trophy7DaysTileRecord-" + mode.id, Mode.TROPHY_NONE);
+            mode.trophyOneDayHighscore = sPrefs.getInt("trophyOneDayHighscore-" + mode.id, Mode.TROPHY_NONE);
+            mode.trophyOneDayTileRecord = sPrefs.getInt("trophyOneDayTileRecord-" + mode.id, Mode.TROPHY_NONE);
 
             mode.saved = DataUtils.stringToImage(sPrefs.getString("image-" + mode.id, null));
         }
 
-        Log.e("load_duration", "time: " + (System.nanoTime()-time));
     }
 
     public static void save() {
         SharedPreferences.Editor editor = sPrefs.edit();
 
         for(Mode mode : modes) {
-            editor.putInt("record-" + mode.id, mode.record);
-            editor.putInt("points-" + mode.id, mode.points);
+            editor.putInt("allTimeHighscore-" + mode.id, mode.allTimeHighscore);
+            editor.putInt("allTimeTileRecord-" + mode.id, mode.allTimeTileRecord);
+            editor.putInt("score-" + mode.id, mode.score);
+            editor.putInt("highestTile-" + mode.id, mode.highestTile);
             editor.putInt("backs-" + mode.id, mode.backs);
+
+            editor.putInt("trophy7DaysHighscore-" + mode.id, mode.trophy7DaysHighscore);
+            editor.putInt("trophy7DaysTileRecord-" + mode.id, mode.trophy7DaysTileRecord);
+            editor.putInt("trophyOneDayHighscore-" + mode.id, mode.trophyOneDayHighscore);
+            editor.putInt("trophyOneDayTileRecord-" + mode.id, mode.trophyOneDayTileRecord);
 
             String image = null;
             if(mode.saved != null && mode.saved.size() > 0) {
@@ -106,37 +129,6 @@ public class Database {
 
         editor.apply();
     }
-
-    // MONEY
-
-    public static int getMoney() {
-        return money;
-    }
-
-    public static void addMoney(int m) {
-        setMoney(money+m);
-    }
-
-    public static void removeMoney(int m) {
-        setMoney(money-m);
-    }
-
-    private static void setMoney(int money) {
-        int oldMoney = Database.money;
-        Database.money = money;
-        for(MoneyListener listener : mMoneyListeners) {
-            listener.onMoneyChanged(oldMoney, money);
-        }
-    }
-
-    public static void addMoneyListener(MoneyListener listener) {
-        mMoneyListeners.add(listener);
-    }
-
-    public static void removeMoneyListener(MoneyListener listener) {
-        mMoneyListeners.remove(listener);
-    }
-
 
     // MODE -> HOME
 

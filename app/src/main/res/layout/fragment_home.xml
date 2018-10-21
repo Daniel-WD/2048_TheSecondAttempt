@@ -440,7 +440,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
-        tools:text="234"
         tools:textColor="@color/rankUp" />
 
     <!-- rank update indicators -->
@@ -922,7 +921,7 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/lyAchievementsBg"
+            android:id="@+id/lyAchievements"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"

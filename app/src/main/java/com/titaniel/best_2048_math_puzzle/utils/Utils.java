@@ -2,10 +2,15 @@ package com.titaniel.best_2048_math_puzzle.utils;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.TypedValue;
+import android.view.View;
 import android.widget.Toast;
+
+import com.titaniel.best_2048_math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.database.Database;
 
 public class Utils {
 
@@ -55,8 +60,27 @@ public class Utils {
     }
 
     public static float dpToPx(Resources res, float dpValue) {
-        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, res.getDisplayMetrics());
 
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, res.getDisplayMetrics());
+    }
+
+    public static int findTrophyDrawableIdForRank(int rank) {
+        switch(rank) {
+            case Database.Mode.TROPHY_FIRST:
+                return R.drawable.trophy_chamber_first;
+            case Database.Mode.TROPHY_SECOND:
+                return R.drawable.trophy_chamber_second;
+            case Database.Mode.TROPHY_THIRD:
+                return R.drawable.trophy_chamber_third;
+        }
+        return R.drawable.trophy_chamber_placeholder;
+    }
+
+    public static void setTranslationYBulk(float translY, View... views) {
+        if(views == null) return;
+        for(View v : views) {
+            v.setTranslationY(translY);
+        }
     }
 
 }

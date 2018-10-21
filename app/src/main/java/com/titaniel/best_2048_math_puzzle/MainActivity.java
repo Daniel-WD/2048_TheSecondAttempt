@@ -1,9 +1,12 @@
 package com.titaniel.best_2048_math_puzzle;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -11,9 +14,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.tasks.Task;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
+import com.titaniel.best_2048_math_puzzle.connectivity_receiver.ConnectivityReceiver;
 import com.titaniel.best_2048_math_puzzle.database.Database;
+import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
 import com.titaniel.best_2048_math_puzzle.fragments.Home;
 import com.titaniel.best_2048_math_puzzle.fragments.Logo;
@@ -23,10 +29,11 @@ import com.titaniel.best_2048_math_puzzle.fragments.dialog.Goal;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.LogIn;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Trophy;
-import com.titaniel.best_2048_math_puzzle.fragments.dialog.TrophyChamber;
+import com.titaniel.best_2048_math_puzzle.fragments.trophy_chamber.TrophyChamber;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
 import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -69,13 +76,27 @@ public class MainActivity extends AppCompatActivity {
 
     private Handler mHandler = new Handler();
 
-    private GoogleSignInAccount mGoogleSignInAccount;
-    private GoogleSignInClient mGoogleSignInClient;
+    public GoogleSignInAccount googleSignInAccount;
+    public GoogleSignInClient googleSignInClient;
+
+    public ConnectivityReceiver mConnectivityReceiver;
+
+    private FrameLayout mContainer, mLyPopup;
+
+    public LeaderboardManager leaderbaordManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //ids
+        mContainer = findViewById(R.id.lyContainer);
+        mLyPopup = findViewById(R.id.lyPopup);
+
+        //gameservices sign in client
+        googleSignInClient = GoogleSignIn.getClient(this,
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         //Database
         Database.init(this);
@@ -87,18 +108,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initAll() {
+
+        //leaderboardManager
+        leaderbaordManager = new LeaderboardManager(this);
+        leaderbaordManager.start();
+
         //admob
         Admob.init(this, mHandler);
 
         //Design Provider
-//        DesignProvider.init(this); TODO
+        DesignProvider.init(this);
 
         //Game Services
         GameServices.init(this);
-
-        //gameservices sign in client
-        mGoogleSignInClient = GoogleSignIn.getClient(this,
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         //init Fragments
         home = new Home();
@@ -126,36 +148,59 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showAchievements() {
-        if(mGoogleSignInAccount == null) return;
+        if(googleSignInAccount == null) return;
 
-        Games.getAchievementsClient(this, mGoogleSignInAccount)
+        Games.getAchievementsClient(this, googleSignInAccount)
                 .getAchievementsIntent()
                 .addOnSuccessListener(intent -> startActivityForResult(intent, RC_ACHIEVEMENT_UI));
 
     }
 
     public void showLeaderboard() {
-        if(mGoogleSignInAccount == null) return;
+        if(googleSignInAccount == null) return;
 
-        Games.getLeaderboardsClient(this, mGoogleSignInAccount)
+        Games.getLeaderboardsClient(this, googleSignInAccount)
                 .getAllLeaderboardsIntent()
                 .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
 
     }
 
-    public void signInSilently() {
-        mGoogleSignInClient.silentSignIn().addOnCompleteListener(this,
-                task -> {
-                    if(task.isSuccessful()) {
-                        mGoogleSignInAccount = task.getResult();
-                    } else {
-                        startSignInIntent();
-                    }
-                });
+    public void showLeaderboard(String id) {
+        if(googleSignInAccount == null) return;
+
+        Games.getLeaderboardsClient(this, googleSignInAccount)
+                .getLeaderboardIntent(id)
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
     }
 
-    private void startSignInIntent() {
-        startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
+    public void onSomethingImportantChanges() {
+        if(home != null) home.updateUiState();
+        if(game != null) game.updateUiState();
+    }
+
+    public void signInSilently() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if(account != null) {
+            googleSignInAccount = account;
+            onSomethingImportantChanges();
+            attachPopUpView();
+        } else {
+            googleSignInClient.silentSignIn().addOnCompleteListener(this,
+                    task -> {
+                        if(task.isSuccessful()) {
+                            googleSignInAccount = task.getResult();
+                            onSomethingImportantChanges();
+                            attachPopUpView();
+                        } else {
+                            startSignInIntent();
+                        }
+                    });
+        }
+
+    }
+
+    public void startSignInIntent() {
+        startActivityForResult(googleSignInClient.getSignInIntent(), RC_SIGN_IN);
     }
 
     @Override
@@ -165,10 +210,28 @@ public class MainActivity extends AppCompatActivity {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
             try {
-                mGoogleSignInAccount = task.getResult(ApiException.class);
-            } catch (ApiException ignored) {}
+                googleSignInAccount = task.getResult(ApiException.class);
+
+
+            } catch (ApiException e) {
+                e.printStackTrace();
+//                Utils.toast(getApplicationContext(), "code: " + e.getStatusCode());
+            }
+
+            attachPopUpView();
+            onSomethingImportantChanges();
 
         }
+    }
+
+    private void attachPopUpView() {
+        googleSignInAccount.requestExtraScopes(Games.SCOPE_GAMES_LITE);
+
+        GamesClient client = Games.getGamesClient(getApplicationContext(), googleSignInAccount);
+
+        client.setViewForPopups(mLyPopup);
+//        client.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+
     }
 
     public void showState(int newState, long delay, @Nullable AnimatedFragment oldFragment) {
@@ -217,6 +280,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //connectivity receiver
+        mConnectivityReceiver = new ConnectivityReceiver(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION); //"android.net.conn.CONNECTIVITY_CHANGE"
+        registerReceiver(mConnectivityReceiver, intentFilter);
+
         //hide statusbar
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
@@ -234,12 +304,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
-        if(game != null) game.submitScores();
+        unregisterReceiver(mConnectivityReceiver);
 
-        //TODO
-//        if(state == STATE_FM_GAME) {
-//            Database.currentMode.saved = game.gameField.getSaveImage();
-//        }
+        //save game
+        if(state == STATE_FM_GAME) {
+            Database.currentMode.saved = game.gameField.getSaveImage();
+        }
 
         Database.save();
 

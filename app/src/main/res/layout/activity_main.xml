@@ -18,4 +18,9 @@
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
+    <FrameLayout
+        android:id="@+id/lyPopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>
