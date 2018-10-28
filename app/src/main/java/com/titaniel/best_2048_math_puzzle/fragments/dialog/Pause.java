@@ -77,7 +77,9 @@ public class Pause extends AnimatedFragment {
 
     @Override
     protected void animateShow(long delay) {
-
+    
+        mActivity.state = MainActivity.STATE_FM_PAUSE;
+        
         mRoot.setVisibility(View.VISIBLE);
 
 //        long duration = 250;

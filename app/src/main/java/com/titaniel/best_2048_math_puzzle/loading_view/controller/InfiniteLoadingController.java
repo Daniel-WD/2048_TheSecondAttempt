@@ -8,6 +8,8 @@ import android.view.animation.LinearInterpolator;
 
 import com.titaniel.best_2048_math_puzzle.loading_view.LoadingView;
 
+import java.util.ArrayList;
+
 public class InfiniteLoadingController implements Controller {
 
     public interface Listener {
@@ -19,13 +21,13 @@ public class InfiniteLoadingController implements Controller {
 
     private long mTimePerFill, mTimePerRound;
 
-    private LoadingView mLoadingView;
-    private ObjectAnimator mSweepAnimator, mOffsetAnimator;
+    private LoadingView[] mLoadingViews;
+    private ValueAnimator mSweepAnimator, mOffsetAnimator;
 
-    public InfiniteLoadingController(LoadingView loadingView, long timePerFill, long timePerRound) {
+    public InfiniteLoadingController(long timePerFill, long timePerRound, LoadingView... loadingView) {
         mTimePerFill = timePerFill;
         mTimePerRound = timePerRound;
-        mLoadingView = loadingView;
+        mLoadingViews = loadingView;
     }
 
     @Override
@@ -37,7 +39,13 @@ public class InfiniteLoadingController implements Controller {
             mOffsetAnimator.cancel();
         }
 
-        mSweepAnimator = ObjectAnimator.ofFloat(mLoadingView, "sweepAngle", 0, 360);
+        mSweepAnimator = ValueAnimator.ofFloat(0, 360);
+        mSweepAnimator.addUpdateListener(animation -> {
+            for(LoadingView loadingView : mLoadingViews) {
+                float value = (float) animation.getAnimatedValue();
+                loadingView.setSweepAngle(value);
+            }
+        });
         mSweepAnimator.setInterpolator(new LinearInterpolator());
         mSweepAnimator.setDuration(mTimePerFill);
         mSweepAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -50,7 +58,13 @@ public class InfiniteLoadingController implements Controller {
         });
         mSweepAnimator.start();
 
-        mOffsetAnimator = ObjectAnimator.ofFloat(mLoadingView, "offsetAngle", 0, 360);
+        mOffsetAnimator = ValueAnimator.ofFloat(0, 360);
+        mOffsetAnimator.addUpdateListener(animation -> {
+            for(LoadingView loadingView : mLoadingViews) {
+                float value = (float) animation.getAnimatedValue();
+                loadingView.setOffsetAngle(value);
+            }
+        });
         mOffsetAnimator.setInterpolator(new LinearInterpolator());
         mOffsetAnimator.setDuration(mTimePerRound);
         mOffsetAnimator.setRepeatMode(ValueAnimator.RESTART);

@@ -99,15 +99,17 @@ public class Won extends AnimatedFragment {
     }
 
     private void updateScores() {
-        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.allTimeHighscore));
+        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.highscore));
         mTvScoreValue.setText(String.valueOf(Database.currentMode.score));
-        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.allTimeTileRecord));
+        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.tileRecord));
         mTvHighestTileValue.setText(String.valueOf(Database.currentMode.highestTile));
     }
 
     @Override
     protected void animateShow(long delay) {
-
+    
+        mActivity.state = MainActivity.STATE_FM_WON;
+        
         updateScores();
 
         mRoot.setVisibility(View.VISIBLE);

@@ -64,7 +64,9 @@ public class Goal extends AnimatedFragment {
 
     @Override
     protected void animateShow(long delay) {
-
+    
+        mActivity.state = MainActivity.STATE_FM_GOAL;
+        
         mRoot.setVisibility(View.VISIBLE);
 
     }

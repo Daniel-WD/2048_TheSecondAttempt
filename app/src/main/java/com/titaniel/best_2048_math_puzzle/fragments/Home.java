@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.Leaderboard;
 import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
 import com.titaniel.best_2048_math_puzzle.loading_view.LoadingView;
 import com.titaniel.best_2048_math_puzzle.utils.Utils;
@@ -50,7 +51,7 @@ public class Home extends AnimatedFragment {
 
     private LoadingView mLoadingView;
 
-    private LeaderboardManager.LeaderboardInstance lbInstance;
+    private LeaderboardManager.LeaderboardLayoutInstance mLeaderboardInstance;
 
     private MainActivity mActivity;
 
@@ -98,9 +99,11 @@ public class Home extends AnimatedFragment {
         mLyBtnLeaderboards = mRoot.findViewById(R.id.lyLeaderboards);
         mLoadingView = mRoot.findViewById(R.id.loadingView);
 
-        lbInstance = LeaderboardManager.generateLeaderbaordInstance(mRoot);
-        mActivity.leaderbaordManager.instances.add(lbInstance);
+        mLeaderboardInstance = LeaderboardManager.generateLeaderbaordInstance(mRoot);
 
+        //loading view
+        mLoadingView.setSweepAngle(360);
+        
         //play
         mLyBtnPlay.setOnClickListener(v -> {
             if(mBlocking) return;
@@ -119,20 +122,25 @@ public class Home extends AnimatedFragment {
             changeMode(true);
         });
 
+        //leaderbaords
         mLyBtnLeaderboards.setOnClickListener(view -> {
             mActivity.showLeaderboard();
         });
 
+        //achievements
         mLyBtnAchievements.setOnClickListener(view -> {
             mActivity.showAchievements();
         });
 
+        //trophies
         mIvBtnTrophies.setOnClickListener(view -> {
             mActivity.showState(MainActivity.STATE_FM_TROPHY_CHAMBER, 0, this);
         });
 
+        //game services
         mIvBtnGameServices.setOnClickListener(view -> {
-            mActivity.startSignInIntent();
+            mActivity.signGameServicesOut();
+            mActivity.startGameServicesSignInIntent();
         });
 
     }
@@ -183,8 +191,9 @@ public class Home extends AnimatedFragment {
     private void setMode(Database.Mode mode) {
         if(mode == null) return;
         mIvSize.setImageResource(mode.representative);
-        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.allTimeHighscore));
-        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.allTimeTileRecord));
+        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.highscore));
+        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.tileRecord));
+        mActivity.leaderbaordManager.updateLeaderboardLayoutInstances(true);
     }
 
     private void changeMode(boolean previous) {
@@ -221,15 +230,29 @@ public class Home extends AnimatedFragment {
         mBlocking = true;
         handler.postDelayed(mDeblocker, duration);
     }
+    
+    private void showNewTrophiesIfAny() {
+        if(!Database.nextAvailableTrophies.isEmpty()) {
+            mActivity.showState(MainActivity.STATE_FM_TROPHY, 0, this);
+        }
+    }
 
     @Override
     protected void animateShow(long delay) {
         mRoot.setVisibility(View.VISIBLE);
-
+    
+        mActivity.state = MainActivity.STATE_FM_HOME;
+        
+        mActivity.leaderbaordManager.leaderboardLayoutInstance = mLeaderboardInstance;
+        mActivity.leaderbaordManager.updateLeaderboardLayoutInstances(false);
+    
         setMode(Database.currentMode);
         updateUiState();
 
-        mActivity.state = MainActivity.STATE_FM_HOME;
+        delay += 1000;
+        
+        handler.postDelayed(this::showNewTrophiesIfAny, delay);
+        
 
 //        long duration = 150;
 //

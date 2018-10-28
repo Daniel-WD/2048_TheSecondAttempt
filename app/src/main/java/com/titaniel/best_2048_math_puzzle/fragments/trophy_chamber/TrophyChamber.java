@@ -101,8 +101,11 @@ public class TrophyChamber extends AnimatedFragment {
 
     @Override
     protected void animateShow(long delay) {
-
+    
+        mActivity.state = MainActivity.STATE_FM_TROPHY_CHAMBER;
+        
         mRoot.setVisibility(View.VISIBLE);
+        mRvTrophyList.getAdapter().notifyDataSetChanged();
 
     }
 

@@ -3,11 +3,16 @@
 
     <string name="temp_best">Highscore: %1$d</string>
 
+    <!-- trophy -->
+    <string name="type_highscore">Highscore</string>
+    <string name="type_tile_record">Tile Record</string>
+    <string name="time_range_daily">One Day</string>
+    <string name="time_range_weekly">7 Days</string>
+
     <!-- BACKS -->
     <string name="goOn">Do you want to go on?</string>
     <string name="getBacks">Get 3 Backs</string>
     <string name="giveUp">Give Up</string>
-
 
     <!-- GAMEOVER -->
 

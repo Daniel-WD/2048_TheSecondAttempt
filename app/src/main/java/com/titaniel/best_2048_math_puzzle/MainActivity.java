@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 
@@ -16,6 +15,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
 import com.titaniel.best_2048_math_puzzle.connectivity_receiver.ConnectivityReceiver;
 import com.titaniel.best_2048_math_puzzle.database.Database;
@@ -34,6 +35,9 @@ import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
 import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
 import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
+
+import net.danlew.android.joda.JodaTimeAndroid;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
     public GoogleSignInAccount googleSignInAccount;
     public GoogleSignInClient googleSignInClient;
 
+    public FirebaseAuth fireBaseAuth = FirebaseAuth.getInstance();
+    public FirebaseUser firebaseUser;
+
     public ConnectivityReceiver mConnectivityReceiver;
 
     private FrameLayout mContainer, mLyPopup;
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        JodaTimeAndroid.init(getApplicationContext());
+        
         //ids
         mContainer = findViewById(R.id.lyContainer);
         mLyPopup = findViewById(R.id.lyPopup);
@@ -111,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
         //leaderboardManager
         leaderbaordManager = new LeaderboardManager(this);
-        leaderbaordManager.start();
 
         //admob
         Admob.init(this, mHandler);
@@ -173,33 +181,61 @@ public class MainActivity extends AppCompatActivity {
                 .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
     }
 
-    public void onSomethingImportantChanges() {
+    public void onSomethingImportantChanged() {
         if(home != null) home.updateUiState();
         if(game != null) game.updateUiState();
+        if(leaderbaordManager != null) leaderbaordManager.onSomethingImportantChanged();
     }
 
-    public void signInSilently() {
+    public void firebaseSignIn() {
+        firebaseUser = fireBaseAuth.getCurrentUser();
+        if(firebaseUser == null) {
+            fireBaseAuth.signInAnonymously()
+                    .addOnSuccessListener(authResult -> {
+                        Utils.toast(getApplicationContext(), "FirebaseAuthSuccess");
+                        firebaseUser = authResult.getUser();
+                        Database.uid = firebaseUser.getUid();
+                        leaderbaordManager.start();
+                    })
+                    .addOnFailureListener(e -> {
+                        Utils.toast(getApplicationContext(), "FirebaseAuthFail");
+                    });
+        } else {
+            Database.uid = firebaseUser.getUid();
+            leaderbaordManager.start();
+        }
+    }
+
+    public void gameServicesSignInSilently() {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if(account != null) {
             googleSignInAccount = account;
-            onSomethingImportantChanges();
+            onSomethingImportantChanged();
             attachPopUpView();
         } else {
             googleSignInClient.silentSignIn().addOnCompleteListener(this,
                     task -> {
                         if(task.isSuccessful()) {
                             googleSignInAccount = task.getResult();
-                            onSomethingImportantChanges();
+                            onSomethingImportantChanged();
                             attachPopUpView();
                         } else {
-                            startSignInIntent();
+                            startGameServicesSignInIntent();
                         }
                     });
         }
 
     }
 
-    public void startSignInIntent() {
+    public void signGameServicesOut() {
+        if(googleSignInClient == null) return;
+        googleSignInClient.signOut().addOnCompleteListener((v) -> {
+            onSomethingImportantChanged();
+            googleSignInAccount = null;
+        });
+    }
+    
+    public void startGameServicesSignInIntent() {
         startActivityForResult(googleSignInClient.getSignInIntent(), RC_SIGN_IN);
     }
 
@@ -209,17 +245,17 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            try {
-                googleSignInAccount = task.getResult(ApiException.class);
-
-
-            } catch (ApiException e) {
-                e.printStackTrace();
+            if(task.isSuccessful()) {
+                try {
+                    googleSignInAccount = task.getResult(ApiException.class);
+                    attachPopUpView();
+        
+                } catch (ApiException e) {
+                    e.printStackTrace();
 //                Utils.toast(getApplicationContext(), "code: " + e.getStatusCode());
+                }
+                onSomethingImportantChanged();
             }
-
-            attachPopUpView();
-            onSomethingImportantChanges();
 
         }
     }

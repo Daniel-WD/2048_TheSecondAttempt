@@ -43,7 +43,7 @@ public class Logo extends AnimatedFragment {
     private void presentLogo(long delay) {
 
         long fadeDuration = 400;
-        long stayDuration = 1500;
+        long stayDuration = 2000;
 
         mIvLogo.setAlpha(0f);
         //show logo
@@ -61,18 +61,21 @@ public class Logo extends AnimatedFragment {
             AnimUtils.animateAlpha(mIvLogo, new FastOutSlowInInterpolator(), 0, fadeDuration, 0);
         }, delay);
 
-        delay += fadeDuration + 300;
+        delay += fadeDuration + 500;
 
         //show home
         handler.postDelayed(() -> {
             mActivity.showState(MainActivity.STATE_FM_HOME, 0, mActivity.logo);
-            mActivity.signInSilently();
+            mActivity.gameServicesSignInSilently();
+            mActivity.firebaseSignIn();
         }, delay);
 
     }
 
     protected void animateShow(long delay) {
 
+        mActivity.state = MainActivity.STATE_FM_LOGO;
+        
         mRoot.setVisibility(View.VISIBLE);
 
         delay += 500;

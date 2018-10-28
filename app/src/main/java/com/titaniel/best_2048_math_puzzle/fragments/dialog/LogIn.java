@@ -61,7 +61,7 @@ public class LogIn extends AnimatedFragment {
         //login btn
         mIvBtnLogin.setOnClickListener(view -> {
             mActivity.showState(MainActivity.STATE_FM_HOME, 0, mActivity.goal);
-            mActivity.startSignInIntent();
+            mActivity.startGameServicesSignInIntent();
         });
 
         //no btn
@@ -73,7 +73,9 @@ public class LogIn extends AnimatedFragment {
 
     @Override
     protected void animateShow(long delay) {
-
+    
+        mActivity.state = MainActivity.STATE_FM_LOGIN;
+        
         mRoot.setVisibility(View.VISIBLE);
 
     }

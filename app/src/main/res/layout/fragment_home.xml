@@ -329,114 +329,96 @@
 
     <!-- rank-texts -->
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRankTodayHs"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginEnd="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|end"
         android:lineSpacingExtra="4.7sp"
-        android:maxWidth="30dp"
         android:text=""
         android:textColor="#ffffff"
         android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRankTodayTr"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginStart="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|start"
         android:lineSpacingExtra="4.7sp"
-        android:maxWidth="30dp"
         android:textColor="#ffffff"
         android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
         tools:text="86" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRankAllTimeHs"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginEnd="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|end"
         android:lineSpacingExtra="4.7sp"
-        android:maxWidth="30dp"
         android:textColor="#ffffff"
         android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRankAllTimeTr"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginStart="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|start"
         android:lineSpacingExtra="4.7sp"
-        android:maxWidth="30dp"
         android:textColor="#ffffff"
         android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRank7DaysHs"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginEnd="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|end"
         android:lineSpacingExtra="4.7sp"
-        android:maxWidth="30dp"
         android:textColor="@color/snow"
         android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
         tools:text="64"
         tools:textColor="@color/rankDown" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <TextView
         android:id="@+id/tvRank7DaysTr"
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="31dp"
         android:layout_marginStart="6dp"
         android:fontFamily="sans-serif"
         android:gravity="center_vertical|start"
         android:lineSpacingExtra="4sp"
-        android:maxWidth="30dp"
         android:textColor="@color/snow"
-        android:textSize="18sp"
+        android:textSize="22.7sp"
         android:textStyle="normal"
-        app:autoSizeMaxTextSize="22.7sp"
-        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
@@ -451,10 +433,8 @@
         android:layout_marginStart="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysTr"
-        app:layout_constraintStart_toEndOf="@+id/tvRank7DaysTr"
-        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysTr"
-        tools:src="@drawable/rank_up"
-        tools:tint="@color/rankUp" />
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysTr" />
 
     <ImageView
         android:id="@+id/ivIndicator7DaysHighscore"
@@ -463,10 +443,8 @@
         android:layout_marginEnd="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysHs"
-        app:layout_constraintEnd_toStartOf="@+id/tvRank7DaysHs"
-        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysHs"
-        tools:src="@drawable/rank_down"
-        tools:tint="@color/rankDown" />
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysHs" />
 
     <ImageView
         android:id="@+id/ivIndicatorAllTimeTileRecord"
@@ -475,7 +453,7 @@
         android:layout_marginStart="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeTr"
-        app:layout_constraintStart_toEndOf="@+id/tvRankAllTimeTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeTr" />
 
     <ImageView
@@ -485,7 +463,7 @@
         android:layout_marginEnd="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeHs"
-        app:layout_constraintEnd_toStartOf="@+id/tvRankAllTimeHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeHs" />
 
     <ImageView
@@ -495,7 +473,7 @@
         android:layout_marginStart="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayTr"
-        app:layout_constraintStart_toEndOf="@+id/tvRankTodayTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/tvRankTodayTr" />
 
     <ImageView
@@ -505,7 +483,7 @@
         android:layout_marginEnd="3.3dp"
         android:contentDescription="@string/descrIcon"
         app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayHs"
-        app:layout_constraintEnd_toStartOf="@+id/tvRankTodayHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/tvRankTodayHs" />
 
     <!-- trophies...first, second, third -->
@@ -589,7 +567,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
@@ -603,7 +581,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
@@ -618,7 +596,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
@@ -632,7 +610,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
@@ -646,7 +624,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
@@ -660,7 +638,7 @@
         android:src="@drawable/no_rank"
         android:tint="#4dffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
@@ -692,7 +670,7 @@
         android:src="@drawable/no_game_services"
         android:tint="#33ffffff"
         android:tintMode="src_in"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -707,7 +685,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
@@ -718,7 +696,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
@@ -730,7 +708,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
@@ -741,7 +719,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
@@ -752,7 +730,7 @@
         android:layout_height="20dp"
         android:layout_marginEnd="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
@@ -763,7 +741,7 @@
         android:layout_height="20dp"
         android:layout_marginStart="10dp"
         android:alpha="0.3"
-        android:visibility="gone"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
         app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
         app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />

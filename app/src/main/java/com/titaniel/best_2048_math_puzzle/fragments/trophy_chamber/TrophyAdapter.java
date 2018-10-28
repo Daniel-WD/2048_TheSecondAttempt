@@ -54,10 +54,10 @@ public class TrophyAdapter extends RecyclerView.Adapter<TrophyAdapter.TrophyRowH
         Database.Mode mode = Database.modes[position];
 
         holder.mIvSize.setImageResource(mode.representative);
-        holder.mIvTrophy7DaysTr.setImageResource(Utils.findTrophyDrawableIdForRank(mode.trophy7DaysTileRecord));
-        holder.mIvTrophy7DaysHs.setImageResource(Utils.findTrophyDrawableIdForRank(mode.trophy7DaysHighscore));
-        holder.mIvTrophyOneDayTr.setImageResource(Utils.findTrophyDrawableIdForRank(mode.trophyOneDayTileRecord));
-        holder.mIvTrophyOneDayHs.setImageResource(Utils.findTrophyDrawableIdForRank(mode.trophyOneDayHighscore));
+        holder.mIvTrophy7DaysTr.setImageResource(Utils.findTrophyDrawableIdForTrophyChamber(mode.trophy7DaysTileRecord));
+        holder.mIvTrophy7DaysHs.setImageResource(Utils.findTrophyDrawableIdForTrophyChamber(mode.trophy7DaysHighscore));
+        holder.mIvTrophyOneDayTr.setImageResource(Utils.findTrophyDrawableIdForTrophyChamber(mode.trophyOneDayTileRecord));
+        holder.mIvTrophyOneDayHs.setImageResource(Utils.findTrophyDrawableIdForTrophyChamber(mode.trophyOneDayHighscore));
     }
 
     @Override

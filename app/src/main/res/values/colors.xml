@@ -5,6 +5,10 @@
     <color name="rankUp">#09d18f</color>
     <color name="rankDown">#d83434</color>
 
+    <color name="first">#b1a323</color>
+    <color name="second">#b6b6b6</color>
+    <color name="third">#ad5b23</color>
+
     <color name="snow">#ffffff</color>
     <color name="black">#000000</color>
 

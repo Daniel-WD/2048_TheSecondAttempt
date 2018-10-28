@@ -14,6 +14,7 @@ import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
 
 public class GameOver extends AnimatedFragment {
 
@@ -37,6 +38,8 @@ public class GameOver extends AnimatedFragment {
     private TextView mTvHighscoreValue, mTvTileRecordValue, mTvHighestTileValue, mTvScoreValue;
 
     private ImageView mIvBtnRestart, mIvBtnHome;
+    
+    private LeaderboardManager.LeaderboardLayoutInstance mLeaderboardInstance;
 
     @Nullable
     @Override
@@ -73,6 +76,9 @@ public class GameOver extends AnimatedFragment {
         mTvScoreValue = mRoot.findViewById(R.id.tvScoreValue);
         mIvBtnRestart = mRoot.findViewById(R.id.ivRestart);
         mIvBtnHome = mRoot.findViewById(R.id.ivHome);
+        
+        //leaderboard instance
+        mLeaderboardInstance = LeaderboardManager.generateLeaderbaordInstance(mRoot);
 
         //btn restart
         mIvBtnRestart.setOnClickListener(v -> {
@@ -89,16 +95,21 @@ public class GameOver extends AnimatedFragment {
     }
 
     private void updateScores() {
-        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.allTimeHighscore));
+        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.highscore));
         mTvScoreValue.setText(String.valueOf(Database.currentMode.score));
-        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.allTimeTileRecord));
+        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.tileRecord));
         mTvHighestTileValue.setText(String.valueOf(Database.currentMode.highestTile));
     }
 
     @Override
     protected void animateShow(long delay) {
         mRoot.setVisibility(View.VISIBLE);
-
+    
+        mActivity.state = MainActivity.STATE_FM_GAME_OVER;
+        
+        mActivity.leaderbaordManager.leaderboardLayoutInstance = mLeaderboardInstance;
+        mActivity.leaderbaordManager.updateLeaderboardLayoutInstances(false);
+        
         updateScores();
 
 //        long duration = 250;

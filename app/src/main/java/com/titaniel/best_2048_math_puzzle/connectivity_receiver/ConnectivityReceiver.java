@@ -18,7 +18,7 @@ public class ConnectivityReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        mActivity.onSomethingImportantChanges();
+        mActivity.onSomethingImportantChanged();
 
     }
 
