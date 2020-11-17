@@ -35,6 +35,12 @@ public class AnimUtils {
         anim.start();
     }
 
+    public static void batchAnimateAlpha(TimeInterpolator interpolator, float alpha, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateAlpha(view, interpolator, alpha, duration, delay);
+        }
+    }
+    
     public static void animateAlpha(View view, TimeInterpolator interpolator, float alpha, long duration, long delay) {
         if(view == null) return;
 
@@ -49,6 +55,12 @@ public class AnimUtils {
                 })
                 .start();
     }
+    
+    public static void batchAnimateTranslationY(TimeInterpolator interpolator, float translationY, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateTranslationY(view, interpolator, translationY, duration, delay);
+        }
+    }
 
     public static void animateTranslationY(View view, TimeInterpolator interpolator, float translY, long duration, long delay) {
         if(view == null) return;
@@ -59,6 +71,12 @@ public class AnimUtils {
                 .setInterpolator(interpolator)
                 .translationY(translY)
                 .start();
+    }
+    
+    public static void batchAnimateTranslationX(TimeInterpolator interpolator, float translationX, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateTranslationX(view, interpolator, translationX, duration, delay);
+        }
     }
 
     public static void animateTranslationX(View view, TimeInterpolator interpolator, float translX, long duration, long delay) {
@@ -71,6 +89,12 @@ public class AnimUtils {
                 .translationX(translX)
                 .start();
     }
+    
+    public static void batchAnimateScaleX(TimeInterpolator interpolator, float scaleX, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateScaleX(view, interpolator, scaleX, duration, delay);
+        }
+    }
 
     public static void animateScaleX(View view, TimeInterpolator interpolator, float scaleX, long duration, long delay) {
         if(view == null) return;
@@ -82,6 +106,12 @@ public class AnimUtils {
                 .scaleX(scaleX)
                 .start();
     }
+    
+    public static void batchAnimateScaleY(TimeInterpolator interpolator, float scaleY, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateScaleY(view, interpolator, scaleY, duration, delay);
+        }
+    }
 
     public static void animateScaleY(View view, TimeInterpolator interpolator, float scaleY, long duration, long delay) {
         if(view == null) return;
@@ -92,6 +122,12 @@ public class AnimUtils {
                 .setInterpolator(interpolator)
                 .scaleY(scaleY)
                 .start();
+    }
+    
+    public static void batchAnimateScale(TimeInterpolator interpolator, float scale, long duration, long delay, View... views) {
+        for(View view : views) {
+            animateScale(view, interpolator, scale, duration, delay);
+        }
     }
 
     public static void animateScale(View view, TimeInterpolator interpolator, float scale, long duration, long delay) {

@@ -1,11 +1,13 @@
 package com.titaniel.best_2048_math_puzzle.leaderboard_manager;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,16 +18,11 @@ import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.loading_view.LoadingView;
 import com.titaniel.best_2048_math_puzzle.loading_view.controller.InfiniteLoadingController;
+import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 import com.titaniel.best_2048_math_puzzle.utils.Utils;
 import com.titaniel.best_2048_math_puzzle.utils.ViewUtils;
 
-import org.joda.time.DateTime;
-
-import java.util.HashMap;
-import java.util.Map;
-
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatTextView;
 import androidx.core.content.ContextCompat;
 
 public class LeaderboardManager {
@@ -34,65 +31,66 @@ public class LeaderboardManager {
     
     public static class LeaderboardLayoutInstance {
         
+        
         //headlines
-        private TextView tvHeadlineToday;
-        private TextView tvHeadlineAllTime;
-        private TextView tvHeadlineWeekly;
+        public TextView tvHeadlineDaily;
+        public TextView tvHeadlineAllTime;
+        public TextView tvHeadlineWeekly;
         
         //dividers
-        private View vDivBigLeft;
-        private View vDivBigRight;
-        private View vDivSmallLeft;
-        private View vDivSmallCenter;
-        private View vDivSmallRight;
+        public View vDivBigLeft;
+        public View vDivBigRight;
+        public View vDivSmallLeft;
+        public View vDivSmallCenter;
+        public View vDivSmallRight;
         
         //rank textviews
-        private TextView tvRankDailyHighscore;
-        private TextView tvRankDailyTileRecord;
-        private TextView tvRankWeeklyHighscore;
-        private TextView tvRankWeeklyTileRecord;
-        private TextView tvRankAllTimeHighscore;
-        private TextView tvRankAllTimeTileRecord;
+        public TextView tvRankDailyHighscore;
+        public TextView tvRankDailyTileRecord;
+        public TextView tvRankWeeklyHighscore;
+        public TextView tvRankWeeklyTileRecord;
+        public TextView tvRankAllTimeHighscore;
+        public TextView tvRankAllTimeTileRecord;
         
         //indicators (up or down)
-        private ImageView ivIndicatorDailyHighscore;
-        private ImageView ivIndicatorDailyTileRecord;
-        private ImageView ivIndicatorWeeklyHighscore;
-        private ImageView ivIndicatorWeeklyTileRecord;
-        private ImageView ivIndicatorAllTimeHighscore;
-        private ImageView ivIndicatorAllTimeTileRecord;
+        public ImageView ivIndicatorDailyHighscore;
+        public ImageView ivIndicatorDailyTileRecord;
+        public ImageView ivIndicatorWeeklyHighscore;
+        public ImageView ivIndicatorWeeklyTileRecord;
+        public ImageView ivIndicatorAllTimeHighscore;
+        public ImageView ivIndicatorAllTimeTileRecord;
         
         //trophyies for 1, 2, 3
-        private ImageView ivTrophyDailyHighscore;
-        private ImageView ivTrophyDailyTileRecord;
-        private ImageView ivTrophyWeeklyHighscore;
-        private ImageView ivTrophyWeeklyTileRecord;
-        private ImageView ivTrophyAllTimeHighscore;
-        private ImageView ivTrophyAllTimeTileRecord;
+        public ImageView ivTrophyDailyHighscore;
+        public ImageView ivTrophyDailyTileRecord;
+        public ImageView ivTrophyWeeklyHighscore;
+        public ImageView ivTrophyWeeklyTileRecord;
+        public ImageView ivTrophyAllTimeHighscore;
+        public ImageView ivTrophyAllTimeTileRecord;
         
         //infinities... no data
-        private ImageView ivNoDataDailyHighscore;
-        private ImageView ivNoDataDailyTileRecord;
-        private ImageView ivNoDataWeeklyHighscore;
-        private ImageView ivNoDataWeeklyTileRecord;
-        private ImageView ivNoDataAllTimeHighscore;
-        private ImageView ivNoDataAllTimeTileRecord;
+        public ImageView ivNoDataDailyHighscore;
+        public ImageView ivNoDataDailyTileRecord;
+        public ImageView ivNoDataWeeklyHighscore;
+        public ImageView ivNoDataWeeklyTileRecord;
+        public ImageView ivNoDataAllTimeHighscore;
+        public ImageView ivNoDataAllTimeTileRecord;
         
         //loading views
-        private LoadingView loadingViewDailyHighscore;
-        private LoadingView loadingViewDailyTileRecord;
-        private LoadingView loadingViewWeeklyHighscore;
-        private LoadingView loadingViewWeeklyTileRecord;
-        private LoadingView loadingViewAllTimeHighscore;
-        private LoadingView loadingViewAllTimeTileRecord;
+        public LoadingView loadingViewDailyHighscore;
+        public LoadingView loadingViewDailyTileRecord;
+        public LoadingView loadingViewWeeklyHighscore;
+        public LoadingView loadingViewWeeklyTileRecord;
+        public LoadingView loadingViewAllTimeHighscore;
+        public LoadingView loadingViewAllTimeTileRecord;
         
-        private InfiniteLoadingController loadingViewController;
+        public InfiniteLoadingController loadingViewController;
         
         //no internet
-        private ImageView ivNoInternet;
+        public ImageView ivNoInternet;
         
         //no game services
-        private ImageView ivNoGameServices;
+        public ImageView ivNoGameServices;
         
     }
     
@@ -102,7 +100,8 @@ public class LeaderboardManager {
     private SparseArray<Float> mTextSizeMap = new SparseArray<>();
     private SparseArray<Float> mIndicatorOffsetMap = new SparseArray<>();
     
-    public LeaderboardLayoutInstance leaderboardLayoutInstance = null;
+    private LeaderboardLayoutInstance mLeaderboardLayoutInstance = null;
+    private boolean mInstanceChanged = true;
     
     private MainActivity mActivity;
     
@@ -116,7 +115,7 @@ public class LeaderboardManager {
             sendData();
             
             mWorkerHandler.postDelayed(looper, SEND_INTERVAL_TIME);
-    
+            
         }
     };
     
@@ -131,6 +130,26 @@ public class LeaderboardManager {
     private int mColorRankUp, mColorRankDown;
     
     private int mInitCompleteCount = 0;
+    
+    private int mNewRankDailyHighscore = -1;
+    private int mNewRankWeeklyHighscore = -1;
+    private int mNewRankAllTimeHighscore = -1;
+    private int mNewRankDailyTileRecord = -1;
+    private int mNewRankWeeklyTileRecord = -1;
+    private int mNewRankAllTimeTileRecord = -1;
+    
+    private Runnable mRankUnifier = () -> {
+        Database.Mode mode = Database.currentMode;
+        
+        mode.lastRankDailyHighscore = mNewRankDailyHighscore;
+        mode.lastRankWeeklyHighscore = mNewRankWeeklyHighscore;
+        mode.lastRankAllTimeHighscore = mNewRankAllTimeHighscore;
+        mode.lastRankDailyTileRecord = mNewRankDailyTileRecord;
+        mode.lastRankWeeklyTileRecord = mNewRankWeeklyTileRecord;
+        mode.lastRankAllTimeTileRecord = mNewRankAllTimeTileRecord;
+        
+        updateLeaderboardLayoutInstance(false);
+    };
     
     public LeaderboardManager(MainActivity activity) {
         mActivity = activity;
@@ -188,7 +207,7 @@ public class LeaderboardManager {
                     .addOnCompleteListener(task -> {
                         mInitCompleteCount++;
                         if(modes.length == mInitCompleteCount) {
-                            mUIHandler.post(() -> updateLeaderboardLayoutInstances(true));
+                            mUIHandler.post(() -> updateLeaderboardLayoutInstance(true));
                             mWorkerHandler.post(looper);
                             mWorkerHandler.post(LeaderboardManager.this::attachListeners);
                             mInitCompleteCount = 0;
@@ -231,7 +250,7 @@ public class LeaderboardManager {
                 if(queryDocumentSnapshots != null) {
                     lb.updateUserData(queryDocumentSnapshots.getDocuments());
                     if(mode == Database.currentMode) {
-                        mUIHandler.post(() -> updateLeaderboardLayoutInstances(true));
+                        mUIHandler.post(() -> updateLeaderboardLayoutInstance(true));
                     }
                 }
                 
@@ -251,7 +270,7 @@ public class LeaderboardManager {
     public void onSomethingImportantChanged() {
         mIsOnline = Utils.isOnline(mActivity.getApplicationContext());
         mIsOnlineChanged = true;
-        mUIHandler.post(() -> updateLeaderboardLayoutInstances(false));
+        mUIHandler.post(() -> updateLeaderboardLayoutInstance(false));
         
         if(mIsOnline) {
             if(!mInitialised) {
@@ -261,20 +280,22 @@ public class LeaderboardManager {
         }
     }
     
-    public void updateLeaderboardLayoutInstances(boolean newData) {
+    public void updateLeaderboardLayoutInstance(boolean newData) {
         Database.Mode mode = Database.currentMode;
         Leaderboard leaderboard = mode.leaderboard;
         
         boolean gameOver = mActivity.state == MainActivity.STATE_FM_GAME_OVER;
         
-        int newRankDailyHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_DAILY);
-        int newRankWeeklyHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_WEEKLY);
-        int newRankAllTimeHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_ALL_TIME);
-        int newRankDailyTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_DAILY);
-        int newRankWeeklyTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_WEEKLY);
-        int newRankAllTimeTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_ALL_TIME);
+        mNewRankDailyHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_DAILY);
+        mNewRankWeeklyHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_WEEKLY);
+        mNewRankAllTimeHighscore = leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_ALL_TIME);
+        mNewRankDailyTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_DAILY);
+        mNewRankWeeklyTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_WEEKLY);
+        mNewRankAllTimeTileRecord = leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_ALL_TIME);
         
-        final LeaderboardLayoutInstance i = leaderboardLayoutInstance;
+        final LeaderboardLayoutInstance i = mLeaderboardLayoutInstance;
+        
+        if(i == null) return;
         
         if(mIsOnlineChanged && !mIsOnline) {
             ViewUtils.setText("", i.tvRankDailyHighscore, i.tvRankWeeklyHighscore, i.tvRankAllTimeHighscore,
@@ -295,7 +316,7 @@ public class LeaderboardManager {
                     i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
                     i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord,
                     
-                    i.tvHeadlineAllTime, i.tvHeadlineToday, i.tvHeadlineWeekly,
+                    i.tvHeadlineAllTime, i.tvHeadlineDaily, i.tvHeadlineWeekly,
                     
                     i.ivNoGameServices);
             
@@ -307,66 +328,85 @@ public class LeaderboardManager {
             ViewUtils.setVisibility(View.VISIBLE, i.vDivBigLeft, i.vDivBigRight, i.vDivSmallCenter,
                     i.vDivSmallLeft, i.vDivSmallRight,
                     
-                    i.tvHeadlineAllTime, i.tvHeadlineToday, i.tvHeadlineWeekly);
+                    i.tvHeadlineAllTime, i.tvHeadlineDaily, i.tvHeadlineWeekly);
         }
         
         if(mIsOnline) {
             
             if(leaderboard.currentUserData != null) {
+//
+//                ViewUtils.setVisibility(View.INVISIBLE,
+//                        i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
+//                        i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord,
+//
+//                        i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
+//                        i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord
+//                );
                 
-                ViewUtils.setVisibility(View.INVISIBLE,
-                        i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
-                        i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord,
-                        
-                        i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
-                        i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord
-                );
+                makeInvisibleT(i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
+                        i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord);
                 
                 //daily highscore
                 updateLeaderboardPart(i.tvRankDailyHighscore, i.ivTrophyDailyHighscore, i.ivIndicatorDailyHighscore,
-                        i.ivNoDataDailyHighscore, newRankDailyHighscore,
-                        gameOver ? mode.gameStartRankDailyHighscore : mode.lastRankDailyHighscore, false);
+                        i.ivNoDataDailyHighscore, mNewRankDailyHighscore,
+                        gameOver ? mode.gameStartRankDailyHighscore : mode.lastRankDailyHighscore, false, newData);
                 
                 //Weekly highscore
                 updateLeaderboardPart(i.tvRankWeeklyHighscore, i.ivTrophyWeeklyHighscore, i.ivIndicatorWeeklyHighscore,
-                        i.ivNoDataWeeklyHighscore, newRankWeeklyHighscore,
-                        gameOver ? mode.gameStartRankWeeklyHighscore : mode.lastRankWeeklyHighscore, false);
+                        i.ivNoDataWeeklyHighscore, mNewRankWeeklyHighscore,
+                        gameOver ? mode.gameStartRankWeeklyHighscore : mode.lastRankWeeklyHighscore, false, newData);
                 
                 //AllTime highscore
                 updateLeaderboardPart(i.tvRankAllTimeHighscore, i.ivTrophyAllTimeHighscore, i.ivIndicatorAllTimeHighscore,
-                        i.ivNoDataAllTimeHighscore, newRankAllTimeHighscore,
-                        gameOver ? mode.gameStartRankAllTimeHighscore : mode.lastRankAllTimeHighscore, false);
+                        i.ivNoDataAllTimeHighscore, mNewRankAllTimeHighscore,
+                        gameOver ? mode.gameStartRankAllTimeHighscore : mode.lastRankAllTimeHighscore, false, newData);
                 
                 //daily TileRecord
                 updateLeaderboardPart(i.tvRankDailyTileRecord, i.ivTrophyDailyTileRecord, i.ivIndicatorDailyTileRecord,
-                        i.ivNoDataDailyTileRecord, newRankDailyTileRecord,
-                        gameOver ? mode.gameStartRankDailyTileRecord : mode.lastRankDailyTileRecord, true);
+                        i.ivNoDataDailyTileRecord, mNewRankDailyTileRecord,
+                        gameOver ? mode.gameStartRankDailyTileRecord : mode.lastRankDailyTileRecord, true, newData);
                 
                 //Weekly TileRecord
                 updateLeaderboardPart(i.tvRankWeeklyTileRecord, i.ivTrophyWeeklyTileRecord, i.ivIndicatorWeeklyTileRecord,
-                        i.ivNoDataWeeklyTileRecord, newRankWeeklyTileRecord,
-                        gameOver ? mode.gameStartRankWeeklyTileRecord : mode.lastRankWeeklyTileRecord, true);
+                        i.ivNoDataWeeklyTileRecord, mNewRankWeeklyTileRecord,
+                        gameOver ? mode.gameStartRankWeeklyTileRecord : mode.lastRankWeeklyTileRecord, true, newData);
                 
                 //AllTime TileRecord
                 updateLeaderboardPart(i.tvRankAllTimeTileRecord, i.ivTrophyAllTimeTileRecord, i.ivIndicatorAllTimeTileRecord,
-                        i.ivNoDataAllTimeTileRecord, newRankAllTimeTileRecord,
-                        gameOver ? mode.gameStartRankAllTimeTileRecord : mode.lastRankAllTimeTileRecord, true);
+                        i.ivNoDataAllTimeTileRecord, mNewRankAllTimeTileRecord,
+                        gameOver ? mode.gameStartRankAllTimeTileRecord : mode.lastRankAllTimeTileRecord, true, newData);
                 
             } else { //show loading views
+
+//                ViewUtils.setImageDrawable(null, i.ivIndicatorDailyHighscore, i.ivIndicatorWeeklyHighscore, i.ivIndicatorAllTimeHighscore,
+//                        i.ivIndicatorDailyTileRecord, i.ivIndicatorWeeklyTileRecord, i.ivIndicatorAllTimeTileRecord,
+//
+//                        i.ivTrophyDailyHighscore, i.ivTrophyWeeklyHighscore, i.ivTrophyAllTimeHighscore,
+//                        i.ivTrophyDailyTileRecord, i.ivTrophyWeeklyTileRecord, i.ivTrophyAllTimeTileRecord
+//                );
+
+//                ViewUtils.setVisibility(View.INVISIBLE,
+//                        i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
+//                        i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord
+//                );
                 
-                ViewUtils.setImageDrawable(null, i.ivIndicatorDailyHighscore, i.ivIndicatorWeeklyHighscore, i.ivIndicatorAllTimeHighscore,
+                makeInvisibleT(
+                        i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
+                        i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord,
+                        
+                        i.ivIndicatorDailyHighscore, i.ivIndicatorWeeklyHighscore, i.ivIndicatorAllTimeHighscore,
                         i.ivIndicatorDailyTileRecord, i.ivIndicatorWeeklyTileRecord, i.ivIndicatorAllTimeTileRecord,
                         
                         i.ivTrophyDailyHighscore, i.ivTrophyWeeklyHighscore, i.ivTrophyAllTimeHighscore,
                         i.ivTrophyDailyTileRecord, i.ivTrophyWeeklyTileRecord, i.ivTrophyAllTimeTileRecord
                 );
+
+//                ViewUtils.setVisibility(View.VISIBLE,
+//                        i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
+//                        i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord
+//                );
                 
-                ViewUtils.setVisibility(View.INVISIBLE,
-                        i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
-                        i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord
-                );
-                
-                ViewUtils.setVisibility(View.VISIBLE,
+                makeVisibleT(
                         i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
                         i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord
                 );
@@ -381,65 +421,108 @@ public class LeaderboardManager {
         mIsOnlineChanged = false;
         
         if(newData) {
-            mUIHandler.postDelayed(() -> {
-                
-                mode.lastRankDailyHighscore = newRankDailyHighscore;
-                mode.lastRankWeeklyHighscore = newRankWeeklyHighscore;
-                mode.lastRankAllTimeHighscore = newRankAllTimeHighscore;
-                mode.lastRankDailyTileRecord = newRankDailyTileRecord;
-                mode.lastRankWeeklyTileRecord = newRankWeeklyTileRecord;
-                mode.lastRankAllTimeTileRecord = newRankAllTimeTileRecord;
-                
-                updateLeaderboardLayoutInstances(false);
-            }, RANK_BALANCE_TIME);
+            mUIHandler.removeCallbacks(mRankUnifier);
+            mUIHandler.postDelayed(mRankUnifier, RANK_BALANCE_TIME);
         }
         
         mLastValuesAvailable = true;
+        mInstanceChanged = false;
     }
     
     private void updateLeaderboardPart(TextView tvRank, ImageView ivTrophy, ImageView ivIndicator, ImageView ivNoData,
-                                       int newRank, int lastRank, boolean tileRecord) {
+                                       int newRank, int lastRank, boolean tileRecord, boolean newData) {
+        long duration = 200;
+        
         if(newRank < 0) {
-            ivNoData.setVisibility(View.VISIBLE);
-            ivTrophy.setImageDrawable(null);
-            tvRank.setText("");
-            ivIndicator.setImageDrawable(null);
+            makeVisibleT(ivNoData);
+            
+            makeInvisibleT(ivTrophy);
+            makeInvisibleT(tvRank);
+            makeInvisibleT(ivIndicator);
+            
         } else if(newRank < 4) {
-            ivNoData.setVisibility(View.INVISIBLE);
+            makeInvisibleT(ivNoData);
+            makeInvisibleT(tvRank);
+            makeInvisibleT(ivIndicator);
             
-            tvRank.setText("");
-            ivTrophy.setImageDrawable(Utils.findTrophyDrawableForLeaderboard(newRank, mActivity.getApplicationContext()));
-            ivIndicator.setImageDrawable(null);
+            Drawable newTrophyDrawable = Utils.findTrophyDrawableForLeaderboard(newRank, mActivity.getApplicationContext());
+            
+            if(newData) {
+                long delay = makeInvisibleT(ivTrophy);
+                mUIHandler.postDelayed(() -> {
+                    ivTrophy.setImageDrawable(newTrophyDrawable);
+                    makeVisibleT(ivTrophy);
+                }, delay);
+            }/* else {
+                ivTrophy.setImageDrawable(newTrophyDrawable);
+                makeVisibleT(ivTrophy);
+            }*/
+            
+            
         } else {
-            ivNoData.setVisibility(View.INVISIBLE);
+            makeInvisibleT(ivTrophy);
+            makeInvisibleT(ivNoData);
             
-            ivTrophy.setImageDrawable(null);
             tvRank.setText(String.valueOf(newRank));
+            
             setTextsizeOfRankTextView(tvRank);
             float indicatorOffset = indicatorOffset(tvRank);
-            
             if(tileRecord) {
                 ivIndicator.setTranslationX(indicatorOffset);
             } else {
                 ivIndicator.setTranslationX(-indicatorOffset);
             }
             
+            makeVisibleT(tvRank);
+            
             if(lastRank > 0 && lastRank < newRank) { // rank down
-                tvRank.setTextColor(mColorRankDown);
+                AnimUtils.animateTextColor(tvRank, mColorRankDown, duration, 0);
+                
                 ivIndicator.setImageResource(R.drawable.rank_down);
                 ivIndicator.setColorFilter(mColorRankDown);
                 
+                makeVisibleT(ivIndicator);
+                
             } else if(lastRank > 0 && lastRank > newRank) { // rank up
-                tvRank.setTextColor(mColorRankUp);
+                AnimUtils.animateTextColor(tvRank, mColorRankUp, duration, 0);
+                
                 ivIndicator.setImageResource(R.drawable.rank_up);
                 ivIndicator.setColorFilter(mColorRankUp);
                 
+                mUIHandler.post(() -> {
+                    makeVisibleT(ivIndicator);
+                });
+                
             } else { // rank didn't change
-                tvRank.setTextColor(Color.WHITE);
-                ivIndicator.setImageDrawable(null);
+                AnimUtils.animateTextColor(tvRank, Color.WHITE, duration, 0);
+                makeInvisibleT(ivIndicator);
+                
             }
             
         }
+    }
+    
+    private long makeInvisibleT(View... views) {
+        long duration = 250;
+        for(View view : views) {
+            if(mInstanceChanged || view.getAlpha() != 0) {
+                AnimUtils.animateAlpha(view, new AccelerateDecelerateInterpolator(), 0, duration, 0);
+                AnimUtils.animateTranslationY(view, new AccelerateDecelerateInterpolator(), Utils.dpToPx(mActivity.getResources(), 3), duration, 0);
+            }
+        }
+        return duration;
+    }
+    
+    private long makeVisibleT(View... views) {
+        long duration = 250;
+        for(View view : views) {
+            if(mInstanceChanged || view.getAlpha() != 1) {
+                view.setTranslationY(-Utils.dpToPx(mActivity.getResources(), 3));
+                AnimUtils.animateTranslationY(view, new AccelerateDecelerateInterpolator(), 0, duration, 0);
+                AnimUtils.animateAlpha(view, new AccelerateDecelerateInterpolator(), 1, duration, 0);
+            }
+        }
+        return duration;
     }
     
     public static LeaderboardLayoutInstance generateLeaderbaordInstance(@NonNull View view) {
@@ -448,7 +531,7 @@ public class LeaderboardManager {
         
         i.tvHeadlineAllTime = view.findViewById(R.id.tvAllTime);
         i.tvHeadlineWeekly = view.findViewById(R.id.tv7Days);
-        i.tvHeadlineToday = view.findViewById(R.id.tvToday);
+        i.tvHeadlineDaily = view.findViewById(R.id.tvToday);
         
         i.vDivBigLeft = view.findViewById(R.id.vDivLbLargeLeft);
         i.vDivBigRight = view.findViewById(R.id.vDivLbLargeRight);
@@ -512,6 +595,43 @@ public class LeaderboardManager {
     
     private float indicatorOffset(TextView tv) {
         return Utils.dpToPx(mActivity.getResources(), mIndicatorOffsetMap.get(tv.getText().length()));
+    }
+    
+    public void setLeaderboardLayoutInstance(LeaderboardLayoutInstance i) {
+        this.mLeaderboardLayoutInstance = i;
+        mInstanceChanged = true;
+        
+        mUIHandler.removeCallbacks(mRankUnifier);
+        
+        ViewUtils.setBatchAlpha(0, i.tvRankDailyHighscore, i.tvRankWeeklyHighscore, i.tvRankAllTimeHighscore,
+                i.tvRankDailyTileRecord, i.tvRankWeeklyTileRecord, i.tvRankAllTimeTileRecord,
+                
+                i.ivIndicatorDailyHighscore, i.ivIndicatorWeeklyHighscore, i.ivIndicatorAllTimeHighscore,
+                i.ivIndicatorDailyTileRecord, i.ivIndicatorWeeklyTileRecord, i.ivIndicatorAllTimeTileRecord,
+                
+                i.ivTrophyDailyHighscore, i.ivTrophyWeeklyHighscore, i.ivTrophyAllTimeHighscore,
+                i.ivTrophyDailyTileRecord, i.ivTrophyWeeklyTileRecord, i.ivTrophyAllTimeTileRecord,
+                
+                i.ivNoDataDailyHighscore, i.ivNoDataWeeklyHighscore, i.ivNoDataAllTimeHighscore,
+                i.ivNoDataDailyTileRecord, i.ivNoDataWeeklyTileRecord, i.ivNoDataAllTimeTileRecord,
+                
+                i.loadingViewDailyHighscore, i.loadingViewWeeklyHighscore, i.loadingViewAllTimeHighscore,
+                i.loadingViewDailyTileRecord, i.loadingViewWeeklyTileRecord, i.loadingViewAllTimeTileRecord);
+    }
+    
+    public void notifyModeChanged() {
+
+
+//        Database.Mode mode = Database.currentMode;
+//
+//        mode.lastRankDailyHighscore = mode.leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_DAILY);
+//        mode.lastRankWeeklyHighscore = mode.leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_WEEKLY);
+//        mode.lastRankAllTimeHighscore = mode.leaderboard.getCurrentUserHighscoreRank(Leaderboard.RANGE_ALL_TIME);
+//        mode.lastRankDailyTileRecord = mode.leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_DAILY);
+//        mode.lastRankWeeklyTileRecord = mode.leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_WEEKLY);
+//        mode.lastRankAllTimeTileRecord = mode.leaderboard.getCurrentUserTileRecordRank(Leaderboard.RANGE_ALL_TIME);
+        
+        mUIHandler.removeCallbacks(mRankUnifier);
     }
     
 }

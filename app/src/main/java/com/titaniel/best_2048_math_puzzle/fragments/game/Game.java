@@ -480,21 +480,20 @@ public class Game extends AnimatedFragment {
         mRoot.setVisibility(View.VISIBLE);
     
         mActivity.state = MainActivity.STATE_FM_GAME;
-        
-        mActivity.leaderbaordManager.leaderboardLayoutInstance = mLeaderboardInstance;
-        mActivity.leaderbaordManager.updateLeaderboardLayoutInstances(false);
+    
+        mActivity.leaderbaordManager.setLeaderboardLayoutInstance(mLeaderboardInstance);
+        mActivity.leaderbaordManager.updateLeaderboardLayoutInstance(true);
     
         Admob.adListener = mAdListener;
         
         reset();
         mBackShown = false;
 
-/*
         mRoot.setVisibility(View.VISIBLE);
         mRoot.setAlpha(0);
         AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, 150, delay);
 
-        delay += 300;*/
+        delay += 300;
         
         if(Database.currentMode.saved == null) {
             Utils.fillGameStartRankValues();

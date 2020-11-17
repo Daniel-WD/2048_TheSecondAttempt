@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +13,8 @@ import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,15 +72,27 @@ public class Goal extends AnimatedFragment {
         mActivity.state = MainActivity.STATE_FM_GOAL;
         
         mRoot.setVisibility(View.VISIBLE);
+        mRoot.setAlpha(0);
+        mRoot.setTranslationY(-Utils.dpToPx(getResources(), 16));
+        AnimUtils.animateAlpha(mRoot, new DecelerateInterpolator(), 1, 300, delay);
+        AnimUtils.animateTranslationY(mRoot, new DecelerateInterpolator(), 0, 300, delay);
 
     }
 
     @Override
     protected long animateHide(long delay) {
-
-        mRoot.setVisibility(View.INVISIBLE);
-
-        return 0;
+    
+        long duration = 300;
+    
+        AnimUtils.animateAlpha(mRoot, new AccelerateInterpolator(), 0, duration, delay);
+        AnimUtils.animateTranslationY(mRoot, new AccelerateInterpolator(), Utils.dpToPx(getResources(), 16), duration, delay);
+    
+        handler.postDelayed(() -> {
+            mRoot.setVisibility(View.VISIBLE);
+        }, 300);
+    
+    
+        return duration + 50;
     }
 
     public void onBackPressed() {

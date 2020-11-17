@@ -87,9 +87,9 @@ public class Logo extends AnimatedFragment {
     @Override
     protected long animateHide(long delay) {
 
-        delay += 150;
+        delay += 100;
 
-        long duration = 200;
+        long duration = 300;
 
         AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 0, duration, delay);
         delay += duration;

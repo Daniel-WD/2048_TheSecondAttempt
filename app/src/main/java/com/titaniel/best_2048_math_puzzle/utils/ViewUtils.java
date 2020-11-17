@@ -29,4 +29,12 @@ public class ViewUtils {
         
     }
     
+    public static void setBatchAlpha(float alpha, View... views) {
+        for(View view : views) {
+            if(view != null) {
+                view.setAlpha(alpha);
+            }
+        }
+    }
+    
 }
