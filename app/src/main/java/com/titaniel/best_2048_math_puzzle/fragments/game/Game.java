@@ -1,165 +1,252 @@
 package com.titaniel.best_2048_math_puzzle.fragments.game;
 
+import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
-import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.CycleInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.ads.reward.RewardItem;
 import com.titaniel.best_2048_math_puzzle.MainActivity;
 import com.titaniel.best_2048_math_puzzle.R;
+import com.titaniel.best_2048_math_puzzle.admob.Admob;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
+import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
+import com.titaniel.best_2048_math_puzzle.loading_view.LoadingView;
 import com.titaniel.best_2048_math_puzzle.utils.AnimUtils;
 import com.titaniel.best_2048_math_puzzle.utils.Utils;
 
+import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.interpolator.view.animation.LinearOutSlowInInterpolator;
+
 public class Game extends AnimatedFragment {
-
-    private final static long CLOSE_POWER_UPS_DELAY = 300;
-
-    private final static int MONEY_BACK = 10;
-    private final static int MONEY_DELETE = 25;
-    private final static int MONEY_EXCHANGE = 50;
-    private final static int MONEY_DOUBLE = 70;
-
-    private int mPUDisabledColor = Color.parseColor("#CBCBCB");
-
+    
+    private Admob.MyAdListener mAdListener = new Admob.MyAdListener() {
+        
+        boolean reward = false;
+        
+        @Override
+        public void onRewardedVideoAdClosed() {
+            if(reward) {
+                handler.postDelayed(() -> {
+                    Database.currentMode.backs += 3;
+                    refreshBackState();
+                    updateBackText();
+                }, 300);
+                reward = false;
+            }
+        }
+        
+        @Override
+        public void onRewarded(RewardItem rewardItem) {
+            reward = true;
+        }
+        
+    };
+    
     private View mRoot;
-    private ImageView mBtnPause;
-    private TextView mTvPoints;
+    
     private TouchArea mTouchArea;
-    private View mVDivOne, mVDivTwo;
-    private TextView mTvBackCount;
-    private ConstraintLayout mLyBack;
-    private TextView mTvRecord;
-    private TextView mTvInstruction;
-
+    
+    private ImageView mIvLeaderboardBg;
+    private ImageView mIvPointsBg;
+    
+    private ImageView mIvBtnLeaderboard;
+    private ImageView mIvBtnBacks;
+    
+    private ImageView mIvUndoOverlay;
+    
+    private ImageView mIvLeaderboard;
+    private ImageView mIvNewUndos;
+    private ImageView mIvUndo;
+    
+    private TextView mTvUndoCount;
+    private TextView mTvPoints;
+    
+    private View mDivPointsHor;
+    private View mDivPointsCenter;
+    
+    private TextView mTvTr, mTvHs;
+    private TextView mTvTileRecordValue, mTvHighscoreValue;
+    
+    private View mDivTop;
+    private TextView mTvHighscore, mTvTileRecord, mTvRankingOf;
+    
+    private ImageView mIvBtnPause;
+    
+    private LoadingView mLoadingView;
+    
     public GameField gameField;
-
-    public boolean loadGame = false;
+    
+    private LeaderboardManager.LeaderboardLayoutInstance mLeaderboardInstance;
+    
     public boolean won = false;
-
+    
     private boolean mBackShown = false;
     private boolean mBlocking = false;
-
+    
     private Runnable mDeblocker = () -> mBlocking = false;
-
+    
     private MainActivity mActivity;
-
-    private ValueAnimator mCurrentBackHighlightAnim;
-
+    
+    private ArrayList<Animator> mCurrentBackHighlightAnims = new ArrayList<>();
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_game, container, false);
     }
-
+    
     @Override
     public void onStart() {
         super.onStart();
-
+        
         mActivity = (MainActivity) getActivity();
-
+        
         //init
         mRoot = getView();
-        mBtnPause = mRoot.findViewById(R.id.ivPause);
-        mTvPoints = mRoot.findViewById(R.id.tvPoints);
-        gameField = mRoot.findViewById(R.id.gameField);
         mTouchArea = mRoot.findViewById(R.id.touchArea);
-        mVDivOne = mRoot.findViewById(R.id.vDivOne);
-        mVDivTwo = mRoot.findViewById(R.id.vDivTwo);
-        mTvBackCount = mRoot.findViewById(R.id.tvBackCount);
-        mLyBack = mRoot.findViewById(R.id.lyBack);
-        mTvRecord = mRoot.findViewById(R.id.tvRecord);
-        mTvInstruction = mRoot.findViewById(R.id.tvInstruction);
-
-        //back
-        mLyBack.setOnClickListener(v -> {
-            if(mBlocking) return;
-            gameField.performBack();
-            backClickAnim();
-            block(500);
+        mIvLeaderboardBg = mRoot.findViewById(R.id.ivLeaderboardBg);
+        mIvPointsBg = mRoot.findViewById(R.id.ivPointsBg);
+        mIvBtnLeaderboard = mRoot.findViewById(R.id.ivLeaderboardLink);
+        mIvBtnBacks = mRoot.findViewById(R.id.ivBacksBg);
+        mIvUndoOverlay = mRoot.findViewById(R.id.ivUndoOverlay);
+        mIvLeaderboard = mRoot.findViewById(R.id.ivLeaderboard);
+        mIvNewUndos = mRoot.findViewById(R.id.ivNewUndos);
+        mIvUndo = mRoot.findViewById(R.id.ivUndo);
+        mTvUndoCount = mRoot.findViewById(R.id.tvUndoCount);
+        mTvPoints = mRoot.findViewById(R.id.tvPoints);
+        mDivPointsHor = mRoot.findViewById(R.id.vDivPointsHor);
+        mDivPointsCenter = mRoot.findViewById(R.id.vDivPointsCenter);
+        mTvTr = mRoot.findViewById(R.id.tvTr);
+        mTvHs = mRoot.findViewById(R.id.tvHs);
+        mTvHighscoreValue = mRoot.findViewById(R.id.tvHighscoreValue);
+        mTvTileRecordValue = mRoot.findViewById(R.id.tvTileRecordValue);
+        mDivTop = mRoot.findViewById(R.id.vDivTop);
+        mTvHighscore = mRoot.findViewById(R.id.tvHighscore);
+        mTvTileRecord = mRoot.findViewById(R.id.tvTileRecord);
+        mTvRankingOf = mRoot.findViewById(R.id.tvRankingOf);
+        mIvBtnPause = mRoot.findViewById(R.id.ivPause);
+        mLoadingView = mRoot.findViewById(R.id.loadingView);
+        gameField = mRoot.findViewById(R.id.gameField);
+        
+        //leaderboard instance
+        mLeaderboardInstance = LeaderboardManager.generateLeaderbaordInstance(mRoot);
+        
+        //loading view
+        mLoadingView.setSweepAngle(360);
+        
+        //btn leaderboard
+        mIvBtnLeaderboard.setOnClickListener(view -> {
+            mActivity.showLeaderboard(GameServices.findScoreLeaderboardIdBySize(Database.currentMode.fieldSize));
         });
-
+        
+        //back
+        mIvBtnBacks.setOnClickListener(v -> {
+            if(mBlocking) return;
+            if(Database.currentMode.backs > 0) {
+                gameField.performBack();
+                block(400);
+            } else {
+                if(Admob.rewardedVideoAd.isLoaded()) {
+                    Admob.rewardedVideoAd.show();
+                }
+            }
+        });
+        
         //touch area setup
         mTouchArea.gameField = gameField;
-
+        
         //pause
-        mBtnPause.setOnClickListener(v -> {
+        mIvBtnPause.setOnClickListener(v -> {
             disableAll();
             mActivity.showState(MainActivity.STATE_FM_PAUSE, 50, null);
         });
-
+        
         //gamefield listener
         gameField.setMoveListener(new GameField.MoveListener() {
             @Override
             public void onMoveCompleted() {
                 if(!gameField.canUserMove()) {
-
+                    
                     if(Database.currentMode.backs <= 0) {
                         disableAllSlow();
                         handler.postDelayed(() -> {
                             if(Database.currentMode.backs > 0) {
-                                mActivity.showState(MainActivity.STATE_FM_UNDO, 0, null);
+                                mActivity.showState(MainActivity.STATE_FM_BACKS, 0, null);
                             } else {
                                 if(Utils.isOnline(getContext())) {
-                                    mActivity.showState(MainActivity.STATE_FM_UNDO, 0, null);
+                                    mActivity.showState(MainActivity.STATE_FM_BACKS, 0, null);
                                 } else {
                                     mActivity.showState(MainActivity.STATE_FM_GAME_OVER, 0, null);
                                 }
-
+                                
                             }
-
+                            
                             disableAll();
-
+                            
                         }, 1800);
                     } else {
-                        startHighlightBack();
+                        handler.postDelayed(() -> startHighlightBack(), 200);
                     }
-
-
+                    
+                    
                 } else {
                     refreshBackState();
                 }
             }
-
+            
             @Override
             public void onMove(int direction) {
             }
-
+            
             @Override
             public void onJoin(int newPoints, int maxNumber) {
                 // --> no animation --> see gamefield
-                Database.currentMode.points += newPoints;
+                Database.currentMode.score += newPoints;
                 updatePointsText();
-
+                
+                //achievements trigger
+                if(maxNumber > Database.currentMode.highestTile) {
+                    GameServices.checkForTileAchievement(mActivity, maxNumber);
+                    Database.currentMode.highestTile = maxNumber;
+                }
+                GameServices.checkForPointAchievement(mActivity, Database.currentMode.score);
+                
                 if(maxNumber == 2048 && !won) {
                     won = true;
                     mActivity.showState(MainActivity.STATE_FM_WON, 100, null);
                     disableAll();
                 }
-
+                
                 // TODO: 22.08.2018 optimize --> method in mode
-                if(Database.currentMode.points > Database.currentMode.record) {
-                    Database.currentMode.record = Database.currentMode.points;
+                boolean feed = false;
+                if(Database.currentMode.score > Database.currentMode.highscore) {
+                    Database.currentMode.highscore = Database.currentMode.score;
+                    feed = true;
                 }
-
-                updateRecordText();
+                if(Database.currentMode.highestTile > Database.currentMode.tileRecord) {
+                    Database.currentMode.tileRecord = Database.currentMode.highestTile;
+                    feed = true;
+                }
+                
+                Database.currentMode.feedLeaderboard();
+                
+                updateHighscoreAndTileRecordText();
             }
-
+            
             @Override
             public void onBackCompleted() {
                 Database.currentMode.backs--;
@@ -168,211 +255,238 @@ public class Game extends AnimatedFragment {
                 stopHighlightBack();
             }
         });
-
-        //points reset
+        
+        //score reset
         updatePointsText();
-        updateRecordText();
+        updateHighscoreAndTileRecordText();
+        updateBackText();
     }
-
-    private void startHighlightBack() {
-        if(mCurrentBackHighlightAnim != null) return;
-
-        ValueAnimator anim = ValueAnimator.ofFloat(1, 1.1f);
-        anim.addUpdateListener(animation -> {
-            float scale = (float) animation.getAnimatedValue();
-            mLyBack.setScaleX(scale);
-            mLyBack.setScaleY(scale);
-        });
-        anim.setDuration(500);
-        anim.setInterpolator(new CycleInterpolator(1));
-        anim.setRepeatMode(ValueAnimator.RESTART);
-        anim.setRepeatCount(ValueAnimator.INFINITE);
-        anim.start();
-
-        mCurrentBackHighlightAnim = anim;
-
-    }
-
-    private void stopHighlightBack() {
-        if(mCurrentBackHighlightAnim != null && mCurrentBackHighlightAnim.isRunning()) {
-            mCurrentBackHighlightAnim.cancel();
-            mCurrentBackHighlightAnim = null;
-            mLyBack.setScaleX(1);
-            mLyBack.setScaleY(1);
+    
+    public void updateUiState() {
+        if(Utils.isOnline(getContext()) && mActivity.googleSignInAccount != null) {
+            mIvLeaderboard.setAlpha(1f);
+            mIvLeaderboardBg.setEnabled(true);
+        } else {
+            mIvLeaderboard.setAlpha(0.2f);
+            mIvLeaderboardBg.setEnabled(false);
         }
     }
-
+    
+    private void startHighlightBack() {
+        if(mCurrentBackHighlightAnims.size() != 0) return;
+        
+        mIvUndoOverlay.setVisibility(View.VISIBLE);
+        mIvUndoOverlay.setAlpha(0.5f);
+        
+        long duration = 400;
+        
+        ValueAnimator borderAnim = ValueAnimator.ofFloat(0f, 1f);
+        borderAnim.addUpdateListener(animation -> {
+            float alpha = (float) animation.getAnimatedValue();
+            mIvUndoOverlay.setAlpha(alpha);
+        });
+        borderAnim.setDuration(duration);
+        borderAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        borderAnim.setRepeatMode(ValueAnimator.REVERSE);
+        borderAnim.setRepeatCount(ValueAnimator.INFINITE);
+        borderAnim.start();
+        
+        ValueAnimator contentColorAnim = ValueAnimator.ofArgb(Color.WHITE, ContextCompat.getColor(getContext(), R.color.rankUp));
+        contentColorAnim.addUpdateListener(animation -> {
+            int color = (int) animation.getAnimatedValue();
+            mTvUndoCount.setTextColor(color);
+            mIvUndo.setColorFilter(color);
+        });
+        contentColorAnim.setDuration(duration);
+        contentColorAnim.setInterpolator(new AccelerateDecelerateInterpolator());
+        contentColorAnim.setRepeatMode(ValueAnimator.REVERSE);
+        contentColorAnim.setRepeatCount(ValueAnimator.INFINITE);
+        contentColorAnim.start();
+        
+        mCurrentBackHighlightAnims.add(borderAnim);
+        mCurrentBackHighlightAnims.add(contentColorAnim);
+    }
+    
+    private void stopHighlightBack() {
+        
+        if(mCurrentBackHighlightAnims.size() != 0) {
+            for(Animator anim : mCurrentBackHighlightAnims) {
+                anim.cancel();
+            }
+            mCurrentBackHighlightAnims.clear();
+            
+            mIvUndoOverlay.setVisibility(View.INVISIBLE);
+            
+            mTvUndoCount.setTextColor(Color.WHITE);
+            mIvUndo.setColorFilter(Color.WHITE);
+        }
+        
+    }
+    
     private void refreshBackState() {
+        
+        if(!gameField.canPerformBack()) {
+            mIvNewUndos.setVisibility(View.INVISIBLE);
+            
+            mIvUndo.setVisibility(View.VISIBLE);
+            mTvUndoCount.setVisibility(View.VISIBLE);
+            
+            mIvUndo.setAlpha(0.2f);
+            mTvUndoCount.setAlpha(0.2f);
+        } else {
+            if(Database.currentMode.backs > 0) {
+                mIvNewUndos.setVisibility(View.INVISIBLE);
+                
+                mIvUndo.setVisibility(View.VISIBLE);
+                mTvUndoCount.setVisibility(View.VISIBLE);
+                
+                mIvUndo.setAlpha(1f);
+                mTvUndoCount.setAlpha(1f);
+            } else {
+                mIvUndo.setVisibility(View.INVISIBLE);
+                mTvUndoCount.setVisibility(View.INVISIBLE);
+                
+                mIvNewUndos.setVisibility(View.VISIBLE);
+                mIvNewUndos.setAlpha(Utils.isOnline(getContext()) ? 1f : 0.2f);
+            }
+        }
+        
         if(Database.currentMode.backs == 0 || !gameField.canPerformBack()) {
             hideBack();
         } else {
             showBack();
         }
-
+        
     }
-
+    
     private void showBack() {
         if(mBackShown) return;
         mBackShown = true;
-
-
-        mLyBack.setVisibility(View.VISIBLE);
-        mLyBack.setTranslationX(0);
-        float dist = mRoot.getWidth()-mLyBack.getX();
-        mLyBack.setTranslationX(dist);
-        mLyBack.setAlpha(1);
-        AnimUtils.animateTranslationX(mLyBack, new DecelerateInterpolator(2), 0, 200, 0);
-
+        
+        mIvUndo.setVisibility(View.VISIBLE);
+        mTvUndoCount.setVisibility(View.VISIBLE);
+        
+        mIvNewUndos.setVisibility(View.INVISIBLE);
     }
-
+    
     private void hideBack() {
         if(!mBackShown) return;
         mBackShown = false;
-
-        float dist = mRoot.getWidth()-mLyBack.getX();
-        AnimUtils.animateTranslationX(mLyBack, new AccelerateInterpolator(2), dist, 200, 0);
-
+        
+        mIvUndo.setVisibility(View.INVISIBLE);
+        mTvUndoCount.setVisibility(View.INVISIBLE);
+        
+        mIvNewUndos.setVisibility(View.VISIBLE);
     }
-
+    
     private void backClickAnim() {
         if(!mBackShown) return;
-
-        AnimUtils.animateScale(mLyBack, new AccelerateDecelerateInterpolator(), 1.1f, 150, 0);
-
-        handler.postDelayed(() -> {
-            AnimUtils.animateScale(mLyBack, new AccelerateDecelerateInterpolator(), 1f, 150, 0);
-        }, 150);
-
+        
+        
     }
-
-    public void disableAll() {
-
+    
+    private void disableAll() {
+        
         gameField.setEnabled(false);
-        mBtnPause.setEnabled(false);
-        mLyBack.setEnabled(false);
-
+        mIvBtnPause.setEnabled(false);
+        mIvBtnBacks.setEnabled(false);
+        
         long duration = 100;
         float alpha = 0f;
-
-        AnimUtils.animateAlpha(gameField, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvPoints, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvRecord, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivOne, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivTwo, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-
-        if(mLyBack.getVisibility() == View.VISIBLE) {
-            AnimUtils.animateAlpha(mLyBack, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        }
-
-        AnimUtils.animateAlpha(mBtnPause, new AccelerateDecelerateInterpolator(), 0, duration, 0);
+        
+        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
+        
     }
-
-    public void disableAllSlow() {
-
+    
+    private void disableAllSlow() {
+        
         gameField.setEnabled(false);
-        mBtnPause.setEnabled(false);
-        mLyBack.setEnabled(false);
-
+        mIvBtnPause.setEnabled(false);
+        mIvBtnBacks.setEnabled(false);
+        
         long duration = 1500;
         float alpha = 0.1f;
-
-        AnimUtils.animateAlpha(gameField, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvPoints, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mTvRecord, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivOne, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        AnimUtils.animateAlpha(mVDivTwo, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-
-        if(mLyBack.getVisibility() == View.VISIBLE) {
-            AnimUtils.animateAlpha(mLyBack, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
-        }
-
-        AnimUtils.animateAlpha(mBtnPause, new AccelerateDecelerateInterpolator(), 0, duration, 0);
+        
+        AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), alpha, duration, 0);
+        
     }
-
+    
     public void enableAll(long delay) {
         mActivity.state = MainActivity.STATE_FM_GAME;
-
+        
+        won = false;
+        
         updateBackText();
-
+        
         gameField.setEnabled(true);
-        mBtnPause.setEnabled(true);
-        mLyBack.setEnabled(true);
-
+        mIvBtnPause.setEnabled(true);
+        mIvBtnBacks.setEnabled(true);
+        
         long duration = 150;
         float alpha = 1f;
-
+        
         TimeInterpolator interpolator = new LinearOutSlowInInterpolator();
-
-        AnimUtils.animateAlpha(gameField, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mBtnPause, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mTvPoints, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mTvRecord, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mVDivOne, interpolator, alpha, duration, delay);
-        AnimUtils.animateAlpha(mVDivTwo, interpolator, alpha, duration, delay);
-        if(mBackShown) AnimUtils.animateAlpha(mLyBack, interpolator, alpha, duration, delay);
+        
+        AnimUtils.animateAlpha(mRoot, interpolator, alpha, duration, delay);
     }
-
-
+    
+    
     private void block(long duration) {
         mBlocking = true;
         handler.postDelayed(mDeblocker, duration);
     }
-
+    
     public void restart() {
+        Utils.fillGameStartRankValues();
         enableAll(0);
-        Database.currentMode.points = 0;
+        Database.currentMode.score = 0;
+        Database.currentMode.highestTile = 0;
         Database.currentMode.backs = Database.START_BACK_VALUE;
         updateBackText();
         reset();
         refreshBackState();
         handler.postDelayed(() -> gameField.showStartTiles(), 500);
     }
-
+    
     private void reset() {
         won = false;
         stopHighlightBack();
         gameField.clear();
         updatePointsText();
-        updateRecordText();
+        updateHighscoreAndTileRecordText();
+        refreshBackState();
         gameField.setFieldSize(Database.currentMode.fieldSize);
     }
-
-    public void updatePointsText() {
-        mTvPoints.setText(String.valueOf(Database.currentMode.points));
+    
+    private void updatePointsText() {
+        mTvPoints.setText(String.valueOf(Database.currentMode.score));
     }
-
-    public void updateRecordText() {
-        mTvRecord.setText(getString(R.string.temp_best, Database.currentMode.record));
+    
+    private void updateHighscoreAndTileRecordText() {
+        mTvTileRecordValue.setText(String.valueOf(Database.currentMode.tileRecord));
+        mTvHighscoreValue.setText(String.valueOf(Database.currentMode.highscore));
     }
-
-    public void updateBackText() {
-        mTvBackCount.setText(String.valueOf(Database.currentMode.backs));
+    
+    private void updateBackText() {
+        mTvUndoCount.setText(String.valueOf(Database.currentMode.backs));
     }
-
-    public void showInstruction(long delay) {
-
-        long duration = 250;
-
-        mTvInstruction.setAlpha(0);
-        mTvInstruction.setTranslationX(mTvInstruction.getWidth()/2);
-        AnimUtils.animateTranslationX(mTvInstruction, new DecelerateInterpolator(2), 0, duration, delay);
-        AnimUtils.animateAlpha(mTvInstruction, new AccelerateDecelerateInterpolator(), 1, duration, delay);
-
-        delay += duration + 1300;
-
-        handler.postDelayed(() -> {
-            AnimUtils.animateTranslationX(mTvInstruction, new AccelerateInterpolator(2), -mTvInstruction.getWidth()/2, duration, 0);
-            AnimUtils.animateAlpha(mTvInstruction, new AccelerateDecelerateInterpolator(), 0, duration, 0);
-        }, delay);
-
+    
+    public void performBack() {
+        mIvBtnBacks.callOnClick();
     }
-
+    
     @Override
     protected void animateShow(long delay) {
-
+        mRoot.setVisibility(View.VISIBLE);
+    
+        mActivity.state = MainActivity.STATE_FM_GAME;
+    
+        mActivity.leaderbaordManager.setLeaderboardLayoutInstance(mLeaderboardInstance);
+        mActivity.leaderbaordManager.updateLeaderboardLayoutInstance(true);
+    
+        Admob.adListener = mAdListener;
+        
         reset();
-
-        mLyBack.setVisibility(View.INVISIBLE);
         mBackShown = false;
 
         mRoot.setVisibility(View.VISIBLE);
@@ -380,37 +494,42 @@ public class Game extends AnimatedFragment {
         AnimUtils.animateAlpha(mRoot, new AccelerateDecelerateInterpolator(), 1, 150, delay);
 
         delay += 300;
-
-        mTvInstruction.setAlpha(0);
-
-        if(!loadGame) {
-            showInstruction(delay);
-            delay += 1900;
-
+        
+        if(Database.currentMode.saved == null) {
+            Utils.fillGameStartRankValues();
+            Database.currentMode.score = 0;
+            Database.currentMode.backs = Database.START_BACK_VALUE;
             updateBackText();
+            refreshBackState();
             handler.postDelayed(() -> gameField.showStartTiles(), delay);
         } else {
             handler.postDelayed(() -> {
                 gameField.setSaveImageAndAnimate(Database.currentMode.saved);
             }, delay);
-
-            handler.postDelayed(this::refreshBackState, delay);
+            
+            handler.postDelayed(() -> {
+                updateBackText();
+                refreshBackState();
+            }, delay);
+            
         }
-
+        
     }
-
+    
     @Override
     protected long animateHide(long delay) {
-
+        
+        Admob.adListener = null;
+        
         enableAll(0);
         mRoot.setVisibility(View.INVISIBLE);
-
+        
         return 0;
     }
-
+    
     public boolean onBackPressed() {
-        mBtnPause.callOnClick();
+        mIvBtnPause.callOnClick();
         return true;
     }
-
+    
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    Google Play game services IDs.
+    Save this file as res/values/games-ids.xml in your project.
+    -->
+    <!-- app_id -->
+    <string name="app_id" translatable="false">938760797514</string>
+    <!-- package_name -->
+    <string name="package_name" translatable="false">com.titaniel.best_2048_math_puzzle</string>
+    <!-- achievement Sperm -->
+    <string name="achievement_sperm" translatable="false">CgkIyvqDlKkbEAIQDw</string>
+    <!-- achievement Baby -->
+    <string name="achievement_baby" translatable="false">CgkIyvqDlKkbEAIQEA</string>
+    <!-- achievement Kid -->
+    <string name="achievement_kid" translatable="false">CgkIyvqDlKkbEAIQEQ</string>
+    <!-- achievement Student -->
+    <string name="achievement_student" translatable="false">CgkIyvqDlKkbEAIQEg</string>
+    <!-- achievement Teenager -->
+    <string name="achievement_teenager" translatable="false">CgkIyvqDlKkbEAIQEw</string>
+    <!-- achievement Loo Cleaner -->
+    <string name="achievement_loo_cleaner" translatable="false">CgkIyvqDlKkbEAIQFA</string>
+    <!-- achievement Gangster -->
+    <string name="achievement_gangster" translatable="false">CgkIyvqDlKkbEAIQFQ</string>
+    <!-- achievement Farmer -->
+    <string name="achievement_farmer" translatable="false">CgkIyvqDlKkbEAIQFg</string>
+    <!-- achievement Body Builder -->
+    <string name="achievement_body_builder" translatable="false">CgkIyvqDlKkbEAIQFw</string>
+    <!-- achievement Businessman -->
+    <string name="achievement_businessman" translatable="false">CgkIyvqDlKkbEAIQGA</string>
+    <!-- achievement Millionaire -->
+    <string name="achievement_millionaire" translatable="false">CgkIyvqDlKkbEAIQGQ</string>
+    <!-- achievement Richy Rich -->
+    <string name="achievement_richy_rich" translatable="false">CgkIyvqDlKkbEAIQGg</string>
+    <!-- achievement Mark Zuckerberg -->
+    <string name="achievement_mark_zuckerberg" translatable="false">CgkIyvqDlKkbEAIQGw</string>
+    <!-- achievement Bill Gates -->
+    <string name="achievement_bill_gates" translatable="false">CgkIyvqDlKkbEAIQHA</string>
+    <!-- achievement Flying to the moon -->
+    <string name="achievement_flying_to_the_moon" translatable="false">CgkIyvqDlKkbEAIQHQ</string>
+    <!-- achievement 500 Points -->
+    <string name="achievement_500_points" translatable="false">CgkIyvqDlKkbEAIQHg</string>
+    <!-- achievement 1000 Points -->
+    <string name="achievement_1000_points" translatable="false">CgkIyvqDlKkbEAIQHw</string>
+    <!-- achievement 5000 Points -->
+    <string name="achievement_5000_points" translatable="false">CgkIyvqDlKkbEAIQIA</string>
+    <!-- achievement 10000 Points -->
+    <string name="achievement_10000_points" translatable="false">CgkIyvqDlKkbEAIQIQ</string>
+    <!-- achievement 15000 Points -->
+    <string name="achievement_15000_points" translatable="false">CgkIyvqDlKkbEAIQIg</string>
+    <!-- achievement 20000 Points -->
+    <string name="achievement_20000_points" translatable="false">CgkIyvqDlKkbEAIQIw</string>
+    <!-- achievement 25000 Points -->
+    <string name="achievement_25000_points" translatable="false">CgkIyvqDlKkbEAIQJA</string>
+    <!-- achievement 30000 Points -->
+    <string name="achievement_30000_points" translatable="false">CgkIyvqDlKkbEAIQJQ</string>
+    <!-- achievement 50000 Points -->
+    <string name="achievement_50000_points" translatable="false">CgkIyvqDlKkbEAIQJg</string>
+    <!-- achievement 100000 Points -->
+    <string name="achievement_100000_points" translatable="false">CgkIyvqDlKkbEAIQJw</string>
+    <!-- achievement 200000 Points -->
+    <string name="achievement_200000_points" translatable="false">CgkIyvqDlKkbEAIQKA</string>
+    <!-- achievement 500000 Points -->
+    <string name="achievement_500000_points" translatable="false">CgkIyvqDlKkbEAIQKQ</string>
+    <!-- achievement 1000000 Points -->
+    <string name="achievement_1000000_points" translatable="false">CgkIyvqDlKkbEAIQKg</string>
+    <!-- leaderboard 3x3 - Tile Records -->
+    <string name="leaderboard_3x3_tile_records" translatable="false">CgkIyvqDlKkbEAIQAQ</string>
+    <!-- leaderboard 3x3 - Highscores -->
+    <string name="leaderboard_3x3_highscores" translatable="false">CgkIyvqDlKkbEAIQAg</string>
+    <!-- leaderboard 4x4 - Tile Records -->
+    <string name="leaderboard_4x4_tile_records" translatable="false">CgkIyvqDlKkbEAIQAw</string>
+    <!-- leaderboard 4x4 - Highscores -->
+    <string name="leaderboard_4x4_highscores" translatable="false">CgkIyvqDlKkbEAIQBA</string>
+    <!-- leaderboard 5x5  - Tile Records -->
+    <string name="leaderboard_5x5_tile_records" translatable="false">CgkIyvqDlKkbEAIQBQ</string>
+    <!-- leaderboard 5x5 - Highscores -->
+    <string name="leaderboard_5x5_highscores" translatable="false">CgkIyvqDlKkbEAIQBg</string>
+    <!-- leaderboard 6x6 - Tile Records -->
+    <string name="leaderboard_6x6_tile_records" translatable="false">CgkIyvqDlKkbEAIQBw</string>
+    <!-- leaderboard 6x6 - Highscores -->
+    <string name="leaderboard_6x6_highscores" translatable="false">CgkIyvqDlKkbEAIQCA</string>
+    <!-- leaderboard 7x7 - Tile Records -->
+    <string name="leaderboard_7x7_tile_records" translatable="false">CgkIyvqDlKkbEAIQCQ</string>
+    <!-- leaderboard 7x7 - Highscores -->
+    <string name="leaderboard_7x7_highscores" translatable="false">CgkIyvqDlKkbEAIQCg</string>
+    <!-- leaderboard 8x8 - Tile Records -->
+    <string name="leaderboard_8x8_tile_records" translatable="false">CgkIyvqDlKkbEAIQCw</string>
+    <!-- leaderboard 8x8 - Highscores -->
+    <string name="leaderboard_8x8_highscores" translatable="false">CgkIyvqDlKkbEAIQDA</string>
+    <!-- leaderboard 9x9 - Tile Records -->
+    <string name="leaderboard_9x9_tile_records" translatable="false">CgkIyvqDlKkbEAIQDQ</string>
+    <!-- leaderboard 9x9 - Highscores -->
+    <string name="leaderboard_9x9_highscores" translatable="false">CgkIyvqDlKkbEAIQDg</string>
+
+</resources>

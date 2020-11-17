@@ -3,49 +3,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#00042d"
+    android:background="#000224"
     tools:context=".MainActivity">
 
+    <FrameLayout
+        android:id="@+id/lyContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <fragment
-        android:id="@+id/fragmentHome"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.Home"
+        android:id="@+id/fragmentLogo"
+        android:name="com.titaniel.best_2048_math_puzzle.fragments.Logo"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:visibility="invisible" />
 
-    <fragment
-        android:id="@+id/fragmentGame"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.game.Game"
+    <FrameLayout
+        android:id="@+id/lyPopup"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="invisible" />
-
-    <fragment
-        android:id="@+id/fragmentBacks"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="invisible" />
-
-    <fragment
-        android:id="@+id/fragmentGameOver"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="invisible" />
-
-    <fragment
-        android:id="@+id/fragmentPause"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="invisible" />
-
-    <fragment
-        android:id="@+id/fragmentWon"
-        android:name="com.titaniel.best_2048_math_puzzle.fragments.dialog.Won"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="invisible" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

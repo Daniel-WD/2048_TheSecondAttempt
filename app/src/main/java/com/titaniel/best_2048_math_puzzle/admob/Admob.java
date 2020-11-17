@@ -11,8 +11,19 @@ import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 public class Admob {
 
+    public interface MyAdListener {
+        default void onRewardedVideoAdLoaded() {}
+        default void onRewardedVideoAdOpened() {}
+        default void onRewardedVideoStarted() {}
+        default void onRewardedVideoAdClosed() {}
+        default void onRewarded(RewardItem rewardItem) {}
+        default void onRewardedVideoAdLeftApplication() {}
+        default void onRewardedVideoAdFailedToLoad(int i) {}
+        default void onRewardedVideoCompleted() {}
+    }
+
     public static RewardedVideoAd rewardedVideoAd;
-    public static RewardedVideoAdListener rewardedVideoAdListener;
+    public static MyAdListener adListener;
 
     public static void init(Context context, Handler handler) {
 
@@ -23,64 +34,63 @@ public class Admob {
             rewardedVideoAd.setRewardedVideoAdListener(new RewardedVideoAdListener() {
                 @Override
                 public void onRewardedVideoAdLoaded() {
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoAdLoaded();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoAdLoaded();
                     }
                 }
 
                 @Override
                 public void onRewardedVideoAdOpened() {
 
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoAdOpened();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoAdOpened();
                     }
                 }
 
                 @Override
                 public void onRewardedVideoStarted() {
 
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoStarted();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoStarted();
                     }
                 }
 
                 @Override
                 public void onRewardedVideoAdClosed() {
                     loadRewardedVideoAd();
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoAdClosed();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoAdClosed();
                     }
                 }
 
                 @Override
                 public void onRewarded(RewardItem rewardItem) {
 
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewarded(rewardItem);
+                    if(adListener != null) {
+                        adListener.onRewarded(rewardItem);
                     }
                 }
 
                 @Override
                 public void onRewardedVideoAdLeftApplication() {
 
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoAdLeftApplication();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoAdLeftApplication();
                     }
                 }
 
                 @Override
                 public void onRewardedVideoAdFailedToLoad(int i) {
-
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoAdFailedToLoad(i);
+                    if(adListener != null) {
+                        adListener.onRewardedVideoAdFailedToLoad(i);
                     }
                 }
 
                 @Override
                 public void onRewardedVideoCompleted() {
 
-                    if(rewardedVideoAdListener != null) {
-                        rewardedVideoAdListener.onRewardedVideoCompleted();
+                    if(adListener != null) {
+                        adListener.onRewardedVideoCompleted();
                     }
                 }
             });
@@ -91,8 +101,8 @@ public class Admob {
     }
 
     private static void loadRewardedVideoAd() {
-//        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
-        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/7756949480", new AdRequest.Builder().build());
+        rewardedVideoAd.loadAd("ca-app-pub-3940256099942544/5224354917", new AdRequest.Builder().build());
+//        rewardedVideoAd.loadAd("ca-app-pub-5405975374278619/7756949480", new AdRequest.Builder().build());
 
         //REAL ::: ca-app-pub-5405975374278619/7756949480
         //TEST ::: ca-app-pub-3940256099942544/5224354917

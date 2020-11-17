@@ -7,125 +7,941 @@
     android:visibility="invisible"
     tools:visibility="visible">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif"
-        android:letterSpacing="0.2"
-        android:text="@string/difficulty"
-        android:textColor="@color/lightSnow"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/vDivOne"
+    <!-- background planes atop of buttons -->
+
+    <ImageView
+        android:id="@+id/ivFieldSizeBg"
+        android:layout_width="181.5dp"
+        android:layout_height="96.9dp"
+        android:layout_marginBottom="6dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_fieldsize_bg"
+        app:layout_constraintBottom_toTopOf="@+id/lyButtons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:contentDescription="@string/descrTitle"
-        android:id="@+id/ivTitle"
-        android:layout_width="210dp"
-        android:layout_height="100dp"
-        android:src="@drawable/title"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.53"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.079" />
+        android:id="@+id/ivGameServicesBg"
+        android:layout_width="66.5dp"
+        android:layout_height="70.7dp"
+        android:layout_marginTop="77dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_btn_game_services_bg"
+        app:layout_constraintEnd_toStartOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg" />
 
     <ImageView
-        android:contentDescription="@string/descrMode"
-        android:id="@+id/ivMode"
-        android:layout_width="90dp"
-        android:layout_height="35dp"
-        android:src="@drawable/mode_3"
-        app:layout_constraintBottom_toTopOf="@+id/lyButtons"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivTitle"
-        app:layout_constraintVertical_bias="0.46" />
+        android:id="@+id/ivTrophiesBg"
+        android:layout_width="66.5dp"
+        android:layout_height="70.7dp"
+        android:layout_marginTop="77dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_btn_trophies_bg"
+        app:layout_constraintStart_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg" />
 
     <ImageView
-        android:contentDescription="@string/descrModeNext"
-        android:id="@+id/btnModeNext"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:alpha="0.37"
-        android:background="@android:color/transparent"
-        android:padding="2dp"
-        android:src="@drawable/plus"
-        app:layout_constraintBottom_toBottomOf="@+id/ivMode"
-        app:layout_constraintStart_toEndOf="@+id/ivMode"
-        app:layout_constraintTop_toTopOf="@+id/ivMode" />
+        android:id="@+id/ivTrophyOverlay"
+        android:layout_width="66.5dp"
+        android:layout_height="70.7dp"
+        android:layout_marginTop="77dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_btn_trophies_overlay"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg" />
 
     <ImageView
-        android:contentDescription="@string/descrModePrevious"
-        android:id="@+id/btnModePrevious"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
-        android:alpha="0.37"
-        android:background="@android:color/transparent"
-        android:padding="2dp"
-        android:src="@drawable/minus"
-        app:layout_constraintBottom_toBottomOf="@+id/ivMode"
-        app:layout_constraintEnd_toStartOf="@+id/ivMode"
-        app:layout_constraintTop_toTopOf="@+id/ivMode" />
+        android:id="@+id/ivLeaderboardBg"
+        android:layout_width="match_parent"
+        android:layout_height="77.7dp"
+        android:layout_marginBottom="2.2dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_game_leaderboard_bg"
+        app:layout_constraintBottom_toTopOf="@+id/ivFieldSizeBg"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- game services icon -->
+
+    <ImageView
+        android:id="@+id/ivGameServices"
+        android:layout_width="26.2dp"
+        android:layout_height="26.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/game_services"
+        android:tint="@color/snow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivGameServicesBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivGameServicesBg"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="@+id/ivGameServicesBg"
+        app:layout_constraintTop_toTopOf="@+id/ivGameServicesBg" />
+
+    <!-- trophies icon -->
+
+    <ImageView
+        android:id="@+id/ivTrophy"
+        android:layout_width="22.2dp"
+        android:layout_height="22.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/trophy"
+        android:tint="@color/snow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTrophiesBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivTrophiesBg"
+        app:layout_constraintStart_toStartOf="@+id/ivTrophiesBg"
+        app:layout_constraintTop_toTopOf="@+id/ivTrophiesBg"
+        app:layout_constraintVertical_bias="0.525" />
+
+    <!-- size section content -->
+
+    <ImageView
+        android:id="@+id/ivSize"
+        android:layout_width="54dp"
+        android:layout_height="22.5dp"
+        android:layout_marginBottom="21dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/size_3"
+        android:tint="@color/snow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivFieldSizeBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintStart_toStartOf="@+id/ivFieldSizeBg" />
+
+    <ImageView
+        android:id="@+id/ivPreviousSize"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="9dp"
+        android:contentDescription="@string/descrIcon"
+        android:padding="8dp"
+        android:src="@drawable/chevron_left"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSize"
+        app:layout_constraintEnd_toStartOf="@+id/ivSize"
+        app:layout_constraintTop_toTopOf="@+id/ivSize" />
+
+    <ImageView
+        android:id="@+id/ivNextSize"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="9dp"
+        android:contentDescription="@string/descrIcon"
+        android:padding="8dp"
+        android:src="@drawable/chevron_right"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        app:layout_constraintBottom_toBottomOf="@+id/ivSize"
+        app:layout_constraintStart_toEndOf="@+id/ivSize"
+        app:layout_constraintTop_toTopOf="@+id/ivSize" />
 
     <View
-        android:id="@+id/vDivOne"
-        android:layout_width="190dp"
+        android:id="@+id/vDivSizeHor"
+        android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginBottom="14dp"
-        android:background="@color/lightSnow"
-        app:layout_constraintBottom_toTopOf="@+id/ivMode"
-        app:layout_constraintEnd_toEndOf="@+id/btnModeNext"
-        app:layout_constraintStart_toStartOf="@+id/btnModePrevious" />
+        android:layout_marginStart="7.4dp"
+        android:layout_marginTop="33.3dp"
+        android:layout_marginEnd="7.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintEnd_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintStart_toStartOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivFieldSizeBg" />
 
     <View
-        android:id="@+id/vDivTwo"
-        android:layout_width="190dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="16dp"
-        android:background="@color/lightSnow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivMode" />
+        android:id="@+id/vDivScores"
+        android:layout_width="1dp"
+        android:layout_height="17.3dp"
+        android:layout_marginTop="10.6dp"
+        android:background="#26ffffff"
+        app:layout_constraintEnd_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintStart_toStartOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/ivFieldSizeBg" />
 
-    <LinearLayout
-        android:id="@+id/lyButtons"
+    <TextView
+        android:id="@+id/tvHs"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_marginEnd="6.8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/hs"
+        android:textColor="#4dffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivScores"
+        app:layout_constraintEnd_toStartOf="@+id/vDivScores"
+        app:layout_constraintTop_toTopOf="@+id/vDivScores" />
+
+    <TextView
+        android:id="@+id/tvTr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="6.8dp"
+        android:fontFamily="sans-serif"
+        android:text="@string/tr"
+        android:textColor="#4dffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivScores"
+        app:layout_constraintStart_toEndOf="@id/vDivScores"
+        app:layout_constraintTop_toTopOf="@+id/vDivScores"
+        tools:layout_editor_absoluteX="192dp" />
+
+    <TextView
+        android:id="@+id/tvHighscoreValue"
+        android:layout_width="60dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="11dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:textColor="#4dffffff"
+        android:textSize="13.3sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHs"
+        app:layout_constraintEnd_toStartOf="@+id/tvHs"
+        app:layout_constraintStart_toStartOf="@+id/ivFieldSizeBg"
+        app:layout_constraintTop_toTopOf="@+id/tvHs"
+        tools:text="554" />
+
+    <TextView
+        android:id="@+id/tvTileRecordValue"
+        android:layout_width="60dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="11dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_horizontal"
+        android:textColor="#4dffffff"
+        android:textSize="13.3sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTr"
+        app:layout_constraintEnd_toEndOf="@+id/ivFieldSizeBg"
+        app:layout_constraintStart_toEndOf="@+id/tvTr"
+        app:layout_constraintTop_toTopOf="@+id/tvTr"
+        tools:text="324" />
+
+    <!-- ############## leaderboard content ############## -->
+
+    <!-- lb-dividers -->
+
+    <View
+        android:id="@+id/vDivLbLargeLeft"
+        android:layout_width="1dp"
+        android:layout_height="55.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.56" />
+
+    <View
+        android:id="@+id/vDivLbLargeRight"
+        android:layout_width="1dp"
+        android:layout_height="55.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.56" />
+
+    <View
+        android:id="@+id/vDivLbSmallLeft"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeLeft"
+        app:layout_constraintStart_toStartOf="@+id/ivLeaderboardBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <View
+        android:id="@+id/vDivLbSmallCenter"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbLargeLeft"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.82" />
+
+    <View
+        android:id="@+id/vDivLbSmallRight"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbLargeRight"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <!-- lb-headlines -->
+
+    <TextView
+        android:id="@+id/tvToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1.5dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/today"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallLeft" />
+
+    <TextView
+        android:id="@+id/tvAllTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/allTime"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tv7Days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1.5dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/sevenDays"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallRight" />
+
+    <!-- rank-texts -->
+
+    <TextView
+        android:id="@+id/tvRankTodayHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <TextView
+        android:id="@+id/tvRankTodayTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        tools:text="86" />
+
+    <TextView
+        android:id="@+id/tvRankAllTimeHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tvRankAllTimeTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tvRank7DaysHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="@color/snow"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        tools:text="64"
+        tools:textColor="@color/rankDown" />
+
+    <TextView
+        android:id="@+id/tvRank7DaysTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4sp"
+        android:textColor="@color/snow"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        tools:textColor="@color/rankUp" />
+
+    <!-- rank update indicators -->
+
+    <ImageView
+        android:id="@+id/ivIndicator7DaysTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicator7DaysHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysHs" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorAllTimeTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorAllTimeHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeHs" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorTodayTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/tvRankTodayTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorTodayHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/tvRankTodayHs" />
+
+    <!-- trophies...first, second, third -->
+
+    <ImageView
+        android:id="@+id/ivTrophyTodayHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintVertical_bias="0.62"
+        tools:src="@drawable/trophy_first"
+        tools:tint="#b1a323" />
+
+    <ImageView
+        android:id="@+id/ivTrophyTodayTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophyAllTimeHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophyAllTimeTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <!-- infinities... no data -->
+
+    <ImageView
+        android:id="@+id/ivInfinityAllTimeTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <ImageView
+        android:id="@+id/ivInfinityAllTimeHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivInfinityTodayTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <ImageView
+        android:id="@+id/ivInfinityTodayHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <ImageView
+        android:id="@+id/ivInfinity7DaysTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <ImageView
+        android:id="@+id/ivInfinity7DaysHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <!-- no internet -->
+
+    <ImageView
+        android:id="@+id/ivNoInternet"
+        android:layout_width="39.2dp"
+        android:layout_height="39.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_internet"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.61" />
+
+    <!-- no gameservices -->
+
+    <ImageView
+        android:id="@+id/ivNoGameServices"
+        android:layout_width="40.1dp"
+        android:layout_height="40.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_game_services"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.64" />
+
+    <!-- loading views -->
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingAllTimeHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingAllTimeTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        tools:visibility="visible" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingTodayHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingTodayTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loading7DaysHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loading7DaysTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        app:color="#4dffffff"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <!-- atop of leaderboard section -->
+
+    <View
+        android:id="@+id/vDivTop"
+        android:layout_width="1dp"
+        android:layout_height="26.7dp"
+        android:layout_marginBottom="75dp"
+        android:background="#4dffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHighscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6.5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="end"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/highscore"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivTop"
+        app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+    <TextView
+        android:id="@+id/tvTileRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6.5dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/tileRecord"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintStart_toEndOf="@+id/vDivTop"
+        app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+    <TextView
+        android:id="@+id/tvRankingOf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.8dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/rankingOf"
+        android:textColor="#4dffffff"
+        android:textSize="10.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- title -->
+
+    <ImageView
+        android:id="@+id/ivTitle"
+        android:layout_width="178.7dp"
+        android:layout_height="67.7dp"
+        android:contentDescription="@string/descrTitle"
+        android:src="@drawable/title"
+        app:layout_constraintBottom_toTopOf="@+id/tvRankingOf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.65999997" />
+
+    <!-- buttons -->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/lyButtons"
+        android:layout_width="match_parent"
+        android:layout_height="247dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69">
+        app:layout_constraintVertical_bias="0.81">
 
-        <ImageView
-            android:contentDescription="@string/descrPlay"
-            android:id="@+id/btnPlay"
+        <FrameLayout
+            android:id="@+id/lyPlay"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:src="@drawable/btn_play" />
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:contentDescription="@string/descrResume"
-            android:id="@+id/btnResume"
+            <ImageView
+                android:id="@+id/ivPlayBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/descrBackground"
+                android:src="@drawable/home_btn_play_bg" />
+
+            <TextView
+                android:id="@+id/tvPlay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1.8dp"
+                android:fontFamily="sans-serif"
+                android:shadowColor="#3d000000"
+                android:shadowDy="3"
+                android:shadowRadius="25"
+                android:text="@string/play"
+                android:textColor="#ffffff"
+                android:textSize="23.3sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lyLeaderboards"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/btn_resume" />
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:contentDescription="@string/descrRate"
-            android:id="@+id/btnRate"
+            <ImageView
+                android:id="@+id/ivLeaderboardsBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/descrBackground"
+                android:src="@drawable/home_btn_leaderboards_bg" />
+
+            <TextView
+                android:id="@+id/tvLeaderbaords"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="1dp"
+                android:fontFamily="sans-serif"
+                android:shadowColor="#3d000000"
+                android:shadowDy="3"
+                android:shadowRadius="25"
+                android:text="@string/leaderboards"
+                android:textColor="#ffffff"
+                android:textSize="23.3sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/lyAchievements"
             android:layout_width="match_parent"
-            android:layout_height="63dp"
-            android:layout_marginTop="16dp"
-            android:src="@drawable/btn_rate" />
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/ivAchievementsBg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/descrBackground"
+                android:src="@drawable/home_btn_achievements_bg" />
+
+            <TextView
+                android:id="@+id/tvAchievements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="0.5dp"
+                android:fontFamily="sans-serif"
+                android:shadowColor="#3d000000"
+                android:shadowDy="3"
+                android:shadowRadius="25"
+                android:text="@string/achievements"
+                android:textColor="#ffffff"
+                android:textSize="23.3sp"
+                android:textStyle="bold" />
+
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- refresh indicator -->
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginBottom="6dp"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

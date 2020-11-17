@@ -1,31 +1,84 @@
 <resources>
     <string name="app_name" translatable="false">2048</string>
 
-    <string name="get_backs">Get 3 backs</string>
-    <string name="pause">Pause</string>
-    <string name="game_over">Game Over</string>
-    <string name="won">You won!</string>
-    <string name="score">Score</string>
-    <string name="highscore">Highscore</string>
-    <string name="difficulty">DIFFICULTY</string>
     <string name="temp_best">Highscore: %1$d</string>
-    <string name="get2048">Get the 2048 tile!</string>
+
+    <!-- trophy -->
+    <string name="type_highscore">Highscore</string>
+    <string name="type_tile_record">Tile Record</string>
+    <string name="time_range_daily">One Day</string>
+    <string name="time_range_weekly">7 Days</string>
+
+    <!-- BACKS -->
+    <string name="goOn">Do you want to go on?</string>
+    <string name="getBacks">Get 3 Backs</string>
+    <string name="giveUp">Give Up</string>
+
+    <!-- GAMEOVER -->
+
+    <!-- PAUSE -->
+    <string name="pause">Pause</string>
+
+
+    <!-- TROPHY -->
+    <string name="newTrophy">New Trophy</string>
+    <string name="ok">OK</string>
+
+
+    <!-- TROPHY_CHAMBER -->
+    <string name="trophyChamber">Trophy Chamber</string>
+    <string name="oneDay">ONE DAY</string>
+
+
+    <!-- WON -->
+    <string name="wonText">YOU got the 2048 TILE!!!</string>
+    <string name="wonMessage">Are YOU the best 2048 Player of the world?
+    Get the highest highscore and the highest
+    tile and be the worldwide NUMBER ONE!</string>
+    <string name="score">SCORE</string>
+    <string name="highestTile">HIGHEST TILE</string>
+    <string name="_continue">Continue</string>
+    <string name="home">Home</string>
+    <string name="restart">Restart</string>
+
+
+    <!-- LOGIN -->
+    <string name="loginText">You need to log in into your Google Play
+        \nGames account to compete with others.</string>
+    <string name="logIn_q">Log In?</string>
+    <string name="logIn">Log In</string>
+    <string name="no">No</string>
+
+
+    <!-- GOAL -->
+    <string name="goalText">Combine the tiles by swiping over the\nscreen. Tiles with the same number will\nsum up to a new tile. Your goal is to get\nthe 2048 tile.
+        \n\nMess your skills on the global\nleaderboard. You can see the highscore\nranking on the left side and the ranking\nfor the highest tile on the right side.
+        \n\nAre you the best 2048 player of the world?
+        \n\n~Titaniel Productions</string>
+
+    <string name="yourGoal">Your Goal</string>
+    <string name="gotIt">Got It</string>
+
+
+
+    <!-- HOME -->
+    <string name="play">Play</string>
+    <string name="leaderboards">Leaderboards</string>
+    <string name="achievements">Achievements</string>
+    <string name="hs">HS</string>
+    <string name="tr">TR</string>
+    <string name="today">TODAY</string>
+    <string name="allTime">ALL TIME</string>
+    <string name="sevenDays">7 DAYS</string>
+    <string name="highscore">HIGHSCORE</string>
+    <string name="tileRecord">TILE RECORD</string>
+    <string name="rankingOf">RANKING OF</string>
+
 
     <!-- image descriptions  -->
 
-    <string name="descrResume">Resume</string>
-    <string name="descrHome">Home</string>
-    <string name="descrRestart">Restart</string>
-    <string name="descrUndo">Undo</string>
-    <string name="descrGetBacks">Get Backs</string>
-    <string name="descrGiveUp">Give Up</string>
-    <string name="descrClose">Close</string>
     <string name="descrTitle">Title</string>
-    <string name="descrMode">Mode</string>
-    <string name="descrModeNext">Next Mode</string>
-    <string name="descrModePrevious">Previous Mode</string>
-    <string name="descrPlay">Play</string>
-    <string name="descrRate">Rate</string>
-    <string name="undo_last_move">Undo last move?</string>
+    <string name="descrBackground">Background</string>
+    <string name="descrIcon">Icon</string>
 
 </resources>

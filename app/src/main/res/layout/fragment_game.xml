@@ -7,154 +7,862 @@
     android:visibility="invisible"
     tools:visibility="visible">
 
+    <!-- touch area -->
+
     <com.titaniel.best_2048_math_puzzle.fragments.game.TouchArea
         android:id="@+id/touchArea"
         android:layout_width="match_parent"
-        android:layout_height="492dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lyPoints" />
+        app:layout_constraintTop_toBottomOf="@+id/vDivPointsCenter" />
 
-    <View
-        android:id="@+id/vDivOne"
+    <!-- plains -->
+
+    <ImageView
+        android:id="@+id/ivLeaderboardBg"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginBottom="9dp"
-        android:background="@color/lightSnow"
-        app:layout_constraintBottom_toTopOf="@+id/lyPoints"
+        android:layout_height="77.7dp"
+        android:layout_marginBottom="0.9dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/home_game_leaderboard_bg"
+        app:layout_constraintBottom_toTopOf="@+id/ivPointsBg" />
+
+    <ImageView
+        android:id="@+id/ivPointsBg"
+        android:layout_width="193.5dp"
+        android:layout_height="74.8dp"
+        android:layout_marginBottom="14.6dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/game_points_bg"
+        app:layout_constraintBottom_toTopOf="@+id/gameField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <View
-        android:id="@+id/vDivTwo"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="7dp"
-        android:background="@color/lightSnow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lyPoints" />
+    <ImageView
+        android:id="@+id/ivLeaderboardLink"
+        android:layout_width="63dp"
+        android:layout_height="72.8dp"
+        android:layout_marginEnd="191.6dp"
+        android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/game_btn_leaderboard_bg"
+        app:layout_constraintBottom_toTopOf="@+id/gameField"
+        app:layout_constraintEnd_toEndOf="@+id/ivPointsBg" />
 
-    <LinearLayout
-        android:id="@+id/lyPoints"
+    <ImageView
+        android:id="@+id/ivBacksBg"
+        android:layout_width="63dp"
+        android:layout_height="72.8dp"
+        android:layout_marginStart="191.6dp"
+        android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrBackground"
+        android:src="@drawable/game_btn_backs_bg"
+        app:layout_constraintBottom_toTopOf="@+id/gameField"
+        app:layout_constraintStart_toStartOf="@+id/ivPointsBg" />
+
+    <ImageView
+        android:id="@+id/ivUndoOverlay"
+        android:layout_width="63dp"
+        android:layout_height="72.8dp"
+        android:layout_marginStart="191.6dp"
+        android:layout_marginBottom="19.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/game_btn_undo_overlay"
+        android:tint="@color/rankUp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/gameField"
+        app:layout_constraintStart_toStartOf="@+id/ivPointsBg" />
+
+    <!-- leaderboardlink -->
+
+    <ImageView
+        android:id="@+id/ivLeaderboard"
+        android:layout_width="20.3dp"
+        android:layout_height="20.3dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/leaderboard"
+        android:tint="@color/snow"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardLink"
+        app:layout_constraintEnd_toEndOf="@+id/ivLeaderboardLink"
+        app:layout_constraintStart_toStartOf="@+id/ivLeaderboardLink"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardLink"
+        app:layout_constraintVertical_bias="0.48000002" />
+
+    <!-- undos -->
+
+    <ImageView
+        android:id="@+id/ivNewUndos"
+        android:layout_width="30.2dp"
+        android:layout_height="30.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/new_undos"
+        android:tint="@color/snow"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/ivBacksBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivBacksBg"
+        app:layout_constraintStart_toStartOf="@+id/ivBacksBg"
+        app:layout_constraintTop_toTopOf="@+id/ivBacksBg" />
+
+    <ImageView
+        android:id="@+id/ivUndo"
+        android:layout_width="18.7dp"
+        android:layout_height="18.7dp"
+        android:layout_marginStart="19.1dp"
+        android:layout_marginTop="24.9dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/undo"
+        android:tint="@color/snow"
+        app:layout_constraintStart_toStartOf="@+id/ivBacksBg"
+        app:layout_constraintTop_toTopOf="@+id/ivBacksBg" />
+
+    <TextView
+        android:id="@+id/tvUndoCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="1.6dp"
+        android:layout_marginTop="7.7dp"
+        android:fontFamily="sans-serif"
+        android:textColor="#ffffff"
+        android:textSize="13.7sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/ivUndo"
+        app:layout_constraintTop_toTopOf="@+id/ivUndo"
+        tools:text="3" />
+
+    <!-- point plain content -->
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="160dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="13.5dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center_horizontal"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/gameField"
+        android:includeFontPadding="false"
+        android:textColor="#ffffff"
+        android:textSize="23.7sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="@+id/ivPointsBg"
+        app:layout_constraintStart_toStartOf="@+id/ivPointsBg"
+        app:layout_constraintTop_toTopOf="@+id/ivPointsBg"
+        tools:text="1224" />
+
+    <View
+        android:id="@+id/vDivPointsHor"
+        android:layout_width="175.3dp"
+        android:layout_height="1dp"
+        android:layout_marginBottom="26.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPointsBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivPointsBg"
+        app:layout_constraintStart_toStartOf="@+id/ivPointsBg" />
+
+    <View
+        android:id="@+id/vDivPointsCenter"
+        android:layout_width="1dp"
+        android:layout_height="17.3dp"
+        android:layout_marginBottom="4.8dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPointsBg"
+        app:layout_constraintEnd_toEndOf="@+id/ivPointsBg"
+        app:layout_constraintStart_toStartOf="@+id/ivPointsBg" />
+
+    <TextView
+        android:id="@+id/tvTr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5.2dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:text="@string/tr"
+        android:textColor="#4dffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivPointsCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivPointsCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivPointsCenter" />
+
+    <TextView
+        android:id="@+id/tvTileRecordValue"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:textColor="#4dffffff"
+        android:textSize="13.3sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTr"
+        app:layout_constraintStart_toEndOf="@+id/tvTr"
+        app:layout_constraintTop_toTopOf="@+id/tvTr"
+        tools:text="32468" />
+
+    <TextView
+        android:id="@+id/tvHs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5.2dp"
+        android:layout_marginBottom="1dp"
+        android:fontFamily="sans-serif"
+        android:includeFontPadding="false"
+        android:text="@string/hs"
+        android:textColor="#4dffffff"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivPointsCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivPointsCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivPointsCenter" />
+
+    <TextView
+        android:id="@+id/tvHighscoreValue"
+        android:layout_width="60dp"
+        android:layout_height="16dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="end"
+        android:includeFontPadding="false"
+        android:textColor="#4dffffff"
+        android:textSize="13.3sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHs"
+        app:layout_constraintEnd_toStartOf="@+id/tvHs"
+        app:layout_constraintTop_toTopOf="@+id/tvHs"
+        tools:text="52454" />
+
+    <!-- ############## leaderboard content ############## -->
+
+    <!-- lb-dividers -->
+
+    <View
+        android:id="@+id/vDivLbLargeLeft"
+        android:layout_width="1dp"
+        android:layout_height="55.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.56" />
+
+    <View
+        android:id="@+id/vDivLbLargeRight"
+        android:layout_width="1dp"
+        android:layout_height="55.4dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.67"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.56" />
+
+    <View
+        android:id="@+id/vDivLbSmallLeft"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeLeft"
+        app:layout_constraintStart_toStartOf="@+id/ivLeaderboardBg"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <View
+        android:id="@+id/vDivLbSmallCenter"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbLargeRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbLargeLeft"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.82" />
+
+    <View
+        android:id="@+id/vDivLbSmallRight"
+        android:layout_width="1dp"
+        android:layout_height="35.7dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbLargeRight"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <!-- lb-headlines -->
+
+    <TextView
+        android:id="@+id/tvToday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1.5dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/today"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallLeft" />
+
+    <TextView
+        android:id="@+id/tvAllTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/allTime"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tv7Days"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1.5dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/sevenDays"
+        android:textColor="#4dffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toStartOf="@+id/vDivLbSmallRight" />
+
+    <!-- rank-texts -->
+
+    <TextView
+        android:id="@+id/tvRankTodayHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:text=""
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <TextView
+        android:id="@+id/tvRankTodayTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        tools:text="86" />
+
+    <TextView
+        android:id="@+id/tvRankAllTimeHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tvRankAllTimeTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="#ffffff"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <TextView
+        android:id="@+id/tvRank7DaysHs"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|end"
+        android:lineSpacingExtra="4.7sp"
+        android:textColor="@color/snow"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        tools:text="64"
+        tools:textColor="@color/rankDown" />
+
+    <TextView
+        android:id="@+id/tvRank7DaysTr"
+        android:layout_width="30dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="6dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical|start"
+        android:lineSpacingExtra="4sp"
+        android:textColor="@color/snow"
+        android:textSize="22.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        tools:textColor="@color/rankUp" />
+
+    <!-- rank update indicators -->
+
+    <ImageView
+        android:id="@+id/ivIndicator7DaysTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicator7DaysHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRank7DaysHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/tvRank7DaysHs" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorAllTimeTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorAllTimeHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankAllTimeHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/tvRankAllTimeHs" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorTodayTileRecord"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginStart="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayTr"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/tvRankTodayTr" />
+
+    <ImageView
+        android:id="@+id/ivIndicatorTodayHighscore"
+        android:layout_width="10.7dp"
+        android:layout_height="10.7dp"
+        android:layout_marginEnd="3.3dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/tvRankTodayHs"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/tvRankTodayHs" />
+
+    <!-- trophies...first, second, third -->
+
+    <ImageView
+        android:id="@+id/ivTrophyTodayHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintVertical_bias="0.62"
+        tools:src="@drawable/trophy_first"
+        tools:tint="#b1a323" />
+
+    <ImageView
+        android:id="@+id/ivTrophyTodayTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophyAllTimeHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophyAllTimeTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysHs"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginEnd="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysTr"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="3.5dp"
+        android:contentDescription="@string/descrIcon"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <!-- infinities... no data -->
+
+    <ImageView
+        android:id="@+id/ivInfinityAllTimeTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <ImageView
+        android:id="@+id/ivInfinityAllTimeHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/ivInfinityTodayTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <ImageView
+        android:id="@+id/ivInfinityTodayHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <ImageView
+        android:id="@+id/ivInfinity7DaysTr"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginStart="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <ImageView
+        android:id="@+id/ivInfinity7DaysHs"
+        android:layout_width="24.4dp"
+        android:layout_height="24.4dp"
+        android:layout_marginEnd="8.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_rank"
+        android:tint="#4dffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <!-- no internet -->
+
+    <ImageView
+        android:id="@+id/ivNoInternet"
+        android:layout_width="39.2dp"
+        android:layout_height="39.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_internet"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.58">
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.61" />
 
-        <TextView
-            android:id="@+id/tvPoints"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-medium"
-            android:includeFontPadding="false"
-            android:textColor="@color/snow"
-            android:letterSpacing="0.02"
-            android:textSize="28sp"
-            tools:text="29387" />
+    <!-- no gameservices -->
 
-        <TextView
-            android:id="@+id/tvRecord"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="sans-serif"
-            android:includeFontPadding="false"
-            tools:text="Record: 256"
-            android:textColor="@color/lightSnow"
-            android:textSize="13sp" />
+    <ImageView
+        android:id="@+id/ivNoGameServices"
+        android:layout_width="40.1dp"
+        android:layout_height="40.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/no_game_services"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintVertical_bias="0.64" />
 
-    </LinearLayout>
+    <!-- loading views -->
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingAllTimeHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingAllTimeTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallCenter"
+        tools:visibility="visible" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingTodayHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingTodayTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallLeft" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loading7DaysHs"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loading7DaysTr"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:alpha="0.3"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLbSmallRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivLbSmallRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivLbSmallRight" />
+
+    <!-- atop of leaderboard section -->
+
+    <View
+        android:id="@+id/vDivTop"
+        android:layout_width="1dp"
+        android:layout_height="26.7dp"
+        android:layout_marginBottom="75dp"
+        android:background="#33ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHighscore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6.5dp"
+        android:fontFamily="sans-serif"
+        android:gravity="end"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/highscore"
+        android:textColor="#33ffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintEnd_toStartOf="@+id/vDivTop"
+        app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+    <TextView
+        android:id="@+id/tvTileRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6.5dp"
+        android:fontFamily="sans-serif"
+        android:lineSpacingExtra="3sp"
+        android:text="@string/tileRecord"
+        android:textColor="#33ffffff"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
+        app:layout_constraintStart_toEndOf="@+id/vDivTop"
+        app:layout_constraintTop_toTopOf="@+id/vDivTop" />
+
+    <TextView
+        android:id="@+id/tvRankingOf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2.8dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="2sp"
+        android:text="@string/rankingOf"
+        android:textColor="#33ffffff"
+        android:textSize="10.7sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toTopOf="@+id/vDivTop"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- pause -->
+
+    <ImageView
+        android:id="@+id/ivPause"
+        android:layout_width="37.1dp"
+        android:layout_height="37.1dp"
+        android:layout_marginTop="6.6dp"
+        android:layout_marginEnd="6.4dp"
+        android:contentDescription="@string/descrIcon"
+        android:padding="10dp"
+        android:src="@drawable/pause"
+        android:tint="#33ffffff"
+        android:tintMode="src_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- game field -->
 
     <com.titaniel.best_2048_math_puzzle.fragments.game.GameField
         android:id="@+id/gameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
         android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.69" />
+        app:layout_constraintVertical_bias="0.72" />
 
-    <ImageView
-        android:contentDescription="@string/pause"
-        android:id="@+id/ivPause"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginTop="4dp"
-        android:tint="@color/lightSnow"
-        android:tintMode="src_in"
-        android:padding="13dp"
-        android:src="@drawable/ic_pause"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- refresh indicator -->
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/lyBack"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_back"
-        app:layout_constraintBottom_toBottomOf="@+id/vDivTwo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/vDivOne">
-
-        <ImageView
-            android:contentDescription="@string/descrUndo"
-            android:id="@+id/imageView"
-            android:layout_width="17dp"
-            android:layout_height="17dp"
-            android:src="@drawable/ic_back"
-            android:tint="@color/snow"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.41"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.45" />
-
-        <TextView
-            android:id="@+id/tvBackCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="2dp"
-            android:includeFontPadding="false"
-            tools:text="3"
-            android:textColor="@color/snow"
-            android:textSize="13sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.7" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/snow"
-        android:id="@+id/tvInstruction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:letterSpacing="0.07"
-        android:text="@string/get2048"
-        app:layout_constraintBottom_toTopOf="@+id/gameField"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.titaniel.best_2048_math_puzzle.loading_view.LoadingView
+        android:id="@+id/loadingView"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:alpha="0.2"
+        app:layout_constraintBottom_toTopOf="@+id/ivLeaderboardBg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vDivTwo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

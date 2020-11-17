@@ -10,149 +10,336 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lyContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="473.6dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginEnd="4dp"
-        android:layout_marginStart="4dp"
-        android:background="@drawable/dialog_background"
-        android:paddingBottom="22dp">
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <!-- background -->
+
+        <ImageView
+            android:id="@+id/ivBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/dialog_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <!-- title -->
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tvWon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="22dp"
-            android:letterSpacing="0.07"
-            android:text="@string/won"
-            android:textColor="@color/snow"
-            android:textSize="23sp"
+            android:layout_marginTop="19dp"
+            android:fontFamily="sans-serif"
+            android:gravity="end"
+            android:letterSpacing="0.02"
+            android:lineSpacingExtra="5sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="@string/wonText"
+            android:textColor="#ffffff"
+            android:textSize="23.3sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/lyScore"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="22dp"
-            android:layout_marginStart="22dp"
-            android:layout_marginTop="22dp"
-            android:background="@drawable/score_background"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="1dp"
-                android:layout_height="70dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/lightSnow"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="14dp"
-                android:layout_marginTop="3dp"
-                android:text="@string/score"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginEnd="14dp"
-                android:text="@string/highscore"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintEnd_toStartOf="@+id/view" />
-
-            <TextView
-                android:id="@+id/tvScore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="3dp"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                app:layout_constraintStart_toEndOf="@+id/view"
-                app:layout_constraintTop_toTopOf="@+id/view"
-                tools:text="2684" />
-
-            <TextView
-                android:id="@+id/tvHighscore"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginStart="14dp"
-                android:textColor="@color/snow"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="@+id/view"
-                app:layout_constraintStart_toEndOf="@+id/view"
-                tools:text="234234" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- message -->
 
         <ImageView
-            android:id="@+id/btnResume"
-            android:layout_width="0dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="22dp"
-            android:contentDescription="@string/descrResume"
-            android:src="@drawable/btn_resume_lv1"
+            android:id="@+id/ivMessageBg"
+            android:layout_width="329.5dp"
+            android:layout_height="76.1dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/won_text_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lyScore" />
+            app:layout_constraintTop_toBottomOf="@+id/tvWon" />
 
-        <LinearLayout
-            android:id="@+id/lyButtons"
-            android:layout_width="0dp"
+        <TextView
+            android:id="@+id/tvMessageText"
+            android:layout_width="294dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="9dp"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center_horizontal"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0.9sp"
+            android:text="@string/wonMessage"
+            android:textColor="#80808B"
+            android:textSize="15.7sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/ivMessageBg"
+            app:layout_constraintStart_toStartOf="@+id/ivMessageBg"
+            app:layout_constraintTop_toTopOf="@+id/ivMessageBg" />
+
+        <!-- result background -->
+
+        <ImageView
+            android:id="@+id/ivResultBg"
+            android:layout_width="291.6dp"
+            android:layout_height="131dp"
+            android:layout_marginTop="21dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/gameover_won_result_bg"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnResume">
+            app:layout_constraintTop_toBottomOf="@+id/ivMessageBg" />
 
-            <ImageView
-                android:id="@+id/btnHome"
-                android:layout_width="0dp"
-                android:layout_height="63dp"
-                android:layout_weight="0.5"
-                android:contentDescription="@string/descrHome"
-                android:src="@drawable/btn_home_lv3_small" />
+        <!-- result divider -->
 
-            <ImageView
-                android:id="@+id/btnRestart"
-                android:layout_width="0dp"
-                android:layout_height="63dp"
-                android:layout_weight="0.5"
-                android:contentDescription="@string/descrRestart"
-                android:src="@drawable/btn_restart_lv2_small" />
+        <View
+            android:id="@+id/vDivResHor"
+            android:layout_width="244.5dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="67.4dp"
+            android:background="#262639"
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg"
+            app:layout_constraintTop_toTopOf="@+id/ivResultBg" />
 
-        </LinearLayout>
+        <View
+            android:id="@+id/vDivResVertTop"
+            android:layout_width="1dp"
+            android:layout_height="51.1dp"
+            android:layout_marginBottom="4.5dp"
+            android:background="#262639"
+            app:layout_constraintBottom_toTopOf="@+id/vDivResHor"
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg" />
 
+        <View
+            android:id="@+id/vDivResVertBottom"
+            android:layout_width="1dp"
+            android:layout_height="51.1dp"
+            android:layout_marginTop="4.5dp"
+            android:background="#262639"
+            app:layout_constraintEnd_toEndOf="@+id/ivResultBg"
+            app:layout_constraintStart_toStartOf="@+id/ivResultBg"
+            app:layout_constraintTop_toBottomOf="@+id/vDivResHor" />
+
+        <!-- result content -->
+
+        <TextView
+            android:id="@+id/tvResScoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="@string/score"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/vDivResVertTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertTop" />
+
+        <TextView
+            android:id="@+id/tvResHighscoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="@string/highscore"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/vDivResVertTop"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertTop" />
+
+        <TextView
+            android:id="@+id/tvResHighestTileText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="@string/highestTile"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toStartOf="@+id/vDivResVertBottom"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
+
+        <TextView
+            android:id="@+id/tvResTileRecordText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="2.7sp"
+            android:text="@string/tileRecord"
+            android:textColor="#333345"
+            android:textSize="13.3sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toEndOf="@+id/vDivResVertBottom"
+            app:layout_constraintTop_toTopOf="@+id/vDivResVertBottom" />
+
+        <TextView
+            android:id="@+id/tvHighscoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tvResHighscoreText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighscoreText"
+            tools:text="4732" />
+
+        <TextView
+            android:id="@+id/tvTileRecordValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintStart_toStartOf="@+id/tvResTileRecordText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResTileRecordText"
+            tools:text="512" />
+
+        <TextView
+            android:id="@+id/tvHighestTileValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tvResHighestTileText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResHighestTileText"
+            tools:text="234234" />
+
+        <TextView
+            android:id="@+id/tvScoreValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:includeFontPadding="false"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="@+id/tvResScoreText"
+            app:layout_constraintTop_toBottomOf="@+id/tvResScoreText"
+            tools:text="4096" />
+
+
+        <ImageView
+            android:id="@+id/ivContinue"
+            android:layout_width="305dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="12dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/won_btn_resume_bg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivResultBg" />
+
+        <TextView
+            android:id="@+id/tvContinueText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="4.7sp"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="@string/_continue"
+            android:textColor="#ffffff"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ivContinue"
+            app:layout_constraintEnd_toEndOf="@+id/ivContinue"
+            app:layout_constraintStart_toStartOf="@+id/ivContinue"
+            app:layout_constraintTop_toTopOf="@+id/ivContinue" />
+
+        <ImageView
+            android:id="@+id/ivHome"
+            android:layout_width="152dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="70dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/won_btn_home_bg"
+            app:layout_constraintStart_toStartOf="@+id/ivContinue"
+            app:layout_constraintTop_toTopOf="@+id/ivContinue" />
+
+        <ImageView
+            android:id="@+id/ivRestart"
+            android:layout_width="152dp"
+            android:layout_height="77dp"
+            android:layout_marginTop="70dp"
+            android:contentDescription="@string/descrBackground"
+            android:src="@drawable/won_btn_restart_bg"
+            app:layout_constraintEnd_toEndOf="@+id/ivContinue"
+            app:layout_constraintTop_toTopOf="@+id/ivContinue" />
+
+        <TextView
+            android:id="@+id/tvHomeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="4sp"
+            android:rotation="3"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="@string/home"
+            android:textColor="#4dffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/ivHome"
+            app:layout_constraintEnd_toEndOf="@+id/ivHome"
+            app:layout_constraintStart_toStartOf="@+id/ivHome"
+            app:layout_constraintTop_toTopOf="@+id/ivHome" />
+
+        <TextView
+            android:id="@+id/tvRestartText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:fontFamily="sans-serif-medium"
+            android:lineSpacingExtra="4sp"
+            android:rotation="-3"
+            android:shadowColor="#3d000000"
+            android:shadowDy="3"
+            android:shadowRadius="25"
+            android:text="@string/restart"
+            android:textColor="#4dffffff"
+            android:textSize="20sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRestart"
+            app:layout_constraintEnd_toEndOf="@+id/ivRestart"
+            app:layout_constraintStart_toStartOf="@+id/ivRestart"
+            app:layout_constraintTop_toTopOf="@+id/ivRestart" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

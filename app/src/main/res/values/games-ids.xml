@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Google Play game services IDs.
+Save this file as res/values/games-ids.xml in your project.
+-->
+<resources>
+<!--    &lt;!&ndash; app_id &ndash;&gt;
+    <string name="app_id" translatable="false">213093679583</string>
+    &lt;!&ndash; package_name &ndash;&gt;
+    &lt;!&ndash; achievement Sperm &ndash;&gt;
+    <string name="achievement_sperm" translatable="false">CgkI34P-6pkGEAIQBg</string>
+    &lt;!&ndash; achievement Baby &ndash;&gt;
+    <string name="achievement_baby" translatable="false">CgkI34P-6pkGEAIQBw</string>
+    &lt;!&ndash; achievement Kid &ndash;&gt;
+    <string name="achievement_kid" translatable="false">CgkI34P-6pkGEAIQCA</string>
+    &lt;!&ndash; achievement Student &ndash;&gt;
+    <string name="achievement_student" translatable="false">CgkI34P-6pkGEAIQCQ</string>
+    &lt;!&ndash; achievement Teenager &ndash;&gt;
+    <string name="achievement_teenager" translatable="false">CgkI34P-6pkGEAIQCg</string>
+    &lt;!&ndash; achievement Loo Cleaner &ndash;&gt;
+    <string name="achievement_loo_cleaner" translatable="false">CgkI34P-6pkGEAIQCw</string>
+    &lt;!&ndash; achievement Gangster &ndash;&gt;
+    <string name="achievement_gangster" translatable="false">CgkI34P-6pkGEAIQDA</string>
+    &lt;!&ndash; achievement Farmer &ndash;&gt;
+    <string name="achievement_farmer" translatable="false">CgkI34P-6pkGEAIQDQ</string>
+    &lt;!&ndash; achievement Body Builder &ndash;&gt;
+    <string name="achievement_body_builder" translatable="false">CgkI34P-6pkGEAIQDg</string>
+    &lt;!&ndash; achievement Businessman &ndash;&gt;
+    <string name="achievement_businessman" translatable="false">CgkI34P-6pkGEAIQDw</string>
+    &lt;!&ndash; achievement Millionaire &ndash;&gt;
+    <string name="achievement_millionaire" translatable="false">CgkI34P-6pkGEAIQEA</string>
+    &lt;!&ndash; achievement Richy Rich &ndash;&gt;
+    <string name="achievement_richy_rich" translatable="false">CgkI34P-6pkGEAIQEQ</string>
+    &lt;!&ndash; achievement Mark Zuckerberg &ndash;&gt;
+    <string name="achievement_mark_zuckerberg" translatable="false">CgkI34P-6pkGEAIQEg</string>
+    &lt;!&ndash; achievement Bill Gates &ndash;&gt;
+    <string name="achievement_bill_gates" translatable="false">CgkI34P-6pkGEAIQEw</string>
+    &lt;!&ndash; achievement Flying to the moon &ndash;&gt;
+    <string name="achievement_flying_to_the_moon" translatable="false">CgkI34P-6pkGEAIQFA</string>
+    &lt;!&ndash; achievement 500 Points &ndash;&gt;
+    <string name="achievement_500_points" translatable="false">CgkI34P-6pkGEAIQFQ</string>
+    &lt;!&ndash; achievement 1000 Points &ndash;&gt;
+    <string name="achievement_1000_points" translatable="false">CgkI34P-6pkGEAIQFg</string>
+    &lt;!&ndash; achievement 5000 Points &ndash;&gt;
+    <string name="achievement_5000_points" translatable="false">CgkI34P-6pkGEAIQFw</string>
+    &lt;!&ndash; achievement 10000 Points &ndash;&gt;
+    <string name="achievement_10000_points" translatable="false">CgkI34P-6pkGEAIQGA</string>
+    &lt;!&ndash; achievement 15000 Points &ndash;&gt;
+    <string name="achievement_15000_points" translatable="false">CgkI34P-6pkGEAIQGQ</string>
+    &lt;!&ndash; achievement 20000 Points &ndash;&gt;
+    <string name="achievement_20000_points" translatable="false">CgkI34P-6pkGEAIQGg</string>
+    &lt;!&ndash; achievement 25000 Points &ndash;&gt;
+    <string name="achievement_25000_points" translatable="false">CgkI34P-6pkGEAIQGw</string>
+    &lt;!&ndash; achievement 30000 Points &ndash;&gt;
+    <string name="achievement_30000_points" translatable="false">CgkI34P-6pkGEAIQHA</string>
+    &lt;!&ndash; achievement 50000 Points &ndash;&gt;
+    <string name="achievement_50000_points" translatable="false">CgkI34P-6pkGEAIQHQ</string>
+    &lt;!&ndash; achievement 100000 Points &ndash;&gt;
+    <string name="achievement_100000_points" translatable="false">CgkI34P-6pkGEAIQHg</string>
+    &lt;!&ndash; achievement 200000 Points &ndash;&gt;
+    <string name="achievement_200000_points" translatable="false">CgkI34P-6pkGEAIQHw</string>
+    &lt;!&ndash; achievement 500000 Points &ndash;&gt;
+    <string name="achievement_500000_points" translatable="false">CgkI34P-6pkGEAIQIA</string>
+    &lt;!&ndash; achievement 1000000 Points &ndash;&gt;
+    <string name="achievement_1000000_points" translatable="false">CgkI34P-6pkGEAIQIQ</string>
+    &lt;!&ndash; leaderboard 3x3 - Tile Records &ndash;&gt;
+    <string name="leaderboard_3x3_tile_records" translatable="false">CgkI34P-6pkGEAIQIg</string>
+    &lt;!&ndash; leaderboard 3x3 - Highscores &ndash;&gt;
+    <string name="leaderboard_3x3_highscores" translatable="false">CgkI34P-6pkGEAIQKQ</string>
+    &lt;!&ndash; leaderboard 4x4 - Tile Records &ndash;&gt;
+    <string name="leaderboard_4x4_tile_records" translatable="false">CgkI34P-6pkGEAIQIw</string>
+    &lt;!&ndash; leaderboard 4x4 - Highscores &ndash;&gt;
+    <string name="leaderboard_4x4_highscores" translatable="false">CgkI34P-6pkGEAIQKg</string>
+    &lt;!&ndash; leaderboard 5x5  - Tile Records &ndash;&gt;
+    <string name="leaderboard_5x5_tile_records" translatable="false">CgkI34P-6pkGEAIQJA</string>
+    &lt;!&ndash; leaderboard 5x5 - Highscores &ndash;&gt;
+    <string name="leaderboard_5x5_highscores" translatable="false">CgkI34P-6pkGEAIQKw</string>
+    &lt;!&ndash; leaderboard 6x6 - Tile Records &ndash;&gt;
+    <string name="leaderboard_6x6_tile_records" translatable="false">CgkI34P-6pkGEAIQJQ</string>
+    &lt;!&ndash; leaderboard 6x6 - Highscores &ndash;&gt;
+    <string name="leaderboard_6x6_highscores" translatable="false">CgkI34P-6pkGEAIQLA</string>
+    &lt;!&ndash; leaderboard 7x7 - Tile Records &ndash;&gt;
+    <string name="leaderboard_7x7_tile_records" translatable="false">CgkI34P-6pkGEAIQJg</string>
+    &lt;!&ndash; leaderboard 7x7 - Highscores &ndash;&gt;
+    <string name="leaderboard_7x7_highscores" translatable="false">CgkI34P-6pkGEAIQLQ</string>
+    &lt;!&ndash; leaderboard 8x8 - Tile Records &ndash;&gt;
+    <string name="leaderboard_8x8_tile_records" translatable="false">CgkI34P-6pkGEAIQJw</string>
+    &lt;!&ndash; leaderboard 8x8 - Highscores &ndash;&gt;
+    <string name="leaderboard_8x8_highscores" translatable="false">CgkI34P-6pkGEAIQLg</string>
+    &lt;!&ndash; leaderboard 9x9 - Tile Records &ndash;&gt;
+    <string name="leaderboard_9x9_tile_records" translatable="false">CgkI34P-6pkGEAIQKA</string>
+    &lt;!&ndash; leaderboard 9x9 - Highscores &ndash;&gt;
+    <string name="leaderboard_9x9_highscores" translatable="false">CgkI34P-6pkGEAIQLw</string>-->
+</resources>

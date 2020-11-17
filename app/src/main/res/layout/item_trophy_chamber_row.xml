@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="98.3dp"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:background="@drawable/trophy_chamber_item_background"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/vDivLeft"
+        android:layout_width="1dp"
+        android:layout_height="59.7dp"
+        android:layout_marginBottom="8dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/vDivCenter"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/vDivRight"
+        android:layout_width="1dp"
+        android:layout_height="59.7dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vDivCenter" />
+
+    <View
+        android:id="@+id/vDivCenter"
+        android:layout_width="1dp"
+        android:layout_height="59.7dp"
+        android:layout_marginBottom="8dp"
+        android:background="#26ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysTr"
+        android:layout_width="33.3dp"
+        android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/trophy_chamber_placeholder"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/vDivRight"
+        app:layout_constraintTop_toTopOf="@+id/vDivRight" />
+
+    <ImageView
+        android:id="@+id/ivTrophyOneDayHs"
+        android:layout_width="33.3dp"
+        android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/trophy_chamber_placeholder"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivLeft"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
+
+    <ImageView
+        android:id="@+id/ivTrophy7DaysHs"
+        android:layout_width="33.3dp"
+        android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/trophy_chamber_placeholder"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivLeft"
+        app:layout_constraintEnd_toStartOf="@+id/vDivCenter"
+        app:layout_constraintStart_toEndOf="@+id/vDivLeft"
+        app:layout_constraintTop_toTopOf="@+id/vDivLeft" />
+
+    <ImageView
+        android:id="@+id/ivTrophyOneDayTr"
+        android:layout_width="33.3dp"
+        android:layout_height="38.1dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/trophy_chamber_placeholder"
+        app:layout_constraintBottom_toBottomOf="@+id/vDivRight"
+        app:layout_constraintEnd_toStartOf="@+id/vDivRight"
+        app:layout_constraintStart_toEndOf="@+id/vDivCenter"
+        app:layout_constraintTop_toTopOf="@+id/vDivRight" />
+
+    <ImageView
+        android:id="@+id/ivSize"
+        android:layout_width="34.2dp"
+        android:layout_height="14.2dp"
+        android:contentDescription="@string/descrIcon"
+        android:src="@drawable/size_3"
+        android:tint="#4D4D5C"
+        app:layout_constraintBottom_toTopOf="@+id/vDivCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

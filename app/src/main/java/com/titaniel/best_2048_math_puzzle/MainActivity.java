@@ -1,27 +1,43 @@
 package com.titaniel.best_2048_math_puzzle;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.GamesClient;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.titaniel.best_2048_math_puzzle.admob.Admob;
+import com.titaniel.best_2048_math_puzzle.connectivity_receiver.ConnectivityReceiver;
 import com.titaniel.best_2048_math_puzzle.database.Database;
 import com.titaniel.best_2048_math_puzzle.database.DesignProvider;
 import com.titaniel.best_2048_math_puzzle.fragments.AnimatedFragment;
 import com.titaniel.best_2048_math_puzzle.fragments.Home;
+import com.titaniel.best_2048_math_puzzle.fragments.Logo;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Backs;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.GameOver;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Goal;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.LogIn;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Pause;
-import com.titaniel.best_2048_math_puzzle.fragments.dialog.Undo;
+import com.titaniel.best_2048_math_puzzle.fragments.dialog.Trophy;
+import com.titaniel.best_2048_math_puzzle.fragments.trophy_chamber.TrophyChamber;
 import com.titaniel.best_2048_math_puzzle.fragments.dialog.Won;
 import com.titaniel.best_2048_math_puzzle.fragments.game.Game;
+import com.titaniel.best_2048_math_puzzle.game_services.GameServices;
+import com.titaniel.best_2048_math_puzzle.leaderboard_manager.LeaderboardManager;
+import com.titaniel.best_2048_math_puzzle.utils.Utils;
+
+import net.danlew.android.joda.JodaTimeAndroid;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +45,8 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     private static final int RC_SIGN_IN = 12;
+    private static final int RC_ACHIEVEMENT_UI = 23;
+    private static final int RC_LEADERBOARD_UI = 34;
 
     //states
     public static final int
@@ -36,9 +54,14 @@ public class MainActivity extends AppCompatActivity {
             STATE_FM_HOME = 0,
             STATE_FM_GAME = 1,
             STATE_FM_GAME_OVER = 2,
-            STATE_FM_UNDO = 3,
+            STATE_FM_BACKS = 3,
             STATE_FM_WON = 4,
-            STATE_FM_PAUSE = 5;
+            STATE_FM_PAUSE = 5,
+            STATE_FM_LOGO = 6,
+            STATE_FM_GOAL = 7,
+            STATE_FM_LOGIN = 8,
+            STATE_FM_TROPHY = 9,
+            STATE_FM_TROPHY_CHAMBER = 10;
 
     public int state = STATE_FM_HOME;
 
@@ -46,68 +69,174 @@ public class MainActivity extends AppCompatActivity {
     public Home home;
     public Game game;
     public GameOver gameOver;
-    public Undo undo;
+    public Backs backs;
     public Won won;
     public Pause pause;
+    public Logo logo;
+    public Goal goal;
+    public LogIn logIn;
+    public Trophy trophy;
+    public TrophyChamber trophyChamber;
 
     private Handler mHandler = new Handler();
 
-    private Handler mAdmobHandler;
+    public GoogleSignInAccount googleSignInAccount;
+    public GoogleSignInClient googleSignInClient;
 
-    private GoogleSignInAccount mGoogleSignInAccount;
-    private GoogleSignInClient mGoogleSignInClient;
+    public FirebaseAuth fireBaseAuth = FirebaseAuth.getInstance();
+    public FirebaseUser firebaseUser;
+
+    public ConnectivityReceiver mConnectivityReceiver;
+
+    private FrameLayout mContainer, mLyPopup;
+
+    public LeaderboardManager leaderbaordManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        HandlerThread thread = new HandlerThread("admob");
-        thread.start();
-        mAdmobHandler = new Handler(thread.getLooper());
-//        mAdmobHandler.post(() -> {
-        //admob
-        Admob.init(this, mHandler);
-//        });
+        JodaTimeAndroid.init(getApplicationContext());
+        
+        //ids
+        mContainer = findViewById(R.id.lyContainer);
+        mLyPopup = findViewById(R.id.lyPopup);
+
+        //gameservices sign in client
+        googleSignInClient = GoogleSignIn.getClient(this,
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
         //Database
         Database.init(this);
 
+        //init logo fragment
+        logo = (Logo) getSupportFragmentManager().findFragmentById(R.id.fragmentLogo);
+
+        mHandler.postDelayed(() -> showState(STATE_FM_LOGO, 0, null), 100);
+    }
+
+    public void initAll() {
+
+        //leaderboardManager
+        leaderbaordManager = new LeaderboardManager(this);
+
+        //admob
+        Admob.init(this, mHandler);
+
         //Design Provider
         DesignProvider.init(this);
 
-        //signinclient
-        mGoogleSignInClient = GoogleSignIn.getClient(this,
-                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
+        //Game Services
+        GameServices.init(this);
 
         //init Fragments
-        home = (Home) getSupportFragmentManager().findFragmentById(R.id.fragmentHome);
-        game = (Game) getSupportFragmentManager().findFragmentById(R.id.fragmentGame);
-        undo = (Undo) getSupportFragmentManager().findFragmentById(R.id.fragmentBacks);
-        gameOver = (GameOver) getSupportFragmentManager().findFragmentById(R.id.fragmentGameOver);
-        pause = (Pause) getSupportFragmentManager().findFragmentById(R.id.fragmentPause);
-        won = (Won) getSupportFragmentManager().findFragmentById(R.id.fragmentWon);
+        home = new Home();
+        trophy = new Trophy();
+        game = new Game();
+        backs = new Backs();
+        gameOver = new GameOver();
+        pause = new Pause();
+        won = new Won();
+        goal = new Goal();
+        logIn = new LogIn();
+        trophyChamber = new TrophyChamber();
 
-        mHandler.postDelayed(() -> showState(STATE_FM_HOME, 0, null), 500);
-        mHandler.postDelayed(this::signInSilently, 500);
-//        mHandler.postDelayed(this::startSignInIntent, 500);
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, home).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, game).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, backs).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, gameOver).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, pause).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, won).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, goal).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, logIn).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, trophy).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.lyContainer, trophyChamber).commit();
+
     }
 
-    private void signInSilently() {
-        mGoogleSignInClient.silentSignIn().addOnCompleteListener(this,
-                task -> {
-                    if(task.isSuccessful()) {
-                        mGoogleSignInAccount = task.getResult();
-//                        Utils.toast(this, "silentsignin::successful");
-                    } else {
-                        startSignInIntent();
-//                        Utils.toast(this, "silentsignin::NOT-successful --> startSingInIntent");
-                    }
-                });
+    public void showAchievements() {
+        if(googleSignInAccount == null) return;
+
+        Games.getAchievementsClient(this, googleSignInAccount)
+                .getAchievementsIntent()
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_ACHIEVEMENT_UI));
+
     }
 
-    private void startSignInIntent() {
-        startActivityForResult(mGoogleSignInClient.getSignInIntent(), RC_SIGN_IN);
+    public void showLeaderboard() {
+        if(googleSignInAccount == null) return;
+
+        Games.getLeaderboardsClient(this, googleSignInAccount)
+                .getAllLeaderboardsIntent()
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
+
+    }
+
+    public void showLeaderboard(String id) {
+        if(googleSignInAccount == null) return;
+
+        Games.getLeaderboardsClient(this, googleSignInAccount)
+                .getLeaderboardIntent(id)
+                .addOnSuccessListener(intent -> startActivityForResult(intent, RC_LEADERBOARD_UI));
+    }
+
+    public void onSomethingImportantChanged() {
+        if(home != null) home.updateUiState();
+        if(game != null) game.updateUiState();
+        if(leaderbaordManager != null) leaderbaordManager.onSomethingImportantChanged();
+    }
+
+    public void firebaseSignIn() {
+        firebaseUser = fireBaseAuth.getCurrentUser();
+        if(firebaseUser == null) {
+            fireBaseAuth.signInAnonymously()
+                    .addOnSuccessListener(authResult -> {
+                        Utils.toast(getApplicationContext(), "FirebaseAuthSuccess");
+                        firebaseUser = authResult.getUser();
+                        Database.uid = firebaseUser.getUid();
+                        leaderbaordManager.start();
+                    })
+                    .addOnFailureListener(e -> {
+                        Utils.toast(getApplicationContext(), "FirebaseAuthFail");
+                    });
+        } else {
+            Database.uid = firebaseUser.getUid();
+            leaderbaordManager.start();
+        }
+    }
+
+    public void gameServicesSignInSilently() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if(account != null) {
+            googleSignInAccount = account;
+            onSomethingImportantChanged();
+            attachPopUpView();
+        } else {
+            googleSignInClient.silentSignIn().addOnCompleteListener(this,
+                    task -> {
+                        if(task.isSuccessful()) {
+                            googleSignInAccount = task.getResult();
+                            onSomethingImportantChanged();
+                            attachPopUpView();
+                        } else {
+                            startGameServicesSignInIntent();
+                        }
+                    });
+        }
+
+    }
+
+    public void signGameServicesOut() {
+        if(googleSignInClient == null) return;
+        googleSignInClient.signOut().addOnCompleteListener((v) -> {
+            onSomethingImportantChanged();
+            googleSignInAccount = null;
+        });
+    }
+    
+    public void startGameServicesSignInIntent() {
+        startActivityForResult(googleSignInClient.getSignInIntent(), RC_SIGN_IN);
     }
 
     @Override
@@ -116,27 +245,29 @@ public class MainActivity extends AppCompatActivity {
         if(requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
 
-            try {
-
-                mGoogleSignInAccount = task.getResult(ApiException.class);
-//                Utils.toast(this, "activityresult.getResult::SUCCESS");
-
-            } catch (ApiException apiException) {
-
-//                Utils.toast(this, "activityresult.getResult::API-EXCEPTION");
-
-                /*String message = apiException.getMessage();
-                if(message == null || message.isEmpty()) {
-                    message = "määääääaännnn";
+            if(task.isSuccessful()) {
+                try {
+                    googleSignInAccount = task.getResult(ApiException.class);
+                    attachPopUpView();
+        
+                } catch (ApiException e) {
+                    e.printStackTrace();
+//                Utils.toast(getApplicationContext(), "code: " + e.getStatusCode());
                 }
-
-                new AlertDialog.Builder(this)
-                        .setMessage(message)
-                        .setNeutralButton(android.R.string.ok, null)
-                        .show();*/
-
+                onSomethingImportantChanged();
             }
+
         }
+    }
+
+    private void attachPopUpView() {
+        googleSignInAccount.requestExtraScopes(Games.SCOPE_GAMES_LITE);
+
+        GamesClient client = Games.getGamesClient(getApplicationContext(), googleSignInAccount);
+
+        client.setViewForPopups(mLyPopup);
+//        client.setGravityForPopups(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+
     }
 
     public void showState(int newState, long delay, @Nullable AnimatedFragment oldFragment) {
@@ -156,8 +287,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AnimatedFragment findFragmentByState(int state) {
         switch(state) {
-            case STATE_FM_UNDO:
-                return undo;
+            case STATE_FM_BACKS:
+                return backs;
             case STATE_FM_HOME:
                 return home;
             case STATE_FM_GAME:
@@ -168,6 +299,16 @@ public class MainActivity extends AppCompatActivity {
                 return pause;
             case STATE_FM_WON:
                 return won;
+            case STATE_FM_LOGO:
+                return logo;
+            case STATE_FM_GOAL:
+                return goal;
+            case STATE_FM_LOGIN:
+                return logIn;
+            case STATE_FM_TROPHY:
+                return trophy;
+            case STATE_FM_TROPHY_CHAMBER:
+                return trophyChamber;
         }
         return null;
     }
@@ -175,9 +316,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        //connectivity receiver
+        mConnectivityReceiver = new ConnectivityReceiver(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(android.net.ConnectivityManager.CONNECTIVITY_ACTION); //"android.net.conn.CONNECTIVITY_CHANGE"
+        registerReceiver(mConnectivityReceiver, intentFilter);
+
         //hide statusbar
         View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION |
+                View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOptions);
 
         Database.load();
@@ -191,6 +340,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
 
+        unregisterReceiver(mConnectivityReceiver);
+
+        //save game
         if(state == STATE_FM_GAME) {
             Database.currentMode.saved = game.gameField.getSaveImage();
         }
@@ -219,6 +371,33 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case STATE_FM_GAME:
                 game.onBackPressed();
+                break;
+            case STATE_FM_GAME_OVER:
+                gameOver.onBackPressed();
+                break;
+            case STATE_FM_PAUSE:
+                pause.onBackPressed();
+                break;
+            case STATE_FM_BACKS:
+                backs.onBackPressed();
+                break;
+            case STATE_FM_WON:
+                won.onBackPressed();
+                break;
+            case STATE_FM_LOGO:
+                super.onBackPressed();
+                break;
+            case STATE_FM_GOAL:
+                goal.onBackPressed();
+                break;
+            case STATE_FM_LOGIN:
+                logIn.onBackPressed();
+                break;
+            case STATE_FM_TROPHY:
+                trophy.onBackPressed();
+                break;
+            case STATE_FM_TROPHY_CHAMBER:
+                trophyChamber.onBackPressed();
                 break;
         }
     }

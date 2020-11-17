@@ -6,11 +6,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-
-import androidx.annotation.Nullable;
-import androidx.vectordrawable.graphics.drawable.PathInterpolatorCompat;
-import androidx.core.content.ContextCompat;
-import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -27,6 +22,10 @@ import com.titaniel.best_2048_math_puzzle.utils.Utils;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 
 public class GameField extends View {
 
@@ -344,22 +343,22 @@ public class GameField extends View {
     private ArrayList<Tile> mMoveExcludedTiles = new ArrayList<>();
 
     private final Paint mBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint mDividerPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mGhostPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint mBackgroundPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    private int mBorderColor;
-    private int mDividerColor;
+    private int mBorderColor, mGhostColor, mBackgroundColor;
 
-    private final float mBorderWidth = 1f; //1f
-    private final float mDividerWidth = 1f; //0.8f
-    //    private final float mTileBorderWidth = 2f;
+    private final float mBorderWidth = 1f;
+    private final float mGhostWidth = 1f;
     private final float mMinSwipeDistance = 20;
-    private float mBorderWidthPx, mDividerWidthPx, mMinSwipeDistancePx;
+    private final float mBorderRadius = 3.7f;
 
-    private float mDividerScale = 0.27f;
+    private float mBorderWidthPx, mGhostWidthPx, mFieldRadius, mMinSwipeDistancePx;
+
+    private float mGhostScale = 0.84f;
     private float mBorderScale = 0.86f;
-    private final float mTileScale = 0.91f;
+    private final float mTileScale = 0.90f;
     private final float mTileRadiusRatio = 0.042f;
-    private final float mBorderRadiusRatio = 0.018f;
     private final float mBorderPaddingRatio = 0.02f;
     private final float mFieldScale = 1f; //0.98
 
@@ -389,19 +388,29 @@ public class GameField extends View {
 //        setScaleY(2f - mFieldScale);
 
         mBorderColor = ContextCompat.getColor(context, R.color.game_border_color);
-        mDividerColor = ContextCompat.getColor(context, R.color.game_divider_color);
+        mGhostColor = ContextCompat.getColor(context, R.color.game_divider_color);
+        mBackgroundColor = ContextCompat.getColor(context, R.color.game_background_color);
 
         mBorderWidthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderWidth, getResources().getDisplayMetrics());
-        mDividerWidthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mDividerWidth, getResources().getDisplayMetrics());
+        mGhostWidthPx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mGhostWidth, getResources().getDisplayMetrics());
         mMinSwipeDistancePx = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mMinSwipeDistance, getResources().getDisplayMetrics());
+        mFieldRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, mBorderRadius, getResources().getDisplayMetrics());
+
+        mBorderWidthPx = Utils.dpToPx(getResources(), mBorderWidth);
+        mGhostWidthPx = Utils.dpToPx(getResources(), mGhostWidth);
+        mMinSwipeDistancePx = Utils.dpToPx(getResources(), mMinSwipeDistance);
+        mFieldRadius = Utils.dpToPx(getResources(), mBorderRadius);
 
         mBorderPaint.setStyle(Paint.Style.STROKE);
         mBorderPaint.setColor(mBorderColor);
         mBorderPaint.setStrokeWidth(mBorderWidthPx);
 
-        mDividerPaint.setStyle(Paint.Style.STROKE);
-        mDividerPaint.setColor(mDividerColor);
-        mDividerPaint.setStrokeWidth(mDividerWidthPx);
+        mGhostPaint.setStyle(Paint.Style.STROKE);
+        mGhostPaint.setColor(mGhostColor);
+        mGhostPaint.setStrokeWidth(mGhostWidthPx);
+
+        mBackgroundPaint.setStyle(Paint.Style.FILL);
+        mBackgroundPaint.setColor(mBackgroundColor);
 
     }
 
@@ -412,9 +421,9 @@ public class GameField extends View {
         long dur = 400;
 
         //divider
-        ValueAnimator divScaleAnim = ValueAnimator.ofFloat(0f, mDividerScale);
+        ValueAnimator divScaleAnim = ValueAnimator.ofFloat(0f, mGhostScale);
         divScaleAnim.addUpdateListener(animator -> {
-            mDividerScale = (float) animator.getAnimatedValue();
+            mGhostScale = (float) animator.getAnimatedValue();
             invalidate();
         });
         divScaleAnim.setStartDelay(delay);
@@ -422,10 +431,10 @@ public class GameField extends View {
         divScaleAnim.setDuration(dur);
         divScaleAnim.start();
 
-        mDividerPaint.setColor(Color.TRANSPARENT);
-        ValueAnimator divAlphaAnim = ValueAnimator.ofArgb(Color.TRANSPARENT, mDividerColor);
+        mGhostPaint.setColor(Color.TRANSPARENT);
+        ValueAnimator divAlphaAnim = ValueAnimator.ofArgb(Color.TRANSPARENT, mGhostColor);
         divAlphaAnim.addUpdateListener(animator -> {
-            mDividerPaint.setColor((int) animator.getAnimatedValue());
+            mGhostPaint.setColor((int) animator.getAnimatedValue());
             invalidate();
         });
         divAlphaAnim.setStartDelay(delay);
@@ -864,21 +873,20 @@ public class GameField extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        float halfNegativeBorder = mFullBlockSize*(1 - mDividerScale)/2;
+        float halfNegativeBorder = mFullBlockSize*(1 - mGhostScale)/2;
         float halfNegativeTile = mFullBlockSize*(1 - mTileScale)/2;
         float borderMargin = mBorderPaint.getStrokeWidth()/2;
         float tileRadius = (mFullBlockSize - halfNegativeBorder*2)*mTileRadiusRatio;
-        float borderRadius = mWidth*mBorderRadiusRatio;
 
-        //BORDER
-//        canvas.drawLine(0, borderMargin, 0, mHeight - borderMargin, mBorderPaint);
-//        canvas.drawLine(mWidth, borderMargin, mWidth, mHeight - borderMargin, mBorderPaint);
-//        canvas.drawLine(borderMargin, 0, mWidth - borderMargin, 0, mBorderPaint);
-//        canvas.drawLine(borderMargin, mHeight, mWidth - borderMargin, mHeight, mBorderPaint);
-
+        //background
         canvas.drawRoundRect(borderMargin, borderMargin,
                 mWidth - borderMargin, mHeight - borderMargin,
-                borderRadius, borderRadius, mBorderPaint);
+                mFieldRadius, mFieldRadius, mBackgroundPaint);
+
+        //border
+        canvas.drawRoundRect(borderMargin, borderMargin,
+                mWidth - borderMargin, mHeight - borderMargin,
+                mFieldRadius, mFieldRadius, mBorderPaint);
 
         canvas.save();
         canvas.translate(mBorderPadding, mBorderPadding);
@@ -888,11 +896,11 @@ public class GameField extends View {
             for(int j = 0; j < mFieldSize; j++) {
                 canvas.drawRoundRect(halfNegativeBorder + i*mFullBlockSize, halfNegativeBorder + j*mFullBlockSize,
                         (mFullBlockSize - halfNegativeBorder) + i*mFullBlockSize, (mFullBlockSize - halfNegativeBorder) + j*mFullBlockSize,
-                        tileRadius, tileRadius, mDividerPaint);
+                        tileRadius, tileRadius, mGhostPaint);
 //                if(i != 0)
-//                    canvas.drawLine(mFullBlockSize*i, mFullBlockSize*j + halfNegative, mFullBlockSize*i, mFullBlockSize*(j + 1) - halfNegative, mDividerPaint);
+//                    canvas.drawLine(mFullBlockSize*i, mFullBlockSize*j + halfNegative, mFullBlockSize*i, mFullBlockSize*(j + 1) - halfNegative, mGhostPaint);
 //                if(j != 0)
-//                    canvas.drawLine(mFullBlockSize*i + halfNegative, mFullBlockSize*j, mFullBlockSize*(i + 1) - halfNegative, mFullBlockSize*j, mDividerPaint);
+//                    canvas.drawLine(mFullBlockSize*i + halfNegative, mFullBlockSize*j, mFullBlockSize*(i + 1) - halfNegative, mFullBlockSize*j, mGhostPaint);
             }
         }
 //        }
